@@ -1,9 +1,7 @@
-
-
 import { Button } from "keep-react";
 
 const Otp = () => {
-return (
+  return (
     <section
       className="bg-gray-50  flex justify-center items-center "
       style={{ height: "calc(100vh - 78px)", width: "100%" }}
@@ -22,30 +20,28 @@ return (
               Your Verification code has been sent {/* {RegEmail} */}
             </p>
 
+            {/* <ReactCodeInput type="text" fields={6} /* onChange={handleOtpChange} */}
+            {/* </div> */}
 
-            {/* <ReactCodeInput type="text" fields={6} /* onChange={handleOtpChange} */ }
-          {/* </div> */}
-
-          <div className=" flex gap-2 justify-center">
-            <Button
-              variant="basic"
-              size="normal"
-              type="button"
-              text="Verify OTP"
-              
-            />
-            <Button
-              variant="outline"
-              size="normal"
-              type="button"
-              text="Resend OTP"
-            />
-          </div>
+            <div className=" flex gap-2 justify-center">
+              <Button
+                variant="basic"
+                size="normal"
+                type="button"
+                text="Verify OTP"
+              />
+              <Button
+                variant="outline"
+                size="normal"
+                type="button"
+                text="Resend OTP"
+              />
+            </div>
           </div>
         </form>
       </div>
     </section>
   );
-}
+};
 
 export default Otp;
