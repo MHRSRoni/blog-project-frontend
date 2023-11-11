@@ -1,10 +1,10 @@
 "use client";
 import { Card, Button } from "keep-react";
-import { Label,TextInput } from "keep-react";
+import { Label, TextInput } from "keep-react";
 
-export const RegForm = () => {
-    return (
-      <div className="flex justify-center items-center h-screen">
+export const Register = () => {
+  return (
+    <div className="flex justify-center items-center h-screen">
       <Card className="md:p-6 p-5 shadow-sm w-full md:w-2/3 lg:w-1/2 xl:w-1/2">
         <div>
           <Label value="Email" />
@@ -38,5 +38,5 @@ export const RegForm = () => {
         </Button>
       </Card>
     </div>
-      );
-  };
+  );
+};

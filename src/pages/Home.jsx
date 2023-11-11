@@ -1,12 +1,11 @@
+import PostCard from "../components/post/PostCard";
+
 const Home = () => {
-    return (
-      <div>
-        <h1>
-          this is the home page
-        </h1>
-      </div>
-    );
-  };
-  
-  export default Home;
-  
+  return (
+    <div className="container mx-auto ">
+      <PostCard />
+    </div>
+  );
+};
+
+export default Home;

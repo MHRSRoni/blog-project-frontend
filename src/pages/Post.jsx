@@ -1,6 +1,6 @@
 import { Card } from "keep-react";
 
-const SinglePost = () => {
+const Post = () => {
   return (
     <Card className="md:p-6 p-5 max-w-2xl items-center m-auto mt-6">
       <Card
@@ -49,4 +49,4 @@ const SinglePost = () => {
   );
 };
 
-export default SinglePost;
+export default Post;
