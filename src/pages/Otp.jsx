@@ -1,8 +1,5 @@
-<<<<<<< HEAD:src/components/Userlog/Otp.jsx
 
 import ReactCodeInput from "react-code-input";
-=======
->>>>>>> 15979e0271cf9fbad06a97b7ec03c0cf7cfea6fc:src/pages/Otp.jsx
 import { Button } from "keep-react";
 
 const Otp = () => {
@@ -28,29 +25,12 @@ const Otp = () => {
             {/* <ReactCodeInput type="text" fields={6} /* onChange={handleOtpChange} */}
             {/* </div> */}
 
-<<<<<<< HEAD:src/components/Userlog/Otp.jsx
             <ReactCodeInput type="text" fields={6} /* onChange={handleOtpChange} */ />
           </div>
 
           <div className=" flex gap-2 justify-center">
           <Button size="md" type="primary">Verify</Button>
           <Button size="md" type="outlinePrimary">Resend</Button>
-=======
-            <div className=" flex gap-2 justify-center">
-              <Button
-                variant="basic"
-                size="normal"
-                type="button"
-                text="Verify OTP"
-              />
-              <Button
-                variant="outline"
-                size="normal"
-                type="button"
-                text="Resend OTP"
-              />
-            </div>
->>>>>>> 15979e0271cf9fbad06a97b7ec03c0cf7cfea6fc:src/pages/Otp.jsx
           </div>
         </form>
       </div>
