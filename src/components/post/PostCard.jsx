@@ -1,7 +1,7 @@
 import { Card, Button } from "keep-react";
 import { CaretRight } from "phosphor-react";
 
-const HomePost = () => {
+const PostCard = () => {
   return (
     <Card className="md:p-6 p-5 max-w-2xl items-center m-auto mt-6">
       <Card
@@ -43,4 +43,4 @@ const HomePost = () => {
   );
 };
 
-export default HomePost;
+export default PostCard;
