@@ -5,7 +5,7 @@ import { Label,TextInput } from "keep-react";
 export const Login = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <Card className="w-4/5 sm:w-1/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow">
+      <Card className="w-4/5 sm:w-2/3 lg:w-1/3 mx-auto p-8 bg-white border border-gray-200 rounded-lg shadow">
         <h1 className="block mb-2 mt-4 text-center text-2xl font-medium text-gray-900">
           User Log In
         </h1>

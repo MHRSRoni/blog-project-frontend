@@ -4,11 +4,11 @@ import { Label, TextInput } from "keep-react";
 
 export const Register = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <Card className="w-4/5 sm:w-1/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow">
+    <div className="flex justify-center items-center h-screen" style={{ height: "calc(100vh - 78px)", width: "100%" }}>
+      <Card className="w-4/5 sm:w-2/3 lg:w-1/3 mx-auto p-8 bg-white border border-gray-200 rounded-lg shadow">
         <div className="text-center mb-4">
           <h1 className="block mb-2 text-2xl font-medium text-gray-900">
-            User Registration
+            Registration
           </h1>
           <div className="w-full border-b border-primary-300 mb-4"></div>
         </div>
