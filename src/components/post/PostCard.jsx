@@ -3,9 +3,9 @@ import { CaretRight } from "phosphor-react";
 
 const PostCard = () => {
   return (
-    <Card className="md:p-6 p-5 max-w-2xl items-center m-auto mt-6">
+    <Card className="p-4 my-3">
       <Card
-        className="max-w-2xl overflow-hidden rounded-md"
+        className="overflow-hidden rounded-md"
         imgSrc="https://blog-images-1.pharmeasy.in/blog/production/wp-content/uploads/2022/04/17075422/Person-Experiencing-Acidity-768x406.webp"
         imgSize="md"
       ></Card>
