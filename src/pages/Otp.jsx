@@ -8,7 +8,7 @@ const Otp = () => {
       className="flex justify-center items-center "
       style={{ height: "calc(100vh - 78px)", width: "100%" }}
     >
-      <div className="w-4/5 sm:w-1/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow">
+      <div className="w-4/5 sm:w-2/3 lg:w-1/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow">
         <h2 className="block mb-2 mt-4 text-center text-3xl font-medium text-gray-900">
           OTP
         </h2>
@@ -19,11 +19,8 @@ const Otp = () => {
               Please Enter the one time password to verify your account
             </h2>
             <p className="text-center">
-              Your Verification code has been send {/* {RegEmail} */}
+              Your Verification code has been send emailaddress{/* {RegEmail} */}
             </p>
-
-            {/* <ReactCodeInput type="text" fields={6} /* onChange={handleOtpChange} */}
-            {/* </div> */}
 
             <ReactCodeInput type="text" fields={6} /* onChange={handleOtpChange} */ />
           </div>
