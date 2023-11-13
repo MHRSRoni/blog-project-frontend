@@ -4,6 +4,7 @@ import { MagnifyingGlass } from "phosphor-react";
 import { Navbar, Button, TextInput } from "keep-react";
 import logo from "../../assets/images/logo.png";
 import { Avatar } from "keep-react";
+import { UserDropdown } from "./UserDropdown";
 
 export const NavBar = () => {
   return (
@@ -48,11 +49,7 @@ export const NavBar = () => {
           <Button size="xs" type="outlinePrimary" pill={true}>
             Create Post
           </Button>
-          <Avatar
-            shape="circle"
-            size="md"
-            img="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-          />
+          <UserDropdown />
         </Navbar.Container>
       </Navbar.Container>
     </Navbar>
