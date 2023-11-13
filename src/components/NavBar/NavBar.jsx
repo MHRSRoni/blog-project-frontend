@@ -3,7 +3,6 @@
 import { MagnifyingGlass } from "phosphor-react";
 import { Navbar, Button, TextInput } from "keep-react";
 import logo from "../../assets/images/logo.png";
-import { Avatar } from "keep-react";
 import { UserDropdown } from "./UserDropdown";
 
 export const NavBar = () => {
