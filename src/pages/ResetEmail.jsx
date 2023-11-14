@@ -1,14 +1,14 @@
 "use client";
-import { Card, Button } from "keep-react";
+import { Card } from "keep-react";
 import { Label,TextInput } from "keep-react";
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const ResetEmail = () => {
 
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate.push('/your-target-page');
+    navigate.push('/otp');
   };
   return (
     <div className="flex justify-center items-center h-screen">
@@ -26,23 +26,7 @@ export const Login = () => {
             className="w-full border p-2 rounded"
           />
         </div>
-        <div className="mb-4">
-          <Label value="Password" />
-          <TextInput
-            id="#id-8"
-            placeholder="Password"
-            color="gray"
-            className="w-full border p-2 rounded"
-          />
-        </div>
-        <p>Forgot Password?{' '}
-        <button className="" color="primary" onClick={handleButtonClick}>Reset</button>
-        </p>
-        <div className="flex justify-center">
-          <Button size="md" type="primary">
-            Login
-          </Button>
-        </div>
+        <button onClick={handleButtonClick}>Reset</button>
       </Card>
     </div>
   );

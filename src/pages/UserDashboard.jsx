@@ -5,7 +5,7 @@ import DTable from "../components/Dashboard-UI/DTable"
 
 const UserDashboard = () => {
     return (
-      <div className="flex">
+      <div className="flex gap-4 container">
         <DSidebar />
         <DTable />
       </div>
