@@ -4,10 +4,11 @@ import { MagnifyingGlass } from "phosphor-react";
 import { Navbar, Button, TextInput } from "keep-react";
 import logo from "../../assets/images/logo.png";
 import { UserDropdown } from "./UserDropdown";
+import { SideBar } from "./SideBar";
 
 export const NavBar = () => {
   return (
-    <Navbar fluid={false} className="shadow-md">
+    <Navbar fluid={false} className="shadow-md custom-sidebar">
       <Navbar.Container className="flex items-center justify-between">
         <Navbar.Container className="flex items-center">
           <Navbar.Toggle />
@@ -35,16 +36,12 @@ export const NavBar = () => {
 
           <Navbar.Collapse collapseType="fullWidth">
             <Navbar.Container tag="ul" className="flex flex-col gap-5">
-              <Navbar.Link linkName="Home" />
-              <Navbar.Link linkName="Projects" />
-              <Navbar.Link linkName="Blogs" />
-              <Navbar.Link linkName="News" />
-              <Navbar.Link linkName="Resources" />
+              <SideBar />
             </Navbar.Container>
           </Navbar.Collapse>
         </Navbar.Container>
 
-        <Navbar.Container className="flex gap-2">
+        <Navbar.Container className="flex gap-2 justify-center items-center">
           <Button size="xs" type="outlinePrimary" pill={true}>
             Create Post
           </Button>
