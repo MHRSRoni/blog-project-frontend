@@ -10,7 +10,6 @@ import NoPage from "./pages/NoPage";
 import Post from "./pages/Post";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-/* import UDash from "./pages/UserDashboard"; */
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/udash" element={<UDash />} /> */}
           <Route path="/otp" element={<Otp />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/about" element={<About />} />
