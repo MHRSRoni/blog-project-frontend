@@ -1,8 +1,10 @@
 "use client";
 import { Avatar } from "keep-react";
 import { Dropdown } from "keep-react";
+import { useNavigate } from "react-router-dom";
 
 export const UserDropdown = () => {
+  const navigate = useNavigate();
   return (
     <Dropdown
       id="drop-down"
@@ -18,45 +20,38 @@ export const UserDropdown = () => {
       size="xs"
       dismissOnClick={true}
       arrowIcon={false}
+      floatingArrow={true}
     >
       <Dropdown.Item>
-        <div className="flex flex-col items-start gap-1">
-          <p className="text-base font-semibold text-slate-700">
-            Dropdown Title
-          </p>
-          <p className="max-w-xs text-sm font-normal text-slate-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
+        <div
+          className="flex flex-col items-start gap-1 w-40"
+          onClick={() => navigate("/user/dashboard")}
+        >
+          <p className="text-base font-semibold text-slate-700">Dashboard</p>
         </div>
       </Dropdown.Item>
       <Dropdown.Item>
-        <div className="flex flex-col items-start gap-1">
-          <p className="text-base font-semibold text-slate-700">
-            Dropdown Title
-          </p>
-          <p className="max-w-xs text-sm font-normal text-slate-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
+        <div
+          className="flex flex-col items-start gap-1 w-40"
+          onClick={() => navigate()}
+        >
+          <p className="text-base font-semibold text-slate-700">Profile</p>
         </div>
       </Dropdown.Item>
       <Dropdown.Item>
-        <div className="flex flex-col items-start gap-1">
-          <p className="text-base font-semibold text-slate-700">
-            Dropdown Title
-          </p>
-          <p className="max-w-xs text-sm font-normal text-slate-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
+        <div
+          className="flex flex-col items-start gap-1 w-40"
+          onClick={() => navigate("/user/read-list")}
+        >
+          <p className="text-base font-semibold text-slate-700">Read List</p>
         </div>
       </Dropdown.Item>
       <Dropdown.Item>
-        <div className="flex flex-col items-start gap-1">
-          <p className="text-base font-semibold text-slate-700">
-            Dropdown Title
-          </p>
-          <p className="max-w-xs text-sm font-normal text-slate-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
+        <div
+          className="flex flex-col items-start gap-1 w-40"
+          onClick={() => navigate()}
+        >
+          <p className="text-base font-semibold text-slate-700">Logout</p>
         </div>
       </Dropdown.Item>
     </Dropdown>
