@@ -9,7 +9,7 @@ import Search from "../Search/Search";
 
 export const NavBar = () => {
   const navigate = useNavigate();
-  const loginStatus = false;
+  const loginStatus = true;
   return (
     <Navbar fluid={false} className="shadow-md custom-sidebar">
       <Navbar.Container className="flex items-center justify-between">
