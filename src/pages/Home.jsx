@@ -2,8 +2,20 @@ import { Tabs } from "keep-react";
 import Card from "../components/Card/Card";
 import PostCard from "../components/post/PostCard";
 import { SideBar } from "../components/NavBar/SideBar";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getPostThunk } from "../redux/post/postSlice";
+import Spinner from "../components/Spinner/Spinner";
 
 const Home = () => {
+  const { isLoading, posts, error } = useSelector((state) => state.post);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPostThunk());
+  }, []);
+
   return (
     <div className="container mx-auto  flex pt-3 ">
       <div className="left hidden lg:block lg:basis-2/12 h-screen ">
@@ -12,14 +24,8 @@ const Home = () => {
       <div className="middle basis-12/12 lg:basis-7/12">
         <Tabs aria-label="tabs" style="underline" borderPosition="bottom">
           <Tabs.Item title="Relevant">
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {posts.length > 0 &&
+              posts.map((post) => <PostCard key={post._id} />)}
           </Tabs.Item>
           <Tabs.Item title="Latest">
             <PostCard />
@@ -43,6 +49,7 @@ const Home = () => {
         <Card />
         <Card />
       </div>
+      {isLoading && <Spinner />}
     </div>
   );
 };

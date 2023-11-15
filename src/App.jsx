@@ -3,9 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 
 import Layout from "./pages/Layout";
-import { Register } from "./pages/Register";
-import { Login } from "./pages/Login";
-import Otp from "./pages/Otp";
 import NoPage from "./pages/NoPage";
 import Post from "./pages/Post";
 import { ResetPass } from "./pages/ResetPass";
@@ -14,6 +11,11 @@ import UDash from "./pages/UserDashboard";
 import CreatePost from "./pages/CreatePost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import { Register } from "./pages/auth/Register";
+import Otp from "./pages/auth/Otp";
+import { Login } from "./pages/auth/Login";
+import UserDashboard from "./pages/user/UserDashboard";
+import ReadList from "./pages/user/ReadList";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/post/:id" element={<Post />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/user/dashboard" element={<UserDashboard />} />
+          <Route path="/user/read-list" element={<ReadList />} />
         </Route>
           <Route path="/createpost" element={<CreatePost />} />
         <Route path="*" element={<NoPage />} />
