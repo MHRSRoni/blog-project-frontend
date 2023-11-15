@@ -5,9 +5,17 @@ import DTable from "../components/Dashboard-UI/DTable"
 
 const UserDashboard = () => {
     return (
-      <div className="flex gap-4 container">
-        <DSidebar />
-        <DTable />
+      <div className="container mx-auto">
+
+
+      
+      <div className="flex gap-3 mt-4">
+
+      <div className="left h-screen basis-3/12"><DSidebar /></div>  
+      <div className="right basis-9/12"><DTable /></div>  
+        
+        
+      </div>
       </div>
     );
   };

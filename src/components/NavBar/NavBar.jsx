@@ -2,7 +2,7 @@
 
 import { MagnifyingGlass } from "phosphor-react";
 import { Navbar, Button, TextInput } from "keep-react";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/Logo.svg";
 import { UserDropdown } from "./UserDropdown";
 import { SideBar } from "./SideBar";
 

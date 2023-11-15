@@ -10,7 +10,7 @@ import {
 
 const DSidebarComponent = () => {
   return (
-    <Sidebar aria-label="Sidebar with multi-level dropdown example" className="w-2/4">
+    <Sidebar aria-label="Sidebar with multi-level dropdown example">
         <Sidebar.ItemGroup>
           
           <Sidebar.Item href="#" icon={<Chat size={24} />} label="6">

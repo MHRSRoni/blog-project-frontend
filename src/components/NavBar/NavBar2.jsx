@@ -1,7 +1,7 @@
 
 "use client";
 import { Navbar, Button } from "keep-react";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo.svg";
 import { UserDropdown } from "./UserDropdown";
 
 const Navbar2 = () => {

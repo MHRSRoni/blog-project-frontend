@@ -23,7 +23,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/udash" element={<UDash />} /> */}
+          <Route path="/udash" element={<UDash />} />
           <Route path="/otp" element={<Otp />} />
           <Route path="/resetPass" element={<ResetPass />} />
           <Route path="/resetemail" element={<ResetEmail />} />

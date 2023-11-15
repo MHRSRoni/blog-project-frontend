@@ -8,7 +8,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate.push('/your-target-page');
+    navigate('/resetemail');
   };
   return (
     <div className="flex justify-center items-center h-screen">
