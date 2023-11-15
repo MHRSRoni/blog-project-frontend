@@ -1,19 +1,28 @@
 "use client";
-
 import { MagnifyingGlass } from "phosphor-react";
-import { Navbar, Button, TextInput } from "keep-react";
+import { Navbar, Button } from "keep-react";
 import logo from "../../assets/images/logo.png";
 import { UserDropdown } from "./UserDropdown";
 import { SideBar } from "./SideBar";
+import { useNavigate } from "react-router-dom";
+import Search from "../Search/Search";
 
 export const NavBar = () => {
+  const navigate = useNavigate();
+  const loginStatus = false;
   return (
     <Navbar fluid={false} className="shadow-md custom-sidebar">
       <Navbar.Container className="flex items-center justify-between">
         <Navbar.Container className="flex items-center">
           <Navbar.Toggle />
           <Navbar.Brand>
-            <img src={logo} alt="logo" width="100" height="40" />
+            <img
+              src={logo}
+              alt="logo"
+              width="100"
+              height="40"
+              onClick={() => navigate("/")}
+            />
           </Navbar.Brand>
 
           <Navbar.Container className="flex items-center gap-6">
@@ -21,14 +30,9 @@ export const NavBar = () => {
               tag="ul"
               className="lg:flex items-center justify-between gap-4"
             >
-              <TextInput
-                id="#id-10"
+              <Search
+                Icon={MagnifyingGlass}
                 placeholder="Search anything"
-                color="gray"
-                sizing="sm"
-                type="text"
-                addon={<MagnifyingGlass size={20} color="#5E718D" />}
-                addonPosition="left"
                 style={{ width: "300px" }}
               />
             </Navbar.Container>
@@ -41,12 +45,28 @@ export const NavBar = () => {
           </Navbar.Collapse>
         </Navbar.Container>
 
-        <Navbar.Container className="flex gap-2 justify-center items-center">
-          <Button size="xs" type="outlinePrimary" pill={true}>
-            Create Post
-          </Button>
-          <UserDropdown />
-        </Navbar.Container>
+        {loginStatus ? (
+          <Navbar.Container className="flex gap-2 justify-center items-center">
+            <Button size="xs" type="outlinePrimary" pill={true}>
+              Create Post
+            </Button>
+            <UserDropdown />
+          </Navbar.Container>
+        ) : (
+          <Navbar.Container className="flex gap-2 justify-center items-center">
+            <Button
+              size="xs"
+              type="default"
+              onClick={() => navigate("/register")}
+            >
+              Create Account
+            </Button>
+
+            <Button size="xs" type="primary" onClick={() => navigate("/login")}>
+              Login
+            </Button>
+          </Navbar.Container>
+        )}
       </Navbar.Container>
     </Navbar>
   );
