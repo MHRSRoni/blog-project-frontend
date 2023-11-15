@@ -5,6 +5,7 @@ import { SideBar } from "../components/NavBar/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getPostThunk } from "../redux/post/postSlice";
+import Spinner from "../components/Spinner/Spinner";
 
 const Home = () => {
   const { isLoading, posts, error } = useSelector((state) => state.post);
@@ -48,6 +49,7 @@ const Home = () => {
         <Card />
         <Card />
       </div>
+      {isLoading && <Spinner />}
     </div>
   );
 };
