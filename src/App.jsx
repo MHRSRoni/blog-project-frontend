@@ -12,6 +12,8 @@ import { ResetPass } from "./pages/ResetPass";
 import { ResetEmail } from "./pages/ResetEmail";
 import UDash from "./pages/UserDashboard";
 import CreatePost from "./pages/CreatePost";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -21,11 +23,13 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/udash" element={<UDash />} />
+          {/* <Route path="/udash" element={<UDash />} /> */}
           <Route path="/otp" element={<Otp />} />
           <Route path="/resetPass" element={<ResetPass />} />
           <Route path="/resetemail" element={<ResetEmail />} />
           <Route path="/post/:id" element={<Post />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
         </Route>
           <Route path="/createpost" element={<CreatePost />} />
         <Route path="*" element={<NoPage />} />

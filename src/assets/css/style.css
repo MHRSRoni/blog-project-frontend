@@ -1,5 +1,7 @@
-#user-avatar {
-  border: 2px solid red;
-  background-color: red;
-  padding: 10px;
+.left #sidebar > :first-child {
+  background-color: transparent !important;
+}
+
+.custom-sidebar #sidebar > :first-child {
+  height: 100vh;
 }
