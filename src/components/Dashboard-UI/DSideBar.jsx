@@ -3,49 +3,33 @@
 import { Sidebar } from "keep-react";
 import {
   Chat,
-  LockSimple,
-  ShoppingBagOpen,
-  ShoppingCart,
-  SignIn,
-  SquaresFour,
-  UserPlus,
-  Users,
+  Eye,
+  ThumbsDown,
+  ThumbsUp
 } from "phosphor-react";
 
-export const DSidebarComponent = () => {
+const DSidebarComponent = () => {
   return (
     <Sidebar aria-label="Sidebar with multi-level dropdown example">
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={<SquaresFour size={24} />}>
-            Dashboard
+          
+          <Sidebar.Item href="#" icon={<Chat size={24} />} label="6">
+            Posts
           </Sidebar.Item>
-          <Sidebar.Item icon={<ShoppingCart size={24} />}>
-            E-commerce
+          <Sidebar.Item href="#" icon={<Eye size={24} />} label="86">
+            Total Views
           </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-            icon={<LockSimple size={24} />}
-            label="pro"
-            labelColor="gray"
-          >
-            Components
+          <Sidebar.Item href="#" icon={<ThumbsUp size={24} />} label="3105">
+            Total Likes
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<Chat size={24} />} label="3">
-            Inbox
+          <Sidebar.Item href="#" icon={<ThumbsDown size={24} />} label="69">
+            Total Dislikes
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<Users size={24} />}>
-            Users
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<ShoppingBagOpen size={24} />}>
-            Products
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<SignIn size={24} />}>
-            Sign In
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<UserPlus size={24} />}>
-            Sign Up
-          </Sidebar.Item>
+          
         </Sidebar.ItemGroup>
     </Sidebar>
   );
 }
+
+
+export default DSidebarComponent;
