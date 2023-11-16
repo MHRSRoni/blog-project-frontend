@@ -1,7 +1,9 @@
 "use client";
 import { MagnifyingGlass } from "phosphor-react";
+
+
 import { Navbar, Button } from "keep-react";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/Logo.svg";
 import { UserDropdown } from "./UserDropdown";
 import { SideBar } from "./SideBar";
 import { useNavigate } from "react-router-dom";
