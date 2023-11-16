@@ -1,58 +1,21 @@
 
 // "use client";
 import { useState } from "react";
-// import { Label, TextInput, Textarea, Button } from "keep-react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "keep-react";
+import { Label, TextInput, Textarea } from "keep-react";
 // import { X } from "phosphor-react";
-// import Navbar2 from "../components/NavBar/NavBar2"
-
-// const CreatePost = () => {
-//   const [fileName, setFileName] = useState("");
-//   const handleFileChange = (event) => {
-//     const file = event.target.files[0];
-//     if (file) {
-//       setFileName(file.name);
-//     }
-//   };
-//   const [dismiss, setDismiss] = useState(false);
-//   const onDismiss = () => {
-//     setDismiss(!dismiss);
-//   };
-//   return (
-  
-//             <div className="container container-fluid flex-col items-center justify-center min-h-screen">
-//             <Navbar2 />
-
-//             <Label value="Blog Title " />
-//                 <TextInput
-//                     id="#id-8"
-//                     placeholder="Enter Blog Title"
-//                     color="gray"
-//                 />
-                
+/* import Navbar2 from "../components/NavBar/NavBar2" */
 
 
-//                 <div className="flex w-full flex-row gap-2 container-fluid">
-          
-//                  </div>
-
-//                 <Textarea
-//                 id="content"
-//                 placeholder="Blog Content"
-//                 withBg={true}
-//                 color="gray"
-//                 border={true}
-//                 rows={4}
-//                 />
-
-//                  <Button size="md" type="primary">Publish</Button>
-//             </div>
-
-
-//   );
-// }
 
 
 const CreatePost = () => {
+
+
+  const navigate = useNavigate();
+
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
@@ -88,22 +51,13 @@ const CreatePost = () => {
       <h2 className="text-2xl font-bold mb-4">Create a New Post</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-gray-600">Title:</label>
-          <input
-            className="border w-full p-2"
-            type="text"
-            value={title}
+          <Label value="Blog Title" />
+          <TextInput
+            id="blogTitle"
+            placeholder="Enter Blog Title"
+            color="gray"
             onChange={handleTitleChange}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-600">Content:</label>
-          <textarea
-            className="border w-full p-2"
-            value={content}
-            onChange={handleContentChange}
-            required
+            value={title}
           />
         </div>
         <div className="mb-4">
@@ -115,12 +69,28 @@ const CreatePost = () => {
             onChange={handleImageUpload}
           />
         </div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-        >
-          Create Post
-        </button>
+        <div className="mb-4">
+          <Label value="Content" />
+          <Textarea
+            id="comment"
+            placeholder="Your Blog Content..."
+            withBg={true}
+            color="gray"
+            border={true}
+            rows={4}
+            onChange={handleContentChange}
+            value={content}
+          />
+        </div>
+
+        <div className="flex gap-2">
+          <Button size="md" type="primary" onClick={handleSubmit}>
+            Post
+          </Button>
+          <Button size="md" type="outlinePrimary" onClick={() => {navigate('/')}}>
+            Back Home
+          </Button>
+        </div>
       </form>
     </div>
   );
