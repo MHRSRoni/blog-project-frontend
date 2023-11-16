@@ -49,7 +49,7 @@ export const NavBar = () => {
 
         {loginStatus ? (
           <Navbar.Container className="flex gap-2 justify-center items-center">
-            <Button size="xs" type="outlinePrimary" pill={true}>
+            <Button size="xs" type="outlinePrimary" pill={true} onClick={() => navigate("/createpost")}>
               Create Post
             </Button>
             <UserDropdown />
