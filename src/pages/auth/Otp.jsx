@@ -1,8 +1,74 @@
-
 import ReactCodeInput from "react-code-input";
 import { Button } from "keep-react";
+import { useState } from "react";
+import axios from "../../utilities/axiosInstance";
+import {
+  getLocalStorage,
+  removeLocalStorage,
+} from "../../utilities/SessionHelper";
+import { useNavigate } from "react-router-dom";
+import {
+  errorNotification,
+  successNotification,
+} from "../../utilities/NotificationHelper";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Otp = () => {
+  const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
+  const userEmail = getLocalStorage("email");
+  const navigate = useNavigate();
+
+  //  handleVerify
+  const handleVerify = async () => {
+    setLoading(true);
+    try {
+      if (code.length === 6) {
+        const { data } = await axios.get(
+          `/verification/verify?email=${userEmail.email}&subject=email verification&otp=${code}`
+        );
+
+        if (data.success === true && data["access-token"]) {
+          const res = await axios.get(
+            `/user/email-verify?access-token=${data["access-token"]}&email=${userEmail.email}`
+          );
+
+          if (res.data.success === true) {
+            successNotification("email verify success");
+            navigate("/login");
+            setCode("");
+            removeLocalStorage("email");
+          } else {
+            errorNotification("email verification failed");
+          }
+        } else {
+          errorNotification("otp verification failed");
+        }
+      }
+      setLoading(false);
+    } catch (error) {
+      errorNotification(error?.response?.data?.message);
+    }
+  };
+
+  const resendOTPHandler = async () => {
+    setLoading(true);
+    try {
+      const { status } = await axios.get(
+        `/verification/send-verification?email=${userEmail.email}&subject=email verification`
+      );
+
+      if (status === 200) {
+        successNotification("check your email for verify otp code");
+      }
+
+      setLoading(false);
+    } catch (error) {
+      errorNotification(error?.response?.data?.message);
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       className="flex justify-center items-center "
@@ -18,19 +84,29 @@ const Otp = () => {
             <h2 className="block mb-2 text-xl text-center font-medium text-gray-800">
               Please Enter the one time password to verify your account
             </h2>
+
             <p className="text-center">
-              Your Verification code has been sent to emailaddress{/* {RegEmail} */}
+              Your Verification code has been sent to email address
             </p>
 
-            <ReactCodeInput type="text" fields={6} /* onChange={handleOtpChange} */ />
+            <ReactCodeInput
+              type="text"
+              fields={6}
+              onChange={(e) => setCode(e)}
+            />
           </div>
 
           <div className=" flex gap-2 justify-center mb-4">
-          <Button size="md" type="primary">Verify</Button>
-          <Button size="md" type="outlinePrimary">Resend</Button>
+            <Button size="md" type="primary" onClick={handleVerify}>
+              Verify
+            </Button>
+            <Button size="md" type="outlinePrimary" onClick={resendOTPHandler}>
+              Resend
+            </Button>
           </div>
         </form>
       </div>
+      {loading && <Spinner />}
     </section>
   );
 };
