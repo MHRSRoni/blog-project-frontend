@@ -7,10 +7,11 @@ import { UserDropdown } from "./UserDropdown";
 import { SideBar } from "./SideBar";
 import { useNavigate } from "react-router-dom";
 import Search from "../Search/Search";
+import { useSelector } from "react-redux";
 
 export const NavBar = () => {
   const navigate = useNavigate();
-  const loginStatus = false;
+  const { user } = useSelector((state) => state.auth);
   return (
     <Navbar fluid={false} className="shadow-md custom-sidebar">
       <Navbar.Container className="flex items-center justify-between">
@@ -46,7 +47,7 @@ export const NavBar = () => {
           </Navbar.Collapse>
         </Navbar.Container>
 
-        {loginStatus ? (
+        {user?.status === "verified" ? (
           <Navbar.Container className="flex gap-2 justify-center items-center">
             <Button
               size="xs"
