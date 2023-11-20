@@ -1,7 +1,6 @@
 "use client";
 import { MagnifyingGlass } from "phosphor-react";
 
-
 import { Navbar, Button } from "keep-react";
 import logo from "../../assets/images/Logo.svg";
 import { UserDropdown } from "./UserDropdown";
@@ -11,7 +10,7 @@ import Search from "../Search/Search";
 
 export const NavBar = () => {
   const navigate = useNavigate();
-  const loginStatus = true;
+  const loginStatus = false;
   return (
     <Navbar fluid={false} className="shadow-md custom-sidebar">
       <Navbar.Container className="flex items-center justify-between">
@@ -49,7 +48,12 @@ export const NavBar = () => {
 
         {loginStatus ? (
           <Navbar.Container className="flex gap-2 justify-center items-center">
-            <Button size="xs" type="outlinePrimary" pill={true} onClick={() => navigate("/createpost")}>
+            <Button
+              size="xs"
+              type="outlinePrimary"
+              pill={true}
+              onClick={() => navigate("/createpost")}
+            >
               Create Post
             </Button>
             <UserDropdown />
