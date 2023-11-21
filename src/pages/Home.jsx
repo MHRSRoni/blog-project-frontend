@@ -8,7 +8,7 @@ import { getPostThunk } from "../redux/post/postSlice";
 import Spinner from "../components/Spinner/Spinner";
 
 const Home = () => {
-  const { isLoading, posts, error } = useSelector((state) => state.post);
+  const { isLoading, posts } = useSelector((state) => state.post);
 
   const dispatch = useDispatch();
 
