@@ -1,38 +1,45 @@
 "use client";
 import { Sidebar } from "keep-react";
-import {
-  Chat,
-  ShoppingBagOpen,
-  AddressBook,
-  House,
-  UserPlus,
-  Users,
-} from "phosphor-react";
+import { House, Folders, CircleNotch } from "phosphor-react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategoryThunk, loadMore } from "../../redux/category/categorySlice";
 
 export const SideBar = () => {
+  const { category } = useSelector((state) => state.category);
+  const dispatch = useDispatch();
+
+  // load category
+  useEffect(() => {
+    dispatch(getCategoryThunk());
+  }, [dispatch]);
+
   return (
     <Sidebar>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={<House size={24} />}>
-            Home
+          <Sidebar.Item className="cursor-pointer" icon={<House size={24} />}>
+            হোম
           </Sidebar.Item>
+          {category.map((item) => (
+            <Sidebar.Item
+              className="cursor-pointer"
+              key={item._id}
+              icon={<Folders size={24} />}
+            >
+              {item.title}
+            </Sidebar.Item>
+          ))}
 
-          <Sidebar.Item href="#" icon={<Chat size={24} />}>
-            Inbox
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<Users size={24} />}>
-            Users
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<ShoppingBagOpen size={24} />}>
-            Products
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<AddressBook size={24} />}>
-            Contact
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<UserPlus size={24} />}>
-            About
-          </Sidebar.Item>
+          {category.length <= 7 && (
+            <Sidebar.Item
+              onClick={() => dispatch(loadMore())}
+              className="cursor-pointer"
+              icon={<CircleNotch size={24} />}
+            >
+              আরও দেখুন
+            </Sidebar.Item>
+          )}
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>

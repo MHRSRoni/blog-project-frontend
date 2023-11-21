@@ -5,6 +5,12 @@
 .custom-sidebar #sidebar > :first-child {
   height: 100vh;
 }
+.toggleIcon button svg {
+  width: 35px !important;
+  height: 35px !important;
+  padding: 2px;
+  margin: 0 10px;
+}
 
 /* loader css */
 .spinner {
@@ -18,7 +24,6 @@
   width: 100%;
   height: 100%;
   background: #474bff;
-
   border-radius: 50%;
   animation: spinner-vse6n7 1.25s infinite ease;
 }
