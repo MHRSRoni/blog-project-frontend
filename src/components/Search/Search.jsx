@@ -3,7 +3,6 @@ import { TextInput } from "keep-react";
 const Search = ({ Icon, placeholder, style, iconPosition }) => {
   return (
     <TextInput
-      id="#id-10"
       placeholder={placeholder}
       color="gray"
       sizing="sm"
