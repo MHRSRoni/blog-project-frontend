@@ -1,53 +1,82 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'keep-react';
+import { Label, TextInput, Textarea, Dropdown } from 'keep-react';
+import { useDispatch } from 'react-redux';
+import { createPostThunk } from "../redux/post/postSlice"; 
+import toast from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
-// "use client";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "keep-react";
-import { Label, TextInput, Textarea } from "keep-react";
-// import { X } from "phosphor-react";
-/* import Navbar2 from "../components/NavBar/NavBar2" */
 
 
 
 
 const CreatePost = () => {
-
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const [title, setTitle] = useState('');
+  const categoryId = '65562c3566b20c9043b537b7';
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
 
-  const handleTitleChange = () => {
-    console.log("title set");
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
   };
 
-  const handleContentChange = () => {
-    
-    console.log("content set");
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
   };
 
-  const handleImageUpload = () => {
-    
-    console.log("file set");
+  const handleImageUpload = (e) => {
+    setImage(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     
-    console.log('Title:', title);
-    console.log('Content:', content);
-    console.log('Image:', image);
-
-    setTitle('');
-    setContent('');
-    setImage(null);
+    const postData = {
+      title,
+      categoryId,
+      content,
+      image,
+    };
+  
+    try {
+      
+      await dispatch(createPostThunk(postData));
+  
+      
+      setTitle('');
+      setContent('');
+      setImage(null);
+  
+      
+      toast.success('Post created successfully!', {
+        duration: 4000, 
+        position: 'top-right',
+      });
+  
+      
+      setTimeout(() => {
+        navigate('/');
+      }, 4000);
+    } catch (error) {
+      console.error('Error creating post:', error);
+  
+      
+      toast.error('Error creating post. Please try again.', {
+        duration: 4000,
+        position: 'top-right',
+      });
+    }
   };
+  
 
   return (
     <div className="max-w-2xl mx-auto mt-8 p-4 border rounded shadow">
+      <Toaster />
       <h2 className="text-2xl font-bold mb-4">Create a New Post</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -69,6 +98,14 @@ const CreatePost = () => {
             onChange={handleImageUpload}
           />
         </div>
+        <div>
+          <Dropdown label="Dropdown button" size="sm" type="primary" dismissOnClick={true}>
+            <Dropdown.Item>Dashboard</Dropdown.Item>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Item>Sign out</Dropdown.Item>
+          </Dropdown>
+        </div>
         <div className="mb-4">
           <Label value="Content" />
           <Textarea
@@ -87,7 +124,7 @@ const CreatePost = () => {
           <Button size="md" type="primary" onClick={handleSubmit}>
             Post
           </Button>
-          <Button size="md" type="outlinePrimary" onClick={() => {navigate('/')}}>
+          <Button size="md" type="outlinePrimary" onClick={() => navigate('/')}>
             Back Home
           </Button>
         </div>
@@ -95,7 +132,5 @@ const CreatePost = () => {
     </div>
   );
 };
-
-
 
 export default CreatePost;

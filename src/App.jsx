@@ -8,6 +8,7 @@ import Post from "./pages/Post";
 import { ResetPass } from "./pages/ResetPass";
 import { ResetEmail } from "./pages/ResetEmail";
 import UDash from "./pages/UserDashboard";
+import Profile from "./pages/user/Profile";
 import CreatePost from "./pages/CreatePost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -26,10 +27,12 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/udash" element={<UDash />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/otp" element={<Otp />} />
           <Route path="/resetPass" element={<ResetPass />} />
           <Route path="/resetemail" element={<ResetEmail />} />
-          <Route path="/post/:id" element={<Post />} />
+          {/* <Route path="/post/:id" element={<Post />} /> */}
+          <Route path="/post" element={<Post />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/user/dashboard" element={<UserDashboard />} />
