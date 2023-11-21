@@ -1,21 +1,19 @@
 "use client";
-import { MagnifyingGlass } from "phosphor-react";
-
 import { Navbar, Button } from "keep-react";
 import logo from "../../assets/images/Logo.svg";
 import { UserDropdown } from "./UserDropdown";
 import { SideBar } from "./SideBar";
 import { useNavigate } from "react-router-dom";
-import Search from "../Search/Search";
 import { useSelector } from "react-redux";
+import SearchBar from "./SearchBar";
 
 export const NavBar = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   return (
-    <Navbar fluid={false} className="shadow-md custom-sidebar">
-      <Navbar.Container className="flex items-center justify-between">
-        <Navbar.Container className="flex items-center">
+    <Navbar fluid={false} className="shadow-md  custom-sidebar">
+      <Navbar.Container className="flex items-center justify-between lg:p-2 ">
+        <Navbar.Container className="flex items-center toggleIcon">
           <Navbar.Toggle />
           <Navbar.Brand>
             <img
@@ -27,26 +25,23 @@ export const NavBar = () => {
             />
           </Navbar.Brand>
 
-          <Navbar.Container className="flex items-center gap-6">
-            <Navbar.Container
-              tag="ul"
-              className="lg:flex items-center justify-between gap-4"
-            >
-              <Search
-                Icon={MagnifyingGlass}
-                placeholder="Search anything"
-                style={{ width: "300px" }}
-              />
-            </Navbar.Container>
-          </Navbar.Container>
-
+          {/* collapse */}
           <Navbar.Collapse collapseType="fullWidth">
+            <div className="pl-5">
+              <SearchBar />
+            </div>
             <Navbar.Container tag="ul" className="flex flex-col gap-5">
               <SideBar />
             </Navbar.Container>
           </Navbar.Collapse>
         </Navbar.Container>
 
+        {/* search bar */}
+        <div className="hidden lg:block">
+          <SearchBar />
+        </div>
+
+        {/* user section */}
         {user?.status === "verified" ? (
           <Navbar.Container className="flex gap-2 justify-center items-center">
             <Button
