@@ -17,6 +17,7 @@ import { Login } from "./pages/auth/Login";
 import UserDashboard from "./pages/user/UserDashboard";
 import ReadList from "./pages/user/ReadList";
 import { Toaster } from "react-hot-toast";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/user/dashboard" element={<UserDashboard />} />
           <Route path="/user/read-list" element={<ReadList />} />
+          <Route path="/search" element={<SearchPage />} />
         </Route>
         <Route path="/createpost" element={<CreatePost />} />
         <Route path="*" element={<NoPage />} />

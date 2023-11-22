@@ -1,4 +1,3 @@
-
 // "use client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,17 +6,11 @@ import { Label, TextInput, Textarea } from "keep-react";
 // import { X } from "phosphor-react";
 /* import Navbar2 from "../components/NavBar/NavBar2" */
 
-
-
-
 const CreatePost = () => {
-
-
   const navigate = useNavigate();
 
-
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
 
   const handleTitleChange = () => {
@@ -25,24 +18,22 @@ const CreatePost = () => {
   };
 
   const handleContentChange = () => {
-    
     console.log("content set");
   };
 
   const handleImageUpload = () => {
-    
     console.log("file set");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    console.log('Title:', title);
-    console.log('Content:', content);
-    console.log('Image:', image);
 
-    setTitle('');
-    setContent('');
+    console.log("Title:", title);
+    console.log("Content:", content);
+    console.log("Image:", image);
+
+    setTitle("");
+    setContent("");
     setImage(null);
   };
 
@@ -87,7 +78,13 @@ const CreatePost = () => {
           <Button size="md" type="primary" onClick={handleSubmit}>
             Post
           </Button>
-          <Button size="md" type="outlinePrimary" onClick={() => {navigate('/')}}>
+          <Button
+            size="md"
+            type="outlinePrimary"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             Back Home
           </Button>
         </div>
@@ -95,7 +92,5 @@ const CreatePost = () => {
     </div>
   );
 };
-
-
 
 export default CreatePost;
