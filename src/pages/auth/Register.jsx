@@ -77,6 +77,8 @@ export const Register = () => {
     } catch (error) {
       setLoading(false);
       errorNotification(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
     }
   };
 
