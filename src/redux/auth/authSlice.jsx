@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginRequest } from "./authAPI";
+
 const initialState = {
   isLoading: false,
   user: null,
@@ -20,7 +21,11 @@ export const loginRequestThunk = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    loggedIn: (state, action) => {
+      state.user = action.payload || null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(loginRequestThunk.pending, (state) => {
       state.isLoading = true;
@@ -41,3 +46,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
+export const { loggedIn } = authSlice.actions;

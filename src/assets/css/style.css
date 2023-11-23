@@ -5,6 +5,10 @@
 .custom-sidebar #sidebar > :first-child {
   height: 100vh;
 }
+.skeletonClass > :first-child {
+  background-color: #ffffffe7;
+}
+
 .toggleIcon button svg {
   width: 35px !important;
   height: 35px !important;

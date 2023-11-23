@@ -6,7 +6,7 @@ import categoryReducer from "./redux/category/categorySlice";
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    post: postReducer,
+    posts: postReducer,
     category: categoryReducer,
   },
 });
