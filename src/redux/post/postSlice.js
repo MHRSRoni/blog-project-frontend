@@ -3,8 +3,7 @@ import { getPosts, createPost, singleBlog } from "./postAPI";
 
 const initialState = {
   isLoading: false,
-  posts: [],
-  singlePost: null, // Add this line
+  posts: {},
   error: null,
 };
 
@@ -27,66 +26,37 @@ export const readSingleBlogThunk = createAsyncThunk(
 );
 
 
-export const getPostThunk = createAsyncThunk("post/getPostThunk", async () => {
-  const post = await getPosts();
-  return post;
-});
-
-
-// Blog state handlers
+export const getPostThunk = createAsyncThunk(
+  "post/getPostThunk",
+  async (queryObj, { rejectWithValue }) => {
+    try {
+      return await getPosts(queryObj);
+    } catch (error) {
+      return rejectWithValue(error?.response?.data.message);
+    }
+  }
+);
 
 const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    
+    // getPostThunk api call
     builder.addCase(getPostThunk.pending, (state) => {
       state.isLoading = true;
-      state.posts = [];
+      state.posts = {};
       state.error = null;
     });
     builder.addCase(getPostThunk.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.posts = action.payload?.data?.resultPosts;
+      state.posts = action.payload;
       state.error = null;
     });
-    builder.addCase(getPostThunk.rejected, (state) => {
-      state.isLoading = true;
-      state.posts = [];
-      state.error = "Something went wrong";
-    });
-
-    
-    builder.addCase(createPostThunk.pending, (state) => {
-      state.isLoading = true;
-      state.error = null;
-    });
-    builder.addCase(createPostThunk.fulfilled, (state, action) => {
+    builder.addCase(getPostThunk.rejected, (state, action) => {
       state.isLoading = false;
-      
-      state.posts = [...state.posts, action.payload?.data?.createdPost];
-      state.error = null;
-    });
-    builder.addCase(createPostThunk.rejected, (state) => {
-      state.isLoading = false;
-      state.error = "Something went wrong while creating a post";
-    });
-    
-    
-    builder.addCase(readSingleBlogThunk.pending, (state) => {
-      state.isLoading = true;
-      state.error = null;
-    });
-    builder.addCase(readSingleBlogThunk.fulfilled, (state, action) => {
-      state.isLoading = false;
-      
-      state.singlePost = action.payload?.data;
-      state.error = null;
-    });
-    builder.addCase(readSingleBlogThunk.rejected, (state) => {
-      state.isLoading = false;
-      state.error = "Something went wrong while loading the blog";
+      state.posts = {};
+      state.error = action.payload;
     });
   },
 });

@@ -1,7 +1,6 @@
 import ReactCodeInput from "react-code-input";
 import { Button } from "keep-react";
 import { useState } from "react";
-import axios from "../../utilities/axiosInstance";
 import {
   getLocalStorage,
   removeLocalStorage,
@@ -12,6 +11,7 @@ import {
   successNotification,
 } from "../../utilities/NotificationHelper";
 import Spinner from "../../components/Spinner/Spinner";
+import axios from "../../utilities/axiosInstance";
 
 const Otp = () => {
   const [code, setCode] = useState("");

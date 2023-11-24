@@ -25,7 +25,7 @@ export const UserDropdown = () => {
       <Dropdown.Item>
         <div
           className="flex flex-col items-start gap-1 w-40"
-          onClick={() => navigate("/uDash")}
+          onClick={() => navigate("/user/dashboard")}
         >
           <p className="text-base font-semibold text-slate-700">Dashboard</p>
         </div>
@@ -41,7 +41,7 @@ export const UserDropdown = () => {
       <Dropdown.Item>
         <div
           className="flex flex-col items-start gap-1 w-40"
-          onClick={() => navigate("/user/read-list")}
+          onClick={() => navigate("/user/dashboard/read-list")}
         >
           <p className="text-base font-semibold text-slate-700">Read List</p>
         </div>

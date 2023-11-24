@@ -48,7 +48,7 @@ export const NavBar = () => {
               size="xs"
               type="outlinePrimary"
               pill={true}
-              onClick={() => navigate("/createpost")}
+              onClick={() => navigate("/user/dashboard/create-post")}
             >
               Create Post
             </Button>
