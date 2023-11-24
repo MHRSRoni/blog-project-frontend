@@ -19,16 +19,20 @@ export const createPostThunk = createAsyncThunk(
 // Async thunk for reading a single blog
 export const readSingleBlogThunk = createAsyncThunk(
   "post/readSingleBlogThunk",
-  async () => {
-    const post = await singleBlog();
+  async (slugData) => {
+    const post = await singleBlog(slugData);
     return post;
   }
 );
+
 
 export const getPostThunk = createAsyncThunk("post/getPostThunk", async () => {
   const post = await getPosts();
   return post;
 });
+
+
+// Blog state handlers
 
 const postSlice = createSlice({
   name: "post",
@@ -81,7 +85,7 @@ const postSlice = createSlice({
     });
     builder.addCase(readSingleBlogThunk.rejected, (state) => {
       state.isLoading = false;
-      state.error = "Something went wrong while creating a post";
+      state.error = "Something went wrong while loading the blog";
     });
   },
 });

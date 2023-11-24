@@ -3,26 +3,27 @@ import { Card } from 'keep-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { readSingleBlogThunk } from '../redux/post/postSlice';
 import Spinner from '../components/Spinner/Spinner';
+import { useParams } from 'react-router-dom';
 
 const Post = () => {
   const { isLoading, singlePost, error } = useSelector((state) => state.post);
+  const { slugData } = useParams();
   const dispatch = useDispatch();
+  console.log('BlogPage component is rendered' + slugData);
+
+ 
 
   useEffect(() => {
     // Dispatch the action to fetch the single blog post
-    dispatch(readSingleBlogThunk());
+    dispatch(readSingleBlogThunk("hello-world-again"));
   }, [dispatch]);
 
-  // Log or inspect the data
   useEffect(() => {
-    if (singlePost) {
-      console.log('Received data:', singlePost);
-    }
-
+    // Log or handle the error here
     if (error) {
       console.error('Error fetching data:', error);
     }
-  }, [singlePost, error]);
+  }, [error]);
 
 
   return (
@@ -37,11 +38,12 @@ const Post = () => {
             ></Card>
 
             <Card.Container>
-              {singlePost.userId.name ? (
-                <h1>Author : {singlePost.userId.name}</h1>
+              {/* {singlePost.userId.name ? (
+                <h1>Author : {singlePost.name}</h1>
               ) : (
                 <h1>Blogger Profile</h1>
-              )}
+              )} */}
+              <h1>Blogger Profile</h1>
             </Card.Container>
 
             <Card.Title>{singlePost.title}</Card.Title>

@@ -33,11 +33,13 @@ function App() {
           <Route path="/resetPass" element={<ResetPass />} />
           <Route path="/resetemail" element={<ResetEmail />} />
           {/* <Route path="/post/:id" element={<Post />} /> */}
-          <Route path="/post" element={<Post />} />
+          {/* <Route path="/post" element={<Post />} /> */}
+          <Route path="/post/read" element={<Post />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/user/dashboard" element={<UserDashboard />} />
           <Route path="/user/read-list" element={<ReadList />} />
+          <Route path="/createpost" element={<CreatePost />} />
         </Route>
         <Route path="/createpost" element={<CreatePost />} />
         <Route path="*" element={<NoPage />} />

@@ -2,17 +2,18 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'keep-react';
 import { Label, TextInput, Textarea, Dropdown } from 'keep-react';
-import { useDispatch } from 'react-redux';
-import { createPostThunk } from "../redux/post/postSlice"; 
+/* import { useDispatch } from 'react-redux';
+import { createPostThunk } from "../redux/post/postSlice";  */
 import toast from 'react-hot-toast';
 import { Toaster } from 'react-hot-toast';
+import axios from 'axios';
 
 
 
 
 
 const CreatePost = () => {
-  const dispatch = useDispatch();
+  /* const dispatch = useDispatch(); */
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
@@ -45,7 +46,7 @@ const CreatePost = () => {
   
     try {
       
-      await dispatch(createPostThunk(postData));
+      await /* dispatch(createPostThunk(postData)); */ axios.post('https://health-plus-q4tt.onrender.com/api/v1/post/create', postData);
   
       
       setTitle('');
@@ -132,5 +133,71 @@ const CreatePost = () => {
     </div>
   );
 };
+
+
+/* 
+import { useState } from 'react';
+import axios from 'axios';
+ */
+/* const CreatePost = () => {
+  const [title, setTitle] = useState('');
+  const [image, setImage] = useState('');
+  const categoryId = '65562c3566b20c9043b537b7'; // Replace with your actual static category ID
+  const [description, setDescription] = useState('');
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handlePostBlog = async () => {
+    try {
+      const postData = {
+        title,
+        image,
+        categoryId,
+        description,
+      };
+
+      // Make the API call to post the blog
+      const response = await axios.post('https://health-plus-q4tt.onrender.com/api/v1/post/create', postData);
+
+      // Handle the response or show a success message
+      console.log('Blog posted successfully:', response.data);
+    } catch (error) {
+      // Handle errors
+      console.error('Error posting blog:', error);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Create a New Blog Post</h2>
+      <div>
+        <label htmlFor="title">Title:</label>
+        <input type="text" id="title" value={title} onChange={handleTitleChange} />
+      </div>
+      <div>
+        <label htmlFor="image">Image URL:</label>
+        <input type="text" id="image" value={image} onChange={handleImageChange} />
+      </div>
+      <div>
+        <label>Description:</label>
+        <textarea value={description} onChange={handleDescriptionChange} />
+      </div>
+      <button onClick={handlePostBlog}>Post Blog</button>
+    </div>
+  );
+};
+
+ */
+
 
 export default CreatePost;
