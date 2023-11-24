@@ -1,5 +1,4 @@
 import { Tabs } from "keep-react";
-import Card from "../components/Card/Card";
 import PostCard from "../components/post/PostCard";
 import { SideBar } from "../components/NavBar/SideBar";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import { useEffect } from "react";
 import { getPostThunk } from "../redux/post/postSlice";
 import Spinner from "../components/Spinner/Spinner";
 import { SkeletonComponent } from "../components/Skeleton/SkeletonComponent";
+import SideCard from "../components/SideCard/SideCard";
 
 const Home = () => {
   const { isLoading, posts, error } = useSelector((state) => state.posts);
@@ -80,11 +80,8 @@ const Home = () => {
         </Tabs>
       </div>
       <div className="right hidden lg:block  lg:basis-3/12 ">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <SideCard cardTitle="discussion one" />
+        <SideCard cardTitle="discussion two" />
       </div>
       {isLoading && <Spinner />}
     </div>
