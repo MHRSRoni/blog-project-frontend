@@ -33,7 +33,7 @@ export const UserDropdown = () => {
       <Dropdown.Item>
         <div
           className="flex flex-col items-start gap-1 w-40"
-          onClick={() => navigate()}
+          onClick={() => navigate("/profile")}
         >
           <p className="text-base font-semibold text-slate-700">Profile</p>
         </div>
