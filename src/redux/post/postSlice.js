@@ -4,6 +4,7 @@ import { getPosts, createPost, singleBlog } from "./postAPI";
 const initialState = {
   isLoading: false,
   posts: [],
+  singlePost: null, // Add this line
   error: null,
 };
 
