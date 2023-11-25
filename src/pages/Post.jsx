@@ -1,30 +1,27 @@
-import { useEffect } from 'react';
-import { Card } from 'keep-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { readSingleBlogThunk } from '../redux/post/postSlice';
-import Spinner from '../components/Spinner/Spinner';
-import { useParams } from 'react-router-dom';
+import { useEffect } from "react";
+import { Card } from "keep-react";
+import { useDispatch, useSelector } from "react-redux";
+// import { readSingleBlogThunk } from '../redux/post/postSlice';
+import Spinner from "../components/Spinner/Spinner";
+import { useParams } from "react-router-dom";
 
 const Post = () => {
   const { isLoading, singlePost, error } = useSelector((state) => state.post);
   const { slugData } = useParams();
-  const dispatch = useDispatch();
-  console.log('BlogPage component is rendered' + slugData);
+  // const dispatch = useDispatch();
+  console.log("BlogPage component is rendered" + slugData);
 
- 
-
-  useEffect(() => {
-    // Dispatch the action to fetch the single blog post
-    dispatch(readSingleBlogThunk("hello-world-again"));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   // Dispatch the action to fetch the single blog post
+  //   dispatch(readSingleBlogThunk("hello-world-again"));
+  // }, [dispatch]);
 
   useEffect(() => {
     // Log or handle the error here
     if (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   }, [error]);
-
 
   return (
     <div>
