@@ -1,7 +1,10 @@
 import { Avatar, Card } from "keep-react";
 import { BookmarkSimple, ThumbsUp, CaretRight } from "phosphor-react";
+import { useNavigate } from "react-router-dom";
 
 const PostCard = ({ item }) => {
+  const navigate = useNavigate();
+
   return (
     <Card className="p-4 my-3">
       <Card
@@ -29,13 +32,16 @@ const PostCard = ({ item }) => {
       <Card.Title>{item.title}</Card.Title>
 
       <Card.Description>{item.description.slice(0, 300)}</Card.Description>
-      <Card.Link
-        href="/"
-        icon={<CaretRight size={16} color="#1B4DFF" />}
-        iconPosition="left"
+      <button
+        onClick={() => navigate(`/post/read?slug=${item.slug}`)}
+        style={{ color: '#1B4DFF' }}
+        className="text-primary font-semibold flex items-center"
       >
         Learn More
-      </Card.Link>
+        <CaretRight size={16} className="ml-2" />
+      </button>
+
+
       <Card.Container className="flex flex-row items-center justify-between">
         <button className="flex flex-row items-center text-md ml-2 rounded-md pr-4 pl-4 pt-2 pb-2 hover:bg-[#f5f5f5] ">
           <ThumbsUp size={24} />

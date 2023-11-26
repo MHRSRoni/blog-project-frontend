@@ -7,24 +7,6 @@ const initialState = {
   error: null,
 };
 
-// Async thunk for creating a post
-// export const createPostThunk = createAsyncThunk(
-//   "post/createPostThunk",
-//   async (postData) => {
-//     const post = await createPost(postData);
-//     return post;
-//   }
-// );
-
-// Async thunk for reading a single blog
-// export const readSingleBlogThunk = createAsyncThunk(
-//   "post/readSingleBlogThunk",
-//   async (slugData) => {
-//     const post = await singleBlog(slugData);
-//     return post;
-//   }
-// );
-
 
 export const getPostThunk = createAsyncThunk(
   "post/getPostThunk",

@@ -1,64 +1,62 @@
+
 import { useEffect } from 'react';
 import { Card } from 'keep-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { readSingleBlogThunk } from '../redux/post/postSlice';
 import Spinner from '../components/Spinner/Spinner';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { readSingleBlogThunk } from '../redux/singlePost/singlePostSlice';
+
+
+
+import { useLocation } from 'react-router-dom';
 
 const Post = () => {
-  const { isLoading, singlePost, error } = useSelector((state) => state.post);
-  const { slugData } = useParams();
   const dispatch = useDispatch();
-  console.log('BlogPage component is rendered' + slugData);
+  const { isLoading, posts, error } = useSelector((state) => state.readSingleBlog);
 
- 
+  // Get the location object from react-router
+  const location = useLocation();
+
+  // Get the slug from the query parameters
+  const queryParams = new URLSearchParams(location.search);
+  const slug = queryParams.get('slug');
 
   useEffect(() => {
-    // Dispatch the action to fetch the single blog post
-    dispatch(readSingleBlogThunk("hello-world-again"));
-  }, [dispatch]);
-
-  useEffect(() => {
-    // Log or handle the error here
-    if (error) {
-      console.error('Error fetching data:', error);
-    }
-  }, [error]);
-
+    dispatch(readSingleBlogThunk(slug));
+  }, [dispatch, slug]);
 
   return (
     <div>
-      <Card className="md:p-6 p-5 max-w-2xl items-center m-auto mt-6">
-        {singlePost && (
-          <>
-            <Card
-              className="max-w-2xl overflow-hidden rounded-md"
-              imgSrc={singlePost.picture} // Assuming there's an 'image' property in your fetched data
-              imgSize="md"
-            ></Card>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        posts && (
+          <Card className="md:p-6 p-5 max-w-2xl items-center m-auto mt-6">
+            <>
+              <Card
+                className="max-w-2xl overflow-hidden rounded-md"
+                imgSrc={posts.picture}
+                imgSize="md"
+              ></Card>
 
-            <Card.Container>
-              {/* {singlePost.userId.name ? (
-                <h1>Author : {singlePost.name}</h1>
-              ) : (
+              <Card.Container>
                 <h1>Blogger Profile</h1>
-              )} */}
-              <h1>Blogger Profile</h1>
-            </Card.Container>
+              </Card.Container>
 
-            <Card.Title>{singlePost.title}</Card.Title>
+              <Card.Title>{posts.title}</Card.Title>
 
-            <Card.Container className="flex flex-row">
-              <p>Category: {singlePost.categoryId}</p>
-            </Card.Container>
+              <Card.Container className="flex flex-row">
+                <p>Category: {posts.categoryId}</p>
+              </Card.Container>
 
-            <Card.Description>{singlePost.description}</Card.Description>
-          </>
-        )}
-      </Card>
-      {isLoading && <Spinner />}
+              <Card.Description>{posts.description}</Card.Description>
+            </>
+          </Card>
+        )
+      )}
+      {error && <p>Error fetching data: {error}</p>}
     </div>
   );
 };
 
 export default Post;
+
