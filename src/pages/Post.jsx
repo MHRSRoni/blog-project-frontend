@@ -1,15 +1,8 @@
 import { useEffect } from "react";
 import { Card } from "keep-react";
-<<<<<<< HEAD
 import { useSelector } from "react-redux";
 import Spinner from "../components/Spinner/Spinner";
 
-const Post = () => {
-  const { isLoading, singlePost, error } = useSelector((state) => state.post);
-=======
-import { useDispatch, useSelector } from "react-redux";
-// import { readSingleBlogThunk } from '../redux/post/postSlice';
-import Spinner from "../components/Spinner/Spinner";
 import { useParams } from "react-router-dom";
 
 const Post = () => {
@@ -22,7 +15,6 @@ const Post = () => {
   //   // Dispatch the action to fetch the single blog post
   //   dispatch(readSingleBlogThunk("hello-world-again"));
   // }, [dispatch]);
->>>>>>> a23c45d4c0d5937e1e27c2d00ab822800efea208
 
   useEffect(() => {
     // Log or handle the error here
