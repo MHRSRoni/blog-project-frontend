@@ -8,6 +8,7 @@ import { getMorePostThunk, getPostThunk } from "../redux/post/postSlice";
 import Spinner from "../components/Spinner/Spinner";
 import { SkeletonComponent } from "../components/Skeleton/SkeletonComponent";
 import SideCard from "../components/SideCard/SideCard";
+import Calendar from "../components/SideCard/Calender";
 import { SpinnerButtonComponent } from "../components/SpinnerButtonComponent/SpinnerButtonComponent";
 
 const Home = () => {
@@ -163,7 +164,8 @@ const Home = () => {
       </div>
       <div className="right hidden lg:block  lg:basis-3/12 ">
         <SideCard cardTitle="discussion one" />
-        <SideCard cardTitle="discussion two" />
+
+        <Calendar />
       </div>
       {isLoading && <Spinner />}
     </div>
