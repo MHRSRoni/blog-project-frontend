@@ -1,9 +1,8 @@
 // ButtonComponent.js
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const ButtonComponent = () => {
-  const slugData = 'hello-world-again'; // Replace with the actual slug data
-  console.log("Button called from homepage");
+  const slugData = "hello-world-again"; // Replace with the actual slug data
 
   return (
     <Link to={`/post/read?slug=${slugData}`}>
