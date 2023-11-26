@@ -8,6 +8,7 @@ import { getPostThunk } from "../redux/post/postSlice";
 import Spinner from "../components/Spinner/Spinner";
 import { SkeletonComponent } from "../components/Skeleton/SkeletonComponent";
 import SideCard from "../components/SideCard/SideCard";
+import Calendar from "../components/SideCard/Calender";
 
 const Home = () => {
   const { isLoading, posts, error } = useSelector((state) => state.posts);
@@ -35,8 +36,6 @@ const Home = () => {
       <div className="left hidden lg:block lg:basis-2/12 h-screen ">
         <SideBar />
         <Button />
-
-        
       </div>
       <div className="middle basis-12/12 lg:basis-7/12">
         <Tabs
@@ -85,7 +84,8 @@ const Home = () => {
       </div>
       <div className="right hidden lg:block  lg:basis-3/12 ">
         <SideCard cardTitle="discussion one" />
-        <SideCard cardTitle="discussion two" />
+
+        <Calendar />
       </div>
       {isLoading && <Spinner />}
     </div>

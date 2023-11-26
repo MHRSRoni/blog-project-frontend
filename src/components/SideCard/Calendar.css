@@ -1,0 +1,44 @@
+.card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    background: #fff;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-title {
+    text-align: center;
+    font: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .calendar {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar-table th,
+  .calendar-table td {
+    border: 1px solid #ccc;
+    padding: 4px;
+    text-align: center;
+    width: 14.28%;
+    height: 36px;
+  }
+  
+  .calendar-table .today {
+    background-color: #c2c2c2;
+  }
+  
