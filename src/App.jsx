@@ -62,14 +62,18 @@ function App() {
           <Route path="/resetemail" element={<ResetEmail />} />
           {/* <Route path="/post/:id" element={<Post />} /> */}
           {/* <Route path="/post" element={<Post />} /> */}
+          {/* <Route path="/post/read" element={<Post />} /> */}
+
           <Route path="/post/read" element={<Post />} />
+
           <Route path="/about" element={<About />} />
+            <Route path="create-post" element={<CreatePost />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/user/dashboard" element={<UserDashboard />}>
             <Route index element={<DTable />} />
             <Route path="read-list" element={<ReadList />} />
-            <Route path="create-post" element={<CreatePost />} />
+            {/* <Route path="create-post" element={<CreatePost />} /> */}
           </Route>
         </Route>
         <Route path="*" element={<NoPage />} />

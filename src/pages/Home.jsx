@@ -1,6 +1,5 @@
 import { Tabs } from "keep-react";
 import PostCard from "../components/post/PostCard";
-import Button from "../components/viewBlog";
 import { SideBar } from "../components/NavBar/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -11,6 +10,7 @@ import SideCard from "../components/SideCard/SideCard";
 import Calendar from "../components/SideCard/Calender";
 
 const Home = () => {
+
   const { isLoading, posts, error } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
@@ -35,7 +35,8 @@ const Home = () => {
     <div className="container mx-auto  flex pt-3 ">
       <div className="left hidden lg:block lg:basis-2/12 h-screen ">
         <SideBar />
-        <Button />
+
+        
       </div>
       <div className="middle basis-12/12 lg:basis-7/12">
         <Tabs
