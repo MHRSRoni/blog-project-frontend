@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLocalStorage } from "./utilities/SessionHelper";
 import { loggedIn } from "./redux/auth/authSlice";
 import axios from "./utilities/axiosInstance";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -68,6 +69,7 @@ function App() {
           <Route path="/about" element={<About />} />
             <Route path="create-post" element={<CreatePost />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/user/dashboard" element={<UserDashboard />}>
             <Route index element={<DTable />} />
             <Route path="read-list" element={<ReadList />} />
