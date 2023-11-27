@@ -1,24 +1,23 @@
+import { useEffect } from "react";
+import { Card } from "keep-react";
+import Spinner from "../components/Spinner/Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { readSingleBlogThunk } from "../redux/singlePost/singlePostSlice";
 
-import { useEffect } from 'react';
-import { Card } from 'keep-react';
-import Spinner from '../components/Spinner/Spinner';
-import { useDispatch, useSelector } from 'react-redux';
-import { readSingleBlogThunk } from '../redux/singlePost/singlePostSlice';
-
-
-
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 const Post = () => {
   const dispatch = useDispatch();
-  const { isLoading, posts, error } = useSelector((state) => state.readSingleBlog);
+  const { isLoading, posts, error } = useSelector(
+    (state) => state.readSingleBlog
+  );
 
   // Get the location object from react-router
   const location = useLocation();
 
   // Get the slug from the query parameters
   const queryParams = new URLSearchParams(location.search);
-  const slug = queryParams.get('slug');
+  const slug = queryParams.get("slug");
 
   useEffect(() => {
     dispatch(readSingleBlogThunk(slug));
@@ -59,4 +58,3 @@ const Post = () => {
 };
 
 export default Post;
-

@@ -10,6 +10,7 @@ import SearchBar from "./SearchBar";
 export const NavBar = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+
   return (
     <Navbar fluid={false} className="shadow-md  custom-sidebar">
       <Navbar.Container className="flex items-center justify-between lg:p-2 ">
@@ -42,7 +43,7 @@ export const NavBar = () => {
         </div>
 
         {/* user section */}
-        {user?.status === "verified" ? (
+        {user?.token ? (
           <Navbar.Container className="flex gap-2 justify-center items-center">
             <Button
               size="xs"

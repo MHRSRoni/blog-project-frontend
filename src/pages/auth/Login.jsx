@@ -1,8 +1,8 @@
 "use client";
 import { Card, Button } from "keep-react";
 import { Label, TextInput } from "keep-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { EyeSlash, Eye } from "phosphor-react";
 import { validateEmail } from "../../utilities/verification";
 import {
@@ -23,9 +23,15 @@ export const Login = () => {
   const [data, setData] = useState(initialFormState);
   const [isShow, setIsShow] = useState(false);
 
-  const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  // make sure login user can not see the login page
+  useEffect(() => {
+    if (user?.token) return navigate("/");
+  }, [user, navigate]);
 
   const changeHandler = (property, value) => {
     setData({
@@ -38,6 +44,7 @@ export const Login = () => {
     if (!validateEmail(data.email)) {
       return errorNotification("Invalid email address");
     }
+    const from = location?.state?.from?.pathname || "/";
     dispatch(loginRequestThunk(data))
       .unwrap()
       .then((res) => {
@@ -45,7 +52,7 @@ export const Login = () => {
           successNotification("login success");
           setLocalStorage("user", res);
           setData(initialFormState);
-          navigate("/");
+          navigate(from);
         }
       })
       .catch(() => {

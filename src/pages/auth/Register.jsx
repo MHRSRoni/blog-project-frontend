@@ -2,7 +2,7 @@
 import { Card, Button } from "keep-react";
 import { Label, TextInput } from "keep-react";
 import { EyeSlash, Eye } from "phosphor-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Spinner from "../../components/Spinner/Spinner";
 import {
@@ -13,6 +13,7 @@ import { validateEmail } from "../../utilities/verification";
 import axios from "../../utilities/axiosInstance";
 import { setLocalStorage } from "../../utilities/SessionHelper";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const initialFormState = {
   name: "",
@@ -32,6 +33,12 @@ export const Register = () => {
   const [isShow, setIsShow] = useState(initialShowState);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
+  // make sure login user can not see the login page
+  useEffect(() => {
+    if (user?.token) return navigate("/");
+  }, [user, navigate]);
 
   const handleShow = (property, value) => {
     setIsShow({

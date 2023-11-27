@@ -1,6 +1,5 @@
 import axios from "../../utilities/axiosInstance";
 
-
 // Read blog card on home page api
 
 export const getPosts = async (queryObj) => {
@@ -11,8 +10,3 @@ export const getPosts = async (queryObj) => {
   );
   return response.data;
 };
-
-
-
-
-

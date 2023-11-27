@@ -2,9 +2,22 @@
 import { Avatar } from "keep-react";
 import { Dropdown } from "keep-react";
 import { useNavigate } from "react-router-dom";
+import { removeLocalStorage } from "../../utilities/SessionHelper";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/auth/authSlice";
+import { successNotification } from "../../utilities/NotificationHelper";
 
 export const UserDropdown = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(logout());
+    removeLocalStorage("user");
+    successNotification("Logout successfully");
+    navigate("/");
+  };
+
   return (
     <Dropdown
       id="drop-down"
@@ -48,8 +61,8 @@ export const UserDropdown = () => {
       </Dropdown.Item>
       <Dropdown.Item>
         <div
-          className="flex flex-col items-start gap-1 w-40"
-          onClick={() => navigate()}
+          className="flex flex-col items-start gap-1 w-40 "
+          onClick={() => handleLogOut()}
         >
           <p className="text-base font-semibold text-slate-700">Logout</p>
         </div>
