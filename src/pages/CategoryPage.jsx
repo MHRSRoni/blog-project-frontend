@@ -34,20 +34,23 @@ const CategoryPage = () => {
       <div className="bg-black w-full h-36 flex items-center justify-center mb-4">
         <h1 className="text-white text-6xl">Category name</h1>
       </div>
-      <div className="pr-10 pl-10 w-11/12 mr-auto ml-auto">
-        <p className="text-md mb-4">
-          Category name সম্পর্কিত যাবতীয় লেখালেখি প্রবন্ধ টিপস
-        </p>
-        <div className="search-card-grid">
-          {category.map((categoryItem, index) => (
-            <Category
-              key={index}
-              picture={categoryItem.picture}
-              title={categoryItem.title}
-              description={categoryItem.description}
-              slug={`/post/?${categoryItem.slug}`}
-            />
-          ))}
+
+      <div className="container mx-auto">
+        <div className="w-full">
+          <p className="text-md mb-4">
+            Category name সম্পর্কিত যাবতীয় লেখালেখি প্রবন্ধ টিপস
+          </p>
+          <div className="search-card-grid">
+            {category.map((categoryItem, index) => (
+              <Category
+                key={index}
+                picture={categoryItem.picture}
+                title={categoryItem.title}
+                description={categoryItem.description}
+                slug={`/post/?${categoryItem.slug}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

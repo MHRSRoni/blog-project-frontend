@@ -1,33 +1,29 @@
 "use client";
 import { Avatar } from "keep-react";
 import { Dropdown } from "keep-react";
-import { useNavigate } from "react-router-dom";
+
 import { removeLocalStorage } from "../../utilities/SessionHelper";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/auth/authSlice";
 import { successNotification } from "../../utilities/NotificationHelper";
+import { useNavigate } from "react-router-dom";
 
 export const UserDropdown = () => {
-  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const { data } = user || {};
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const handleLogOut = () => {
     dispatch(logout());
     removeLocalStorage("user");
     successNotification("Logout successfully");
-    navigate("/");
+    window.location.href = "/";
   };
 
   return (
     <Dropdown
       id="drop-down"
-      label={
-        <Avatar
-          shape="circle"
-          size="md"
-          img="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-        />
-      }
+      label={<Avatar shape="circle" size="md" img={data?.picture} />}
       placement="bottom-end"
       type=""
       size="xs"
