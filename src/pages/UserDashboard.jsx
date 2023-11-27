@@ -7,7 +7,7 @@ const UserDashboard = () => {
   const location = useLocation();
 
   if (!user?.token && user?.role !== "user") {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace={true} state={{ from: location }} />;
   }
 
   return (

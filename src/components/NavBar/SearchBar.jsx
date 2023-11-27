@@ -31,7 +31,7 @@ const SearchBar = () => {
           <div className="flex items-center">
             <div>
               <input
-                className="w-96 p-2"
+                className="w-96 p-2 border-2 rounded"
                 placeholder="Search anything"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}

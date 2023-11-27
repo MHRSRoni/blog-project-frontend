@@ -8,6 +8,5 @@ export const getPosts = async (queryObj) => {
   const response = await axios.get(
     `/post/read?page=${page}&limit=${limit || 6}&sort=${sort}`
   );
-
   return response.data;
 };
