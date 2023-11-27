@@ -4,6 +4,7 @@ import { Card } from 'keep-react';
 import Spinner from '../components/Spinner/Spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { readSingleBlogThunk } from '../redux/singlePost/singlePostSlice';
+import Comment from '../components/blogpage/Comments';
 
 
 
@@ -12,11 +13,7 @@ import { useLocation } from 'react-router-dom';
 const Post = () => {
   const dispatch = useDispatch();
   const { isLoading, posts, error } = useSelector((state) => state.readSingleBlog);
-
-  // Get the location object from react-router
   const location = useLocation();
-
-  // Get the slug from the query parameters
   const queryParams = new URLSearchParams(location.search);
   const slug = queryParams.get('slug');
 
@@ -49,6 +46,10 @@ const Post = () => {
               </Card.Container>
 
               <Card.Description>{posts.description}</Card.Description>
+
+              {/* Comment section */}
+              <Comment postId={posts.id} />
+
             </>
           </Card>
         )
@@ -59,4 +60,3 @@ const Post = () => {
 };
 
 export default Post;
-

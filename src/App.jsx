@@ -15,6 +15,7 @@ import { Register } from "./pages/auth/Register";
 import Otp from "./pages/auth/Otp";
 import { Login } from "./pages/auth/Login";
 import ReadList from "./pages/user/ReadList";
+import Profile from "./pages/user/Profile";
 import { Toaster } from "react-hot-toast";
 import DTable from "./components/Dashboard-UI/DTable";
 import { useEffect, useState } from "react";
@@ -60,14 +61,19 @@ function App() {
           <Route path="/otp" element={<Otp />} />
           <Route path="/resetPass" element={<ResetPass />} />
           <Route path="/resetemail" element={<ResetEmail />} />
-          {/* <Route path="/post/:id" element={<Post />} /> */}
-          {/* <Route path="/post" element={<Post />} /> */}
-          {/* <Route path="/post/read" element={<Post />} /> */}
 
           <Route path="/post/read" element={<Post />} />
 
           <Route path="/about" element={<About />} />
+
+
+
+            <Route path="read-list" element={<ReadList />} />
             <Route path="create-post" element={<CreatePost />} />
+            <Route path="profile" element={<Profile />} />
+
+
+
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/user/dashboard" element={<UserDashboard />}>
