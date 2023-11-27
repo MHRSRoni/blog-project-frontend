@@ -41,6 +41,7 @@ const Home = () => {
     }
   }, [error]);
 
+  // first time load
   useEffect(() => {
     dispatch(getPostThunk({ page, sort }));
   }, [sort]);
