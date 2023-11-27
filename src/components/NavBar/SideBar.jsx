@@ -4,15 +4,21 @@ import { House, Folders, CircleNotch } from "phosphor-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryThunk, loadMore } from "../../redux/category/categorySlice";
+import { useNavigate } from "react-router-dom";
 
 export const SideBar = () => {
   const { category } = useSelector((state) => state.category);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // load category
   useEffect(() => {
     dispatch(getCategoryThunk());
   }, [dispatch]);
+
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/category/${categoryId}`);
+  };
 
   return (
     <Sidebar>
@@ -26,6 +32,7 @@ export const SideBar = () => {
               className="cursor-pointer"
               key={item._id}
               icon={<Folders size={24} />}
+              onClick={() => handleCategoryClick(item._id)}
             >
               {item.title}
             </Sidebar.Item>
