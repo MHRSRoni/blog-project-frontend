@@ -18,6 +18,7 @@ export const NavBar = () => {
           <Navbar.Toggle />
           <Navbar.Brand>
             <img
+              className="cursor-pointer"
               src={logo}
               alt="logo"
               width="100"

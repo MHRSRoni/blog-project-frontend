@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import Home from "./pages/Home";
 
 import Layout from "./pages/Layout";
@@ -23,6 +22,7 @@ import { getLocalStorage } from "./utilities/SessionHelper";
 import { loggedIn } from "./redux/auth/authSlice";
 import axios from "./utilities/axiosInstance";
 import SearchPage from "./pages/SearchPage";
+import CategoryPage from "./pages/CategoryPage";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -64,6 +64,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/user/dashboard" element={<UserDashboard />}>
             <Route index element={<DTable />} />
             <Route path="read-list" element={<ReadList />} />
