@@ -37,7 +37,6 @@ const CommentBox = (props) => {
 
             try {
                 const response = await axiosInstance.get(`/comments/read/${postId}?pageSize=10`);
-
                 setComments(response.data.data.comments);
             } catch (error) {
                 console.error("Error fetching comments:", error);
@@ -72,7 +71,6 @@ const CommentBox = (props) => {
                             ></textarea>
                             <button
                                 className="bg-blue-500 self-end text-white py-2 px-4 rounded-md mt-2 hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
-
                             >
                                 Post Comment
                             </button>
@@ -81,20 +79,20 @@ const CommentBox = (props) => {
                 </div>
 
                 {/* Individual Comment */}
+                {/* {console.log(comments)} */}
                 {
                     comments.map(com => {
                         return (
 
                             <div key={com._id} className="flex items-start mt-4 mb-4">
-                                {console.log(com)}
                                 <img
                                     src={com?.user?.picture}
                                     alt="User Avatar"
                                     className="w-8 h-8  rounded-full mr-2 mt-4"
                                 />
                                 <div className="bg-gray-0 p-3 rounded-md flex-grow">
+                                    <p>Time {com?.createdAt}</p>
                                     <p className="text-gray-800 font-semibold mb-1">{com?.user?.name}</p>
-
                                     <p className="text-gray-600">{com?.comment}.</p>
                                 </div>
                             </div>

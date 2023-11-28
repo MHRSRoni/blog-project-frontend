@@ -11,17 +11,14 @@ const Contact = () => {
                 <div className="flex-1 border-t border-black my-4"></div>
             </div>
 
-
             <div className="flex items-center justify-center">
                 <div className="text-center my-6">
                     <img src="http://localhost:5173/src/assets/images/Logo.svg" alt="Health Plus" className="max-w-[80px] round- h-auto" />
                 </div>
             </div>
 
-
             <h1 className="text-center text-xs font-semibold uppercase">Authenticate  Product</h1>
             <h1 className="text-center text-[10px] font-semibold uppercase">At best price</h1>
-
 
             <div className="flex justify-center gap-2 my-2">
                 <a onClick={() => window.open('http://www.facebook.com')}>
@@ -35,11 +32,10 @@ const Contact = () => {
                     </svg>
                 </a>
 
-
                 <a onClick={() => window.open(`https://twitter.com`)}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-3 w-3"
+                        className="h-3 w-3 hover:bg-sky-700 ..."
                         fill="currentColor"
                         viewBox="0 0 24 24">
                         <path
@@ -47,11 +43,10 @@ const Contact = () => {
                     </svg>
                 </a>
 
-
                 <a onClick={() => window.open(`https://www.instagram.com`)}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-3 w-3"
+                        className="h-3 w-3 hover:bg-sky-700 ..."
                         fill="currentColor"
                         viewBox="0 0 24 24">
                         <path
@@ -63,7 +58,7 @@ const Contact = () => {
                 <a onClick={() => window.open(`https://www.youtube.com`)}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-3 w-3"
+                        className="h-3 w-3 hover:bg-sky-700 ..."
                         fill="currentColor"
                         viewBox="0 0 24 24">
                         <path
@@ -75,7 +70,7 @@ const Contact = () => {
                 <a onClick={() => window.open(`https://www.pinterest.com/`)}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-3 w-3"
+                        className="h-3 w-3 hover:bg-sky-700 ..."
                         fill="currentColor"
                         viewBox="0 0 24 24">
                         <path
