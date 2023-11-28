@@ -6,6 +6,7 @@ import axios from "axios";
 const CategoryPage = () => {
   const { categoryId } = useParams();
   const [category, setCategory] = useState([]);
+  const [categoryName, setcategoryName] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -13,7 +14,9 @@ const CategoryPage = () => {
         `https://health-plus-q4tt.onrender.com/api/v1/post/read/?category=${categoryId}`
       );
       const categoryData = response.data.data.resultPosts;
-      console.log(categoryData);
+      // console.log(categoryData);
+      const catName = response.data.categoryName;
+      setcategoryName(catName);
 
       if (Array.isArray(categoryData)) {
         setCategory(categoryData);
@@ -40,13 +43,13 @@ const CategoryPage = () => {
           }}
         ></div>
         <div className="absolute inset-0 bg-black opacity-70"></div>
-        <h1 className="relative z-10 text-white text-6xl">Category name</h1>
+        <h1 className="relative z-10 text-white text-8xl">{categoryName}</h1>
       </div>
 
       <div className="container mx-auto">
         <div className="w-full">
           <p className="text-md mb-4">
-            Category name সম্পর্কিত যাবতীয় লেখালেখি প্রবন্ধ টিপস
+            {categoryName} : সম্পর্কিত যাবতীয় লেখালেখি প্রবন্ধ টিপস
           </p>
           <div className="search-card-grid">
             {category.map((categoryItem, index) => (
@@ -55,7 +58,7 @@ const CategoryPage = () => {
                 picture={categoryItem.picture}
                 title={categoryItem.title}
                 description={categoryItem.description}
-                slug={`/post/?${categoryItem.slug}`}
+                slug={categoryItem.slug}
               />
             ))}
           </div>
