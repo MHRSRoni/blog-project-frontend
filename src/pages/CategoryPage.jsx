@@ -31,8 +31,16 @@ const CategoryPage = () => {
 
   return (
     <div>
-      <div className="bg-black w-full h-36 flex items-center justify-center mb-4">
-        <h1 className="text-white text-6xl">Category name</h1>
+      <div className="relative w-full h-48 flex items-center justify-center mb-4">
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center"
+          style={{
+            backgroundImage:
+              'url("https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg")',
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-black opacity-70"></div>
+        <h1 className="relative z-10 text-white text-6xl">Category name</h1>
       </div>
 
       <div className="container mx-auto">
