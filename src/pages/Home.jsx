@@ -171,7 +171,6 @@ const Home = () => {
       </div>
       <div className="right hidden lg:block  lg:basis-3/12 ">
         <SideCard cardTitle="সাম্প্রতিক পোস্ট ">
-          <hr className="my-2" />
           <LatestPosts />
         </SideCard>
         <SideCard cardTitle="ক্যালেন্ডার">

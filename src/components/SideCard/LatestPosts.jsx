@@ -37,8 +37,8 @@ const LatestPosts = () => {
     <div className="py-2">
       {latestPosts.map((post, index) => (
         <a href={`/post/read?slug=${post.slug}`} key={index}>
-          <div className=" gap-2 mb-4 border-b" key={index}>
-            <div className="flex flex-row">
+          <div className=" gap-2 border-t" key={index}>
+            <div className="flex flex-row mt-2">
               <img
                 className="w-16 h-16 object-cover pb-2 pr-2 rounded-md"
                 src={post.picture}
