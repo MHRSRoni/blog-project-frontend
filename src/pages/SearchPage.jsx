@@ -56,7 +56,7 @@ const SearchPage = () => {
               picture={result.picture}
               title={result.title}
               description={result.description}
-              slug={`/post/${result.slug}`}
+              slug={result.slug}
             />
           ))}
         </div>
