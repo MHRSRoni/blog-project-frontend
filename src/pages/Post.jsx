@@ -7,10 +7,11 @@ import { BookmarkSimple, ThumbsUp } from "phosphor-react";
 
 import { useLocation } from "react-router-dom";
 import SideCard from "../components/SideCard/SideCard";
-import SideList from "../components/SideCard/SideList";
 import Calendar from "../components/Calendar/Calender";
 import { SkeletonComponent } from "../components/Skeleton/SkeletonComponent";
 import SocialShare from "../components/SocialShare/SocialShare";
+import CommentBox from "../components/CommentBox/CommentBox";
+import LatestPosts from "../components/SideCard/LatestPosts";
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,9 @@ const Post = () => {
 
   // Get the slug from the query parameters
   const queryParams = new URLSearchParams(location.search);
+
   const slug = queryParams.get("slug");
-  console.log(queryParams);
+  const postId = posts._id;
 
   useEffect(() => {
     dispatch(readSingleBlogThunk(slug));
@@ -60,6 +62,8 @@ const Post = () => {
 
               <Card.Description>{posts.description}</Card.Description>
             </>
+
+            <CommentBox postId={postId} />
           </Card>
         ) : (
           <>
@@ -71,9 +75,7 @@ const Post = () => {
       <div className="right hidden lg:block  lg:basis-3/12 ">
         <SideCard cardTitle="সাম্প্রতিক পোস্ট ">
           <hr className="my-2" />
-          <SideList />
-          <SideList />
-          <SideList />
+          <LatestPosts />
         </SideCard>
         <SideCard cardTitle="ক্যালেন্ডার">
           <Calendar />
