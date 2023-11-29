@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../utilities/axiosInstance";
 
 const LatestPosts = () => {
   const [latestPosts, setLatestPosts] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "https://health-plus-q4tt.onrender.com/api/v1/post/read/?sort=latest"
-      );
+      const response = await axios.get("/post/read/?sort=latest");
       const latestPostsData = response.data.data.resultPosts;
-      console.log(latestPostsData);
 
       if (Array.isArray(latestPostsData)) {
         const sortedPosts = latestPostsData.sort((a, b) => {
@@ -30,8 +27,6 @@ const LatestPosts = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(latestPosts);
 
   return (
     <div className="py-2">

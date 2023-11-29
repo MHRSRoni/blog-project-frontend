@@ -2,7 +2,7 @@
 import { Card, Button } from "keep-react";
 import { Label, TextInput } from "keep-react";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { EyeSlash, Eye } from "phosphor-react";
 import { validateEmail } from "../../utilities/verification";
 import {
@@ -108,6 +108,11 @@ export const Login = () => {
           <Button size="md" type="primary">
             Login
           </Button>
+        </div>
+        <div className="mt-3 mb-4 text-center">
+          <span className="text-primary-400 hover:underline">
+            <Link to="/send-otp">Forgotten password?</Link>
+          </span>
         </div>
       </Card>
       {isLoading && <Spinner />}
