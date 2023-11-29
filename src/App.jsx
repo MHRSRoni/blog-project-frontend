@@ -4,14 +4,12 @@ import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
 import Post from "./pages/Post";
-import { ResetPass } from "./pages/ResetPass";
 import { ResetEmail } from "./pages/ResetEmail";
 import UserDashboard from "./pages/UserDashboard";
 import CreatePost from "./pages/CreatePost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { Register } from "./pages/auth/Register";
-import Otp from "./pages/auth/Otp";
 import { Login } from "./pages/auth/Login";
 import ReadList from "./pages/user/ReadList";
 import { Toaster } from "react-hot-toast";
@@ -23,6 +21,10 @@ import { loggedIn } from "./redux/auth/authSlice";
 import axios from "./utilities/axiosInstance";
 import SearchPage from "./pages/SearchPage";
 import CategoryPage from "./pages/CategoryPage";
+import { ForgotPassword } from "./pages/auth/ForgotPassword";
+
+import VerifyOtp from "./pages/auth/VerifyOtp";
+import SendOtp from "./pages/auth/SendOtp";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -57,8 +59,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/otp" element={<Otp />} />
-          <Route path="/resetPass" element={<ResetPass />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
+          <Route path="/send-otp" element={<SendOtp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/resetemail" element={<ResetEmail />} />
           <Route path="/post/read" element={<Post />} />
           <Route path="/about" element={<About />} />
