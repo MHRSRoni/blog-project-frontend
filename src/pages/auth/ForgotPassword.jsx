@@ -62,6 +62,8 @@ export const ForgotPassword = () => {
         } else {
           errorNotification(response?.data?.message);
         }
+      } else {
+        errorNotification("Password does not match");
       }
       setLoading(false);
     } catch (error) {
