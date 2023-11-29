@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   getLocalStorage,
   removeLocalStorage,
+  setLocalStorage,
 } from "../../utilities/SessionHelper";
 import { useNavigate } from "react-router-dom";
 import {
@@ -13,10 +14,10 @@ import {
 import Spinner from "../../components/Spinner/Spinner";
 import axios from "../../utilities/axiosInstance";
 
-const Otp = () => {
+const VerifyOtp = () => {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
-  const userEmail = getLocalStorage("email");
+  const info = getLocalStorage("info");
   const navigate = useNavigate();
 
   //  handleVerify
@@ -25,29 +26,46 @@ const Otp = () => {
     try {
       if (code.length === 6) {
         const { data } = await axios.get(
-          `/verification/verify?email=${userEmail.email}&subject=email verification&otp=${code}`
+          `/verification/verify?email=${info.email}&subject=${info.subject}&otp=${code}`
         );
 
-        if (data.success === true && data["access-token"]) {
-          const res = await axios.get(
-            `/user/email-verify?access-token=${data["access-token"]}&email=${userEmail.email}`
-          );
-
-          if (res.data.success === true) {
-            successNotification("email verify success");
-            navigate("/login");
+        // only for forget password verification
+        if (info.subject === "forget password") {
+          if (data.success === true && data["access-token"]) {
             setCode("");
-            removeLocalStorage("email");
+            setLocalStorage("info", {
+              email: info.email,
+              subject: "forget password",
+              ["access-token"]: data["access-token"],
+            });
+            successNotification("verification success");
+            navigate("/forgot-password", { replace: true });
           } else {
-            errorNotification("email verification failed");
+            errorNotification("verification failed");
           }
-        } else {
-          errorNotification("otp verification failed");
+        }
+
+        // only for email verification
+        if (info.subject === "email verification") {
+          if (data.success === true && data["access-token"]) {
+            const res = await axios.get(
+              `/user/email-verify?access-token=${data["access-token"]}&email=${info.email}`
+            );
+            if (res.data.success === true) {
+              setCode("");
+              removeLocalStorage("info");
+              successNotification("verification success");
+              navigate("/login", { replace: true });
+            } else {
+              errorNotification("verification failed");
+            }
+          }
         }
       }
       setLoading(false);
     } catch (error) {
       errorNotification(error?.response?.data?.message);
+      setLoading(false);
     }
   };
 
@@ -55,7 +73,7 @@ const Otp = () => {
     setLoading(true);
     try {
       const { status } = await axios.get(
-        `/verification/send-verification?email=${userEmail.email}&subject=email verification`
+        `/verification/send-verification?email=${info.email}&subject=${info.subject}`
       );
 
       if (status === 200) {
@@ -111,4 +129,4 @@ const Otp = () => {
   );
 };
 
-export default Otp;
+export default VerifyOtp;

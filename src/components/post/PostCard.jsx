@@ -3,6 +3,8 @@ import { BookmarkSimple, ThumbsUp, CaretRight } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 
 const PostCard = ({ item }) => {
+
+
   const navigate = useNavigate();
 
   return (
@@ -34,13 +36,12 @@ const PostCard = ({ item }) => {
       <Card.Description>{item.description.slice(0, 300)}</Card.Description>
       <button
         onClick={() => navigate(`/post/read?slug=${item.slug}`)}
-        style={{ color: '#1B4DFF' }}
+        style={{ color: "#1B4DFF" }}
         className="text-primary font-semibold flex items-center"
       >
         Learn More
         <CaretRight size={16} className="ml-2" />
       </button>
-
 
       <Card.Container className="flex flex-row items-center justify-between">
         <button className="flex flex-row items-center text-md ml-2 rounded-md pr-4 pl-4 pt-2 pb-2 hover:bg-[#f5f5f5] ">
@@ -55,6 +56,8 @@ const PostCard = ({ item }) => {
         </Card.Description>
         <BookmarkSimple size={24} />
       </Card.Container>
+
+
     </Card>
   );
 };

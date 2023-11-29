@@ -75,8 +75,11 @@ export const Register = () => {
 
         if (status === 200) {
           successNotification("check your email for verify otp code");
-          setLocalStorage("email", { email: data.email });
-          navigate("/otp");
+          setLocalStorage("info", {
+            email: data.email,
+            subject: "email verification",
+          });
+          navigate("/verify-otp");
         }
       }
 
