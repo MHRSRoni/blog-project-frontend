@@ -3,6 +3,8 @@ import { BookmarkSimple, ThumbsUp, CaretRight } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 
 const PostCard = ({ item }) => {
+
+
   const navigate = useNavigate();
 
   return (
@@ -55,6 +57,8 @@ const PostCard = ({ item }) => {
         </Card.Description>
         <BookmarkSimple size={24} />
       </Card.Container>
+
+
     </Card>
   );
 };

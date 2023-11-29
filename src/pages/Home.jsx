@@ -11,6 +11,7 @@ import SideCard from "../components/SideCard/SideCard";
 import { SpinnerButtonComponent } from "../components/SpinnerButtonComponent/SpinnerButtonComponent";
 import SideList from "../components/SideCard/SideList";
 import { NotificationModal } from "../components/Modal/NotificationModal";
+import Contact from "../components/Contact/Contact";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -178,6 +179,10 @@ const Home = () => {
         </SideCard>
         <SideCard cardTitle="ক্যালেন্ডার">
           <Calendar />
+        </SideCard >
+
+        <SideCard cardTitle="যোগাযোগ">
+          <Contact />
         </SideCard>
       </div>
       {isLoading && <Spinner />}

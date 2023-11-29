@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { readSingleBlogThunk } from "../redux/singlePost/singlePostSlice";
 
 import { useLocation } from "react-router-dom";
+import CommentBox from "../components/CommentBox/CommentBox";
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,11 @@ const Post = () => {
 
   // Get the slug from the query parameters
   const queryParams = new URLSearchParams(location.search);
+
   const slug = queryParams.get("slug");
+
+  const postId = posts._id;
+
 
   useEffect(() => {
     dispatch(readSingleBlogThunk(slug));
@@ -49,6 +54,13 @@ const Post = () => {
 
               <Card.Description>{posts.description}</Card.Description>
             </>
+
+
+
+            <CommentBox postId={postId} />
+
+
+
           </Card>
         )
       )}
