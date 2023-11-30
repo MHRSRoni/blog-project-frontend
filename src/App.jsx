@@ -70,8 +70,8 @@ function App() {
 
 
             {/* <Route path="create-post" element={<CreatePost />} /> */}
-            <Route path="read-list" element={<ReadList />} />
-            <Route path="profile" element={<Profile />} />
+            {/* <Route path="read-list" element={<ReadList />} /> */}
+            {/* <Route path="profile" element={<Profile />} /> */}
 
 
 
@@ -81,9 +81,14 @@ function App() {
 
           
           <Route path="/user/dashboard" element={<UserDashboard />}>
+
+
             <Route index element={<DTable />} />
-            {/* <Route path="read-list" element={<ReadList />} /> */}
+            <Route path="read-list" element={<ReadList />} />
             <Route path="create-post" element={<CreatePost />} />
+            <Route path="profile" element={<Profile />} />
+
+
           </Route>
         </Route>
         <Route path="*" element={<NoPage />} />

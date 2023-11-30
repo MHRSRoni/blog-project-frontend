@@ -79,18 +79,21 @@ const CreatePost = () => {
   };
   
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50">
-      <div className="max-w-4xl mx-auto p-4 md:p-8 border rounded shadow bg-white flex flex-col">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
+      <div className="max-w-4xl mx-auto border rounded shadow bg-white flex flex-col md:p-20 gap-4">
         <Toaster />
         <h2 className="text-2xl font-bold mb-4">Create a New Post</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col">
-          <div className="mb-4 flex flex-col md:flex-row md:items-center md:gap-4">
-            <Label value="Blog Title" />
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="mb-4 flex flex-col md:flex md:items-start md:gap-4">
+            <Label
+              style={{ fontWeight: 'bold', fontSize: '1.25rem' }}
+              value="Blog Title"
+            />
             <input
               id="blogTitle"
               type="text"
               placeholder="Enter Blog Title"
-              className="your-css-classes-here"
+              className="p-4"
               onChange={handleTitleChange}
               value={title}
             />
@@ -106,8 +109,38 @@ const CreatePost = () => {
             />
           </div>
           <div>
-            <Dropdown label="Dropdown button" size="sm" type="primary" dismissOnClick={true}>
-              {/* ... Dropdown items ... */}
+            <Dropdown label="Select Category" size="sm" type="primary" dismissOnClick={true}>
+              <Dropdown.Item>
+                <div className="flex flex-col items-start gap-1">
+                  
+                  <p className="max-w-xs text-body-5 font-normal text-metal-500">
+                    # kidney
+                  </p>
+                </div>
+              </Dropdown.Item>
+            <Dropdown.Item>
+              <div className="flex flex-col items-start gap-1">
+                
+                <p className="max-w-xs text-body-5 font-normal text-metal-500">
+                # liver
+                </p>
+              </div>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <div className="flex flex-col items-start gap-1">
+                
+                <p className="max-w-xs text-body-5 font-normal text-metal-500">
+                # brain
+                </p>
+              </div>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <div className="flex flex-col items-start gap-1">
+                <p className="max-w-xs text-body-5 font-normal text-metal-500">
+                # eyes
+                </p>
+              </div>
+            </Dropdown.Item>
             </Dropdown>
           </div>
           <div className="mb-4">
