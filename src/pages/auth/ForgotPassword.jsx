@@ -7,13 +7,14 @@ import {
   errorNotification,
   successNotification,
 } from "../../utilities/NotificationHelper";
-import axios from "../../utilities/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import {
   getLocalStorage,
   removeLocalStorage,
 } from "../../utilities/SessionHelper";
 import Spinner from "../../components/Spinner/Spinner";
+import { forgotPasswordRequestThunk } from "../../redux/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 const initialFormState = {
   password: "",
@@ -29,8 +30,9 @@ export const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(initialFormState);
   const [isShow, setIsShow] = useState(initialShowState);
-  const info = getLocalStorage("info");
+  const { email, accessToken } = getLocalStorage("info");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleShow = (property, value) => {
     setIsShow({
@@ -46,30 +48,28 @@ export const ForgotPassword = () => {
     });
   };
 
+  // handle submit
   const handleSubmit = async () => {
     setLoading(true);
-    try {
-      if (data.password === data.repeatPassword) {
-        const response = await axios.post(
-          `/user/forget-password?access-token=${info["access-token"]}&email=${info.email}`,
-          data
-        );
-        console.log(response);
-        if (response?.data.success === true) {
-          successNotification(response?.data?.message);
-          removeLocalStorage("info");
-          navigate("/login", { replace: true });
-        } else {
-          errorNotification(response?.data?.message);
-        }
-      } else {
-        errorNotification("Password does not match");
-      }
+    if (data.password !== data.repeatPassword) {
       setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      errorNotification("something went wrong");
+      return errorNotification("password does not Match");
     }
+
+    dispatch(forgotPasswordRequestThunk({ email, accessToken, data }))
+      .unwrap()
+      .then((res) => {
+        if (res.success === true) {
+          successNotification(res.message);
+          removeLocalStorage("info");
+          setLoading(false);
+          navigate("/login", { replace: true });
+        }
+      })
+      .catch((error) => {
+        setLoading(false);
+        errorNotification(error.message);
+      });
   };
 
   return (
