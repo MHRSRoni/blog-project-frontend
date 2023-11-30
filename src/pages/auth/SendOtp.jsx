@@ -1,66 +1,47 @@
 import { Button, TextInput } from "keep-react";
 import { useState } from "react";
-import {
-  getLocalStorage,
-  setLocalStorage,
-} from "../../utilities/SessionHelper";
+import { setLocalStorage } from "../../utilities/SessionHelper";
 import { useNavigate } from "react-router-dom";
 import {
   errorNotification,
   successNotification,
 } from "../../utilities/NotificationHelper";
 import Spinner from "../../components/Spinner/Spinner";
-import axios from "../../utilities/axiosInstance";
 import { validateEmail } from "../../utilities/verification";
+import { useDispatch } from "react-redux";
+import { resendOtpRequestThunk } from "../../redux/auth/authSlice";
 
 const SendOtp = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   //  handleVerify
   const handleSubmit = async () => {
     setLoading(true);
-    try {
-      if (validateEmail(email)) {
-        const { data } = await axios.get(
-          `/verification/send-verification?email=${email}&subject=forget password`
-        );
-        if (data.success === true) {
-          successNotification(data.message);
+
+    if (!validateEmail(email)) {
+      setLoading(false);
+      return errorNotification("Invalid email Address");
+    }
+
+    dispatch(resendOtpRequestThunk({ email, subject: "forget password" }))
+      .unwrap()
+      .then((res) => {
+        if (res.success === true) {
+          setLoading(false);
+          successNotification(res.message);
           setLocalStorage("info", { email, subject: "forget password" });
           setEmail("");
           navigate("/verify-otp");
-        } else {
-          errorNotification("some think went wrong");
         }
-      } else {
-        errorNotification("invalid Email address");
-      }
-
-      setLoading(false);
-    } catch (error) {
-      errorNotification(error?.response?.data?.message);
-    }
+      })
+      .catch((error) => {
+        setLoading(false);
+        errorNotification(error.message);
+      });
   };
-
-  //   setLoading(true);
-  //   try {
-  //     const { status } = await axios.get(
-  //       `/verification/send-verification?email=${userEmail.email}&subject=email verification`
-  //     );
-
-  //     if (status === 200) {
-  //       successNotification("check your email for verify otp code");
-  //     }
-
-  //     setLoading(false);
-  //   } catch (error) {
-  //     errorNotification(error?.response?.data?.message);
-  //     setLoading(false);
-  //   }
-  // };
 
   return (
     <section
