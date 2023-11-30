@@ -9,6 +9,7 @@ import UserDashboard from "./pages/UserDashboard";
 import CreatePost from "./pages/CreatePost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Profile from "./pages/user/Profile";
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import ReadList from "./pages/user/ReadList";
@@ -65,12 +66,23 @@ function App() {
           <Route path="/resetemail" element={<ResetEmail />} />
           <Route path="/post/read" element={<Post />} />
           <Route path="/about" element={<About />} />
+
+
+
+            {/* <Route path="create-post" element={<CreatePost />} /> */}
+            <Route path="read-list" element={<ReadList />} />
+            <Route path="profile" element={<Profile />} />
+
+
+
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/category/:categoryId" element={<CategoryPage />} />
+
+          
           <Route path="/user/dashboard" element={<UserDashboard />}>
             <Route index element={<DTable />} />
-            <Route path="read-list" element={<ReadList />} />
+            {/* <Route path="read-list" element={<ReadList />} /> */}
             <Route path="create-post" element={<CreatePost />} />
           </Route>
         </Route>
