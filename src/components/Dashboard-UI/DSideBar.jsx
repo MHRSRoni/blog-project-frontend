@@ -10,25 +10,26 @@ import {
 
 const DSidebarComponent = () => {
   return (
-    <Sidebar aria-label="Sidebar with multi-level dropdown example">
+    <div className="h-screen bg-white">
+      <Sidebar aria-label="Sidebar with multi-level dropdown example">
         <Sidebar.ItemGroup>
-          
           <Sidebar.Item href="#" icon={<Chat size={24} />} label="6">
             Posts
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={<Eye size={24} />} label="86">
             Total Views
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<ThumbsUp size={24} />} label="3105">
+          <Sidebar.Item href="#" icon={<ThumbsUp size={24} />} label="310">
             Total Likes
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={<ThumbsDown size={24} />} label="69">
             Total Dislikes
           </Sidebar.Item>
-          
         </Sidebar.ItemGroup>
-    </Sidebar>
+      </Sidebar>
+    </div>
   );
+  
 }
 
 
