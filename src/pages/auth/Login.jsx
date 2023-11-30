@@ -22,8 +22,8 @@ const initialFormState = {
 export const Login = () => {
   const [data, setData] = useState(initialFormState);
   const [isShow, setIsShow] = useState(false);
-
   const { isLoading, user } = useSelector((state) => state.auth);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -45,6 +45,7 @@ export const Login = () => {
       return errorNotification("Invalid email address");
     }
     const from = location?.state?.from?.pathname || "/";
+
     dispatch(loginRequestThunk(data))
       .unwrap()
       .then((res) => {

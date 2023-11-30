@@ -10,10 +10,10 @@ import {
   successNotification,
 } from "../../utilities/NotificationHelper";
 import { validateEmail } from "../../utilities/verification";
-import axios from "../../utilities/axiosInstance";
 import { setLocalStorage } from "../../utilities/SessionHelper";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { registerRequestThunk } from "../../redux/auth/authSlice";
 
 const initialFormState = {
   name: "",
@@ -31,9 +31,9 @@ const initialShowState = {
 export const Register = () => {
   const [data, setData] = useState(initialFormState);
   const [isShow, setIsShow] = useState(initialShowState);
+  const { isLoading, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   // make sure login user can not see the login page
   useEffect(() => {
@@ -56,40 +56,28 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      if (data.password !== data.repeatPassword) {
-        return errorNotification("password does not match");
-      }
-
-      if (!validateEmail(data.email)) {
-        return errorNotification("Invalid email address");
-      }
-
-      const { status } = await axios.post("/user/registration", data);
-
-      if (status === 201) {
-        const { status } = await axios.get(
-          `/verification/send-verification?email=${data.email}&subject=email verification`
-        );
-
-        if (status === 200) {
-          successNotification("check your email for verify otp code");
-          setLocalStorage("info", {
-            email: data.email,
-            subject: "email verification",
-          });
-          navigate("/verify-otp");
-        }
-      }
-
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      errorNotification(error?.response?.data?.message);
-    } finally {
-      setLoading(false);
+    if (data.password !== data.repeatPassword) {
+      return errorNotification("password does not match");
     }
+
+    if (!validateEmail(data.email)) {
+      return errorNotification("Invalid email address");
+    }
+
+    // thunk function invoke
+    dispatch(registerRequestThunk(data))
+      .unwrap()
+      .then((res) => {
+        successNotification(res.message);
+        setLocalStorage("info", {
+          email: data.email,
+          subject: "email verification",
+        });
+        navigate("/verify-otp");
+      })
+      .catch((error) => {
+        errorNotification(error.message);
+      });
   };
 
   return (
@@ -202,7 +190,7 @@ export const Register = () => {
           </div>
         </form>
       </Card>
-      {loading && <Spinner />}
+      {isLoading && <Spinner />}
     </div>
   );
 };

@@ -12,79 +12,87 @@ import {
   successNotification,
 } from "../../utilities/NotificationHelper";
 import Spinner from "../../components/Spinner/Spinner";
-import axios from "../../utilities/axiosInstance";
+import { useDispatch } from "react-redux";
+import {
+  accountVerifyRequestThunk,
+  otpVerifyRequestThunk,
+  resendOtpRequestThunk,
+} from "../../redux/auth/authSlice";
 
 const VerifyOtp = () => {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
-  const info = getLocalStorage("info");
+  const { email, subject } = getLocalStorage("info");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //  handleVerify
   const handleVerify = async () => {
     setLoading(true);
-    try {
-      if (code.length === 6) {
-        const { data } = await axios.get(
-          `/verification/verify?email=${info.email}&subject=${info.subject}&otp=${code}`
-        );
 
-        // only for forget password verification
-        if (info.subject === "forget password") {
-          if (data.success === true && data["access-token"]) {
+    if (code.length !== 6) {
+      setLoading(false);
+      return errorNotification("opt must be 6 character");
+    }
+
+    // for email verification
+    if (subject === "email verification") {
+      dispatch(accountVerifyRequestThunk({ email, subject, code }))
+        .unwrap()
+        .then((res) => {
+          if (res.success === true) {
+            setCode("");
+            removeLocalStorage("info");
+            setLoading(false);
+            successNotification(res.message);
+            navigate("/login", { replace: true });
+          }
+        })
+        .catch((error) => {
+          setLoading(false);
+          errorNotification(error.message);
+        });
+    }
+
+    // only for forget password verification
+    if (subject === "forget password") {
+      dispatch(otpVerifyRequestThunk({ email, subject, code }))
+        .unwrap()
+        .then((res) => {
+          if (res.success === true) {
+            successNotification(res.message);
             setCode("");
             setLocalStorage("info", {
-              email: info.email,
+              email: email,
               subject: "forget password",
-              ["access-token"]: data["access-token"],
+              accessToken: res["access-token"],
             });
-            successNotification("verification success");
+            setLoading(false);
             navigate("/forgot-password", { replace: true });
-          } else {
-            errorNotification("verification failed");
           }
-        }
-
-        // only for email verification
-        if (info.subject === "email verification") {
-          if (data.success === true && data["access-token"]) {
-            const res = await axios.get(
-              `/user/email-verify?access-token=${data["access-token"]}&email=${info.email}`
-            );
-            if (res.data.success === true) {
-              setCode("");
-              removeLocalStorage("info");
-              successNotification("verification success");
-              navigate("/login", { replace: true });
-            } else {
-              errorNotification("verification failed");
-            }
-          }
-        }
-      }
-      setLoading(false);
-    } catch (error) {
-      errorNotification(error?.response?.data?.message);
-      setLoading(false);
+        })
+        .catch((error) => {
+          setLoading(false);
+          errorNotification(error.message);
+        });
     }
   };
 
   const resendOTPHandler = async () => {
     setLoading(true);
-    try {
-      const { status } = await axios.get(
-        `/verification/send-verification?email=${info.email}&subject=${info.subject}`
-      );
 
-      if (status === 200) {
-        successNotification("check your email for verify otp code");
-      }
-
-      setLoading(false);
-    } catch (error) {
-      errorNotification(error?.response?.data?.message);
-      setLoading(false);
-    }
+    dispatch(resendOtpRequestThunk({ email, subject }))
+      .unwrap()
+      .then((res) => {
+        if (res.success === true) {
+          setLoading(false);
+          successNotification(res.message);
+        }
+      })
+      .catch((error) => {
+        setLoading(false);
+        errorNotification(error.message);
+      });
   };
 
   return (
