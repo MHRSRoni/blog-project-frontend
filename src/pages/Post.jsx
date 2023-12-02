@@ -15,7 +15,7 @@ import LatestPosts from "../components/SideCard/LatestPosts";
 
 const Post = () => {
   const dispatch = useDispatch();
-  const { isLoading, posts, error } = useSelector(
+  const { isLoading, posts } = useSelector(
     (state) => state.readSingleBlog
   );
 

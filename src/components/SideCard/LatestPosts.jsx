@@ -29,6 +29,10 @@ const LatestPosts = () => {
     fetchData();
   }, []);
 
+  const handleHover = (event, fullTitle) => {
+    event.currentTarget.title = fullTitle;
+  };
+
   return (
     <div className="py-2">
       {latestPosts.length > 0 ? (

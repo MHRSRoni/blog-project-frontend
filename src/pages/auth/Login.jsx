@@ -15,8 +15,8 @@ import { loginRequestThunk } from "../../redux/auth/authSlice";
 import { setLocalStorage } from "../../utilities/SessionHelper";
 
 const initialFormState = {
-  email: "",
-  password: "",
+  email: "test7@gmail.com",
+  password: "123321",
 };
 
 export const Login = () => {
