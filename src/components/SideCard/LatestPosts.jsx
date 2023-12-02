@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../../utilities/axiosInstance";
+import TooltipComponent from "../Tooltip/TooltipComponent";
 
 const LatestPosts = () => {
   const [latestPosts, setLatestPosts] = useState([]);
@@ -30,26 +31,35 @@ const LatestPosts = () => {
 
   return (
     <div className="py-2">
-      {latestPosts.map((post, index) => (
-        <a href={`/post/read?slug=${post.slug}`} key={index}>
-          <div className=" gap-2 border-t" key={index}>
-            <div className="flex flex-row mt-2">
-              <img
-                className="w-16 h-16 object-cover pb-2 pr-2 rounded-md"
-                src={post.picture}
-                alt={post.title}
-              />
-              <h1 className="text-sm text-gray-900">{post.title}</h1>
-            </div>
+      {latestPosts.length > 0 ? (
+        latestPosts.map((post, index) => (
+          <a href={`/post/read?slug=${post.slug}`} key={index}>
+            <div className=" gap-2 border-t" key={index}>
+              <div className="flex flex-row mt-2">
+                <img
+                  className="w-16 h-16 object-cover pb-2 pr-2 rounded-md"
+                  src={post.picture}
+                  alt={post.title}
+                />
 
-            <div>
-              <p className=" text-xs text-gray-500 mb-2">
-                {post.description.substring(0, 100)}
-              </p>
+                <TooltipComponent text={post.title}>
+                  <h1 className="text-sm text-gray-900">
+                    {post.title.slice(0, 100)}
+                  </h1>
+                </TooltipComponent>
+              </div>
+
+              <div>
+                <p className=" text-xs text-gray-500 mb-2">
+                  {post.description.substring(0, 100)}
+                </p>
+              </div>
             </div>
-          </div>
-        </a>
-      ))}
+          </a>
+        ))
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 };
