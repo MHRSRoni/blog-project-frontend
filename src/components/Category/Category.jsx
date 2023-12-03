@@ -1,7 +1,10 @@
 import { Card } from "keep-react";
 import { CaretRight } from "phosphor-react";
+import { useNavigate } from "react-router-dom";
 
 const Category = ({ picture, title, description, slug }) => {
+  const navigate = useNavigate();
+
   return (
     <Card className="p-4 mb-2">
       <Card
@@ -11,13 +14,14 @@ const Category = ({ picture, title, description, slug }) => {
       ></Card>
       <Card.Title>{title}</Card.Title>
       <Card.Description>{description.substring(0, 150)}</Card.Description>
-      <Card.Link
-        href={slug}
-        icon={<CaretRight size={16} color="#1B4DFF" />}
-        iconPosition="left"
+      <button
+        onClick={() => navigate(`/post/read?slug=${slug}`)}
+        style={{ color: "#1B4DFF" }}
+        className="text-primary font-semibold flex items-center"
       >
         আরোও পড়ুন
-      </Card.Link>
+        <CaretRight size={16} className="ml-2" />
+      </button>
     </Card>
   );
 };

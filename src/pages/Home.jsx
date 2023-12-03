@@ -9,7 +9,7 @@ import Spinner from "../components/Spinner/Spinner";
 import { SkeletonComponent } from "../components/Skeleton/SkeletonComponent";
 import SideCard from "../components/SideCard/SideCard";
 import { SpinnerButtonComponent } from "../components/SpinnerButtonComponent/SpinnerButtonComponent";
-import SideList from "../components/SideCard/SideList";
+import LatestPosts from "../components/SideCard/LatestPosts";
 import { NotificationModal } from "../components/Modal/NotificationModal";
 import Contact from "../components/Contact/Contact";
 
@@ -172,10 +172,7 @@ const Home = () => {
       </div>
       <div className="right hidden lg:block  lg:basis-3/12 ">
         <SideCard cardTitle="সাম্প্রতিক পোস্ট ">
-          <hr className="my-2" />
-          <SideList />
-          <SideList />
-          <SideList />
+          <LatestPosts />
         </SideCard>
         <SideCard cardTitle="ক্যালেন্ডার">
           <Calendar />
