@@ -50,15 +50,16 @@ const SearchPage = () => {
         </div>
       ) : (
         <div className="search-card-grid">
-          {searchResults.map((result, index) => (
-            <SearchCard
-              key={index}
-              picture={result.picture}
-              title={result.title}
-              description={result.description}
-              slug={result.slug}
-            />
-          ))}
+          {searchResults.length > 0 &&
+            searchResults.map((result, index) => (
+              <SearchCard
+                key={index}
+                picture={result.picture}
+                title={result.title}
+                description={result.description}
+                slug={result.slug}
+              />
+            ))}
         </div>
       )}
     </div>

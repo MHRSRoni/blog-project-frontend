@@ -38,3 +38,7 @@ export const forgotPasswordRequest = async ({ email, accessToken, data }) => {
   );
   return response;
 };
+export const updateProfileRequest = async (reqBody) => {
+  const response = await axios.post(`/user/profile/update`, reqBody);
+  return response;
+};

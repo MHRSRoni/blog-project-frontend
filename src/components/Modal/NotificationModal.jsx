@@ -26,8 +26,11 @@ export const NotificationModal = ({ showModal, setShowModal }) => {
           <Button type="outlineGray" onClick={onClickOne}>
             Cancel
           </Button>
-          <Button type="primary" onClick={() => navigate("/user/dashboard")}>
-            Go to DashBoard
+          <Button
+            type="primary"
+            onClick={() => navigate("/user/dashboard/addCategory")}
+          >
+            select Category
           </Button>
         </Modal.Footer>
       </Modal>
