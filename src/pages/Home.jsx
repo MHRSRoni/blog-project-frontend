@@ -176,7 +176,7 @@ const Home = () => {
         </SideCard>
         <SideCard cardTitle="ক্যালেন্ডার">
           <Calendar />
-        </SideCard >
+        </SideCard>
 
         <SideCard cardTitle="যোগাযোগ">
           <Contact />

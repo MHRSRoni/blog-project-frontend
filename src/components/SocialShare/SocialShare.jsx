@@ -7,7 +7,7 @@ const SocialShare = () => {
   // Get the slug from the query parameters
   const queryParams = new URLSearchParams(location.search);
   const slug = queryParams.get("slug");
-  console.log(location.href);
+
   const clipBoardCopy = () => {
     const url = `${location.origin}${location.pathname}?slug=${slug}`;
     navigator.clipboard.writeText(url);
