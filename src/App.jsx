@@ -9,6 +9,7 @@ import UserDashboard from "./pages/UserDashboard";
 import CreatePost from "./pages/CreatePost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Profile from "./pages/user/Profile";
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import ReadList from "./pages/user/ReadList";
@@ -25,8 +26,7 @@ import { ForgotPassword } from "./pages/auth/ForgotPassword";
 
 import VerifyOtp from "./pages/auth/VerifyOtp";
 import SendOtp from "./pages/auth/SendOtp";
-import AllCategory from "./pages/AllCategory";
-import ProfilePage from "./pages/ProfilePage";
+import AddCategory from "./pages/user/AddCategory";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -67,15 +67,18 @@ function App() {
           <Route path="/resetemail" element={<ResetEmail />} />
           <Route path="/post/read" element={<Post />} />
           <Route path="/about" element={<About />} />
-          <Route path="/all-category" element={<AllCategory />} />
+
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/category/:categoryId" element={<CategoryPage />} />
+
           <Route path="/user/dashboard" element={<UserDashboard />}>
             <Route index element={<DTable />} />
             <Route path="read-list" element={<ReadList />} />
             <Route path="create-post" element={<CreatePost />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="addCategory" element={<AddCategory />} />
           </Route>
         </Route>
         <Route path="*" element={<NoPage />} />

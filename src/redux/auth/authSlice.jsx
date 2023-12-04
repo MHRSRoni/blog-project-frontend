@@ -1,5 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginRequest } from "./authAPI";
+import {
+  emailVerifyRequest,
+  forgotPasswordRequest,
+  loginRequest,
+  otpVerifyRequest,
+  registerRequest,
+  sendOtpRequest,
+  updateProfileRequest,
+} from "./authAPI";
 
 const initialState = {
   isLoading: false,
@@ -8,10 +16,94 @@ const initialState = {
 };
 
 export const loginRequestThunk = createAsyncThunk(
-  "post/loginRequestThunk",
+  "auth/loginRequestThunk",
   async (reqBody, { rejectWithValue }) => {
     try {
       return await loginRequest(reqBody);
+    } catch (error) {
+      return rejectWithValue(error?.response?.data.message);
+    }
+  }
+);
+
+export const registerRequestThunk = createAsyncThunk(
+  "auth/registerRequestThunk",
+  async (reqBody, { rejectWithValue }) => {
+    try {
+      const { status } = await registerRequest(reqBody);
+      if (status === 201) {
+        const response = await sendOtpRequest(
+          reqBody.email,
+          "email verification"
+        );
+        return response.data;
+      }
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const accountVerifyRequestThunk = createAsyncThunk(
+  "auth/accountVerifyRequestThunk",
+  async ({ email, subject, code }, { rejectWithValue }) => {
+    try {
+      const { data } = await otpVerifyRequest(email, subject, code);
+      const response = await emailVerifyRequest(email, data["access-token"]);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const otpVerifyRequestThunk = createAsyncThunk(
+  "auth/otpVerifyRequestThunk",
+  async ({ email, subject, code }, { rejectWithValue }) => {
+    try {
+      const response = await otpVerifyRequest(email, subject, code);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const resendOtpRequestThunk = createAsyncThunk(
+  "auth/resendOtpRequestThunk",
+  async ({ email, subject }, { rejectWithValue }) => {
+    try {
+      const response = await sendOtpRequest(email, subject);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const forgotPasswordRequestThunk = createAsyncThunk(
+  "auth/forgotPasswordRequestThunk",
+  async ({ email, accessToken, data }, { rejectWithValue }) => {
+    try {
+      const response = await forgotPasswordRequest({
+        email,
+        accessToken,
+        data,
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const updateProfileThunk = createAsyncThunk(
+  "auth/updateProfileThunk",
+  async (reqBody, { rejectWithValue }) => {
+    try {
+      return await updateProfileRequest(reqBody);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message);
     }
@@ -30,6 +122,7 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // for login
     builder.addCase(loginRequestThunk.pending, (state) => {
       state.isLoading = true;
       state.user = null;
@@ -44,6 +137,34 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.user = null;
       state.error = action.payload;
+    });
+
+    // for register
+    builder.addCase(registerRequestThunk.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(registerRequestThunk.fulfilled, (state) => {
+      state.isLoading = false;
+      state.error = null;
+    });
+    builder.addCase(registerRequestThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload.message;
+    });
+    // for update
+    builder.addCase(updateProfileThunk.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(updateProfileThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.user = { ...state.user, data: action.payload.data.data };
+      state.error = null;
+    });
+    builder.addCase(updateProfileThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload.message;
     });
   },
 });
