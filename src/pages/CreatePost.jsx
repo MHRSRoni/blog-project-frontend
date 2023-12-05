@@ -24,13 +24,12 @@ const CreatePost = () => {
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
-    console.log("title is set >>>>>" + e.target.value);
-    console.log(title + "called at line 238>>>>>>>>>>>>");
+    
   };
 
   const handleContentChange = (e) => {
     setDescription(e.target.value);
-    console.log(description + "called at line 238>>>>>>>>>>>>");
+    
   };
 
   const handleImageUpload = (e) => {
@@ -46,10 +45,7 @@ const CreatePost = () => {
     postData.append('description', description);
     postData.append('picture', picture);
   
-    // Log the FormData object to inspect its contents
-    postData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+    
   
     try {
       // Use the manually set token in the headers
@@ -61,7 +57,7 @@ const CreatePost = () => {
       setPicture(null);
   
       toast.success('Post created successfully!', {
-        duration: 4000,
+        duration: 2000,
         position: 'top-right',
       });
   
