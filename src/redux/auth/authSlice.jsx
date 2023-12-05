@@ -6,6 +6,7 @@ import {
   otpVerifyRequest,
   registerRequest,
   sendOtpRequest,
+  updateProfileRequest,
 } from "./authAPI";
 
 const initialState = {
@@ -56,6 +57,7 @@ export const accountVerifyRequestThunk = createAsyncThunk(
     }
   }
 );
+
 export const otpVerifyRequestThunk = createAsyncThunk(
   "auth/otpVerifyRequestThunk",
   async ({ email, subject, code }, { rejectWithValue }) => {
@@ -93,6 +95,17 @@ export const forgotPasswordRequestThunk = createAsyncThunk(
       return response.data;
     } catch (error) {
       return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const updateProfileThunk = createAsyncThunk(
+  "auth/updateProfileThunk",
+  async (reqBody, { rejectWithValue }) => {
+    try {
+      return await updateProfileRequest(reqBody);
+    } catch (error) {
+      return rejectWithValue(error?.response?.data.message);
     }
   }
 );
@@ -136,6 +149,20 @@ const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(registerRequestThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload.message;
+    });
+    // for update
+    builder.addCase(updateProfileThunk.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(updateProfileThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.user = { ...state.user, data: action.payload.data.data };
+      state.error = null;
+    });
+    builder.addCase(updateProfileThunk.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload.message;
     });

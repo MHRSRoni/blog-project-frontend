@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../../utilities/axiosInstance";
+import TooltipComponent from "../Tooltip/TooltipComponent";
 
 const LatestPosts = () => {
   const [latestPosts, setLatestPosts] = useState([]);
@@ -28,36 +29,38 @@ const LatestPosts = () => {
     fetchData();
   }, []);
 
-  const handleHover = (event, fullTitle) => {
-    event.currentTarget.title = fullTitle;
-  };
-
   return (
     <div className="py-2">
-      {latestPosts.map((post, index) => (
-        <a
-          href={`/post/read?slug=${post.slug}`}
-          key={index}
-          title={post.title}
-          onMouseOver={(e) => handleHover(e, post.title)}
-        >
-          <div className="flex gap-2 border-t mb-2" key={index}>
-            <img
-              className="w-20 h-20 object-cover p-2 rounded-md"
-              src={post.picture}
-              alt={post.title}
-            />
-            <div>
-              <h1 className="text-sm text-gray-900 mt-2">
-                {post.title.substring(0, 25)}...
-              </h1>
-              <p className="text-xs text-gray-500 mb-2">
-                {post.description.substring(0, 50)}...
-              </p>
-            </div>
-          </div>
-        </a>
-      ))}
+      {latestPosts.length > 0 ? (
+        latestPosts.map((post, index) => {
+          return (
+            <a href={`/post/read?slug=${post.slug}`} key={index}>
+              <div className=" border-t" key={index}>
+                <div className="flex mt-2">
+                  <img
+                    className="w-16 h-16 object-cover pb-2 pr-2 rounded-md"
+                    src={post.picture}
+                    alt={post.title}
+                  />
+
+                  <TooltipComponent text={post.title}>
+                    <h1 className="text-sm text-gray-900">
+                      {post.title.slice(0, 100)}
+                    </h1>
+                  </TooltipComponent>
+                </div>
+              </div>
+              <div>
+                <p className="text-xs text-gray-500 mb-2">
+                  {post.description.substring(0, 100)}...
+                </p>
+              </div>
+            </a>
+          );
+        })
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 };

@@ -26,6 +26,7 @@ import { ForgotPassword } from "./pages/auth/ForgotPassword";
 
 import VerifyOtp from "./pages/auth/VerifyOtp";
 import SendOtp from "./pages/auth/SendOtp";
+import AddCategory from "./pages/user/AddCategory";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -67,28 +68,16 @@ function App() {
           <Route path="/post/read" element={<Post />} />
           <Route path="/about" element={<About />} />
 
-
-
-            {/* <Route path="create-post" element={<CreatePost />} /> */}
-            {/* <Route path="read-list" element={<ReadList />} /> */}
-            {/* <Route path="profile" element={<Profile />} /> */}
-
-
-
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/category/:categoryId" element={<CategoryPage />} />
 
-          
           <Route path="/user/dashboard" element={<UserDashboard />}>
-
-
             <Route index element={<DTable />} />
             <Route path="read-list" element={<ReadList />} />
             <Route path="create-post" element={<CreatePost />} />
             <Route path="profile" element={<Profile />} />
-
-
+            <Route path="addCategory" element={<AddCategory />} />
           </Route>
         </Route>
         <Route path="*" element={<NoPage />} />
