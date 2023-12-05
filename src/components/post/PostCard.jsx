@@ -1,7 +1,6 @@
 import { Avatar, Card } from "keep-react";
 import { BookmarkSimple, ThumbsUp, CaretRight } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
-import SocialShare from "../SocialShare/SocialShare";
 
 const PostCard = ({ item }) => {
   const navigate = useNavigate();
@@ -54,7 +53,6 @@ const PostCard = ({ item }) => {
           {item.readTime} min read
         </Card.Description>
         <BookmarkSimple size={24} />
-        <SocialShare />
       </Card.Container>
     </Card>
   );
