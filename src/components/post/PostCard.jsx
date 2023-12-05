@@ -54,7 +54,6 @@ const PostCard = ({ item }) => {
           {item.readTime} min read
         </Card.Description>
         <BookmarkSimple size={24} />
-        <SocialShare />
       </Card.Container>
     </Card>
   );
