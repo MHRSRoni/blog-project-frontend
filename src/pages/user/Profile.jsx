@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "../../utilities/axiosInstance";
-
 import {
   errorNotification,
   successNotification,
