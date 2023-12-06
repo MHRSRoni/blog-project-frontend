@@ -1,6 +1,14 @@
 p {
   word-break: break-all;
 }
+
+input::file-selector-button {
+  background-color: #1b4dff;
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+}
+
 .left #sidebar > :first-child {
   background-color: transparent !important;
 }
