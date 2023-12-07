@@ -8,6 +8,7 @@ import { ResetEmail } from "./pages/ResetEmail";
 import UserDashboard from "./pages/UserDashboard";
 import CreatePost from "./pages/CreatePost";
 import Profile from "./pages/user/Profile";
+import EditBlogPage from "../src/components/Dashboard-UI/EditPost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { Register } from "./pages/auth/Register";
@@ -72,6 +73,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
 
           <Route path="/category/:categoryId" element={<CategoryPage />} />
+            <Route path="edit-post/:slug" element={<EditBlogPage />} />
 
           <Route path="/user/dashboard" element={<UserDashboard />}>
             <Route index element={<DTable />} />
