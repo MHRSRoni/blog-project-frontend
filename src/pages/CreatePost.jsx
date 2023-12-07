@@ -20,8 +20,21 @@ const CreatePost = () => {
     setTitle(e.target.value);
   };
 
+  const WORD_LIMIT = 100;
+
   const handleContentChange = (e) => {
-    setDescription(e.target.value);
+    const content = e.target.value;
+
+    const words = content.split(/\s+/).filter((word) => word.length > 0);
+
+    if (words.length <= WORD_LIMIT) {
+      setDescription(content);
+    } else {
+      
+      toast.error(`Exceeded word limit. Maximum ${WORD_LIMIT} words allowed.`, {
+        position: 'top-right',
+      });
+    }
   };
 
   const handleImageUpload = (e) => {
