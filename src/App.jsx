@@ -7,10 +7,10 @@ import Post from "./pages/Post";
 import { ResetEmail } from "./pages/ResetEmail";
 import UserDashboard from "./pages/UserDashboard";
 import CreatePost from "./pages/CreatePost";
+import Profile from "./pages/user/Profile";
 import EditBlogPage from "../src/components/Dashboard-UI/EditPost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Profile from "./pages/user/Profile";
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import ReadList from "./pages/user/ReadList";
@@ -71,6 +71,7 @@ function App() {
 
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchPage />} />
+
           <Route path="/category/:categoryId" element={<CategoryPage />} />
             <Route path="edit-post/:slug" element={<EditBlogPage />} />
 
@@ -79,6 +80,7 @@ function App() {
             <Route path="read-list" element={<ReadList />} />
             <Route path="create-post" element={<CreatePost />} />
             <Route path="profile" element={<Profile />} />
+
             <Route path="addCategory" element={<AddCategory />} />
           </Route>
         </Route>
