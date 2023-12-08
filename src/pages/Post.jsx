@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "keep-react";
 import Spinner from "../components/Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ import LatestPosts from "../components/SideCard/LatestPosts";
 
 const Post = () => {
   const { isLoading, post } = useSelector((state) => state.readSingleBlog);
+  const [commentLoading, setCommentLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -60,7 +61,11 @@ const Post = () => {
               <Card.Description>{post.description}</Card.Description>
             </>
 
-            <CommentBox post={post} loggedInUserPhoto={user?.data?.picture} />
+            <CommentBox
+              post={post}
+              loggedInUserPhoto={user?.data?.picture}
+              setCommentLoading={setCommentLoading}
+            />
           </Card>
         ) : (
           <>
@@ -78,7 +83,7 @@ const Post = () => {
           <Calendar />
         </SideCard>
       </div>
-      {isLoading && <Spinner />}
+      {(isLoading || commentLoading) && <Spinner />}
     </div>
   );
 };
