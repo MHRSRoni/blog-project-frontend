@@ -66,7 +66,7 @@ const PostCard = ({ item }) => {
         style={{ color: "#1B4DFF" }}
         className="text-primary font-semibold flex items-center"
       >
-        Learn More
+        Read More
         <CaretRight size={16} className="ml-2" />
       </button>
 

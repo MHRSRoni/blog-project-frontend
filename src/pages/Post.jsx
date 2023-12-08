@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "keep-react";
 import Spinner from "../components/Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,19 +14,17 @@ import CommentBox from "../components/CommentBox/CommentBox";
 import LatestPosts from "../components/SideCard/LatestPosts";
 
 const Post = () => {
+  const { isLoading, post } = useSelector((state) => state.readSingleBlog);
+  const [commentLoading, setCommentLoading] = useState(false);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const { isLoading, posts } = useSelector(
-    (state) => state.readSingleBlog
-  );
 
   // Get the location object from react-router
   const location = useLocation();
 
   // Get the slug from the query parameters
   const queryParams = new URLSearchParams(location.search);
-
   const slug = queryParams.get("slug");
-  const postId = posts._id;
 
   useEffect(() => {
     dispatch(readSingleBlogThunk(slug));
@@ -35,35 +33,39 @@ const Post = () => {
   return (
     <div className="container mx-auto  flex ">
       <div className="left basis-12/12 lg:basis-9/12 min-h-screen">
-        {posts?.categoryId ? (
+        {post?.categoryId ? (
           <Card className="p-6 items-center m-auto mt-3">
             <>
               <img
                 className="overflow-hidden rounded-md w-full h-52 md:h-[450px] object-cover"
-                src={posts.picture}
+                src={post.picture}
               ></img>
 
               <Card.Container className="flex flex-row items-center justify-around">
                 <button className="flex flex-row items-center text-md ml-2 rounded-md pr-4 pl-4 pt-2 pb-2 hover:bg-[#f5f5f5] ">
                   <ThumbsUp size={24} />
-                  <span className="pl-2">{posts.react.like} likes</span>
+                  <span className="pl-2">{post.react.like} likes</span>
                 </button>
                 <button className="ml-[-10] hover:bg-[#f5f5f5] pr-4 pl-4 pt-2 pb-2 rounded-md">
                   <span>Comments</span>
                 </button>
                 <Card.Description className="">
-                  {posts.readTime} min read
+                  {post.readTime} min read
                 </Card.Description>
                 <BookmarkSimple size={24} />
-                <SocialShare />
+                <SocialShare slug={slug} />
               </Card.Container>
 
-              <Card.Title>{posts.title}</Card.Title>
+              <Card.Title>{post.title}</Card.Title>
 
-              <Card.Description>{posts.description}</Card.Description>
+              <Card.Description>{post.description}</Card.Description>
             </>
 
-            <CommentBox postId={postId} />
+            <CommentBox
+              post={post}
+              loggedInUserPhoto={user?.data?.picture}
+              setCommentLoading={setCommentLoading}
+            />
           </Card>
         ) : (
           <>
@@ -81,7 +83,7 @@ const Post = () => {
           <Calendar />
         </SideCard>
       </div>
-      {isLoading && <Spinner />}
+      {(isLoading || commentLoading) && <Spinner />}
     </div>
   );
 };
