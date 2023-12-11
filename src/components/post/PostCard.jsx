@@ -9,30 +9,30 @@ const PostCard = ({ item }) => {
   const [lastComment, setLastComment] = useState([]);
 
   // Function to add last comment
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`comments/read/${item._id}`);
-      const allComments = response.data.data.comments;
-      // console.log(allComments);
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get(`comments/read/${item._id}`);
+  //     const allComments = response.data.data.comments;
+  //     // console.log(allComments);
 
-      if (Array.isArray(allComments) && allComments.length > 0) {
-        const comment = allComments[0];
-        setLastComment([comment]);
-        // console.log(lastComment);
-      } else {
-        console.error(
-          "No comments found or comments data is not an array:",
-          allComments
-        );
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  //     if (Array.isArray(allComments) && allComments.length > 0) {
+  //       const comment = allComments[0];
+  //       setLastComment([comment]);
+  //       // console.log(lastComment);
+  //     } else {
+  //       console.error(
+  //         "No comments found or comments data is not an array:",
+  //         allComments
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <Card className="p-4 my-3">

@@ -24,7 +24,13 @@ export const readSingleBlogThunk = createAsyncThunk(
 const readSingleBlogSlice = createSlice({
   name: "post",
   initialState,
-  reducers: {},
+  reducers: {
+    resetSingleBlogState: (state) => {
+      state.isLoading = false;
+      state.post = {};
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     // readSingleBlogThunk api call
     builder.addCase(readSingleBlogThunk.pending, (state) => {
@@ -46,3 +52,4 @@ const readSingleBlogSlice = createSlice({
 });
 
 export default readSingleBlogSlice.reducer;
+export const { resetSingleBlogState } = readSingleBlogSlice.actions;
