@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Card } from "keep-react";
 import Spinner from "../components/Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { readSingleBlogThunk } from "../redux/singlePost/singlePostSlice";
+import {
+  readSingleBlogThunk,
+  resetSingleBlogState,
+} from "../redux/singlePost/singlePostSlice";
 import { BookmarkSimple, ThumbsUp } from "phosphor-react";
 
 import { useLocation } from "react-router-dom";
@@ -15,19 +18,18 @@ import LatestPosts from "../components/SideCard/LatestPosts";
 
 const Post = () => {
   const { isLoading, post } = useSelector((state) => state.readSingleBlog);
-  const [commentLoading, setCommentLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   // Get the location object from react-router
   const location = useLocation();
-
   // Get the slug from the query parameters
   const queryParams = new URLSearchParams(location.search);
   const slug = queryParams.get("slug");
 
   useEffect(() => {
     dispatch(readSingleBlogThunk(slug));
+    return () => dispatch(resetSingleBlogState());
   }, [dispatch, slug]);
 
   return (
@@ -38,7 +40,7 @@ const Post = () => {
             <>
               <img
                 className="overflow-hidden rounded-md w-full h-52 md:h-[450px] object-cover"
-                src={post.picture}
+                src={post?.picture}
               ></img>
 
               <Card.Container className="flex flex-row items-center justify-around">
@@ -61,11 +63,7 @@ const Post = () => {
               <Card.Description>{post.description}</Card.Description>
             </>
 
-            <CommentBox
-              post={post}
-              loggedInUserPhoto={user?.data?.picture}
-              setCommentLoading={setCommentLoading}
-            />
+            <CommentBox post={post} loggedInUserPhoto={user?.data?.picture} />
           </Card>
         ) : (
           <>
@@ -83,7 +81,7 @@ const Post = () => {
           <Calendar />
         </SideCard>
       </div>
-      {(isLoading || commentLoading) && <Spinner />}
+      {isLoading && <Spinner />}
     </div>
   );
 };

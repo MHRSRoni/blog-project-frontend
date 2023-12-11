@@ -1,78 +1,66 @@
 /* eslint-disable no-unsafe-optional-chaining */
-import { useState, useEffect } from "react";
-import axiosInstance from "../../utilities/axiosInstance";
-import { CaretDoubleLeft, CaretDoubleRight } from "phosphor-react";
+import { useEffect, useState } from "react";
 import { errorNotification } from "../../utilities/NotificationHelper";
-import ReactPaginate from "react-paginate";
+import {
+  getCommentThunk,
+  getViewMoreCommentThunk,
+  postCommentThunk,
+  reset,
+} from "../../redux/comment/commentSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const CommentBox = ({ loggedInUserPhoto, post, setCommentLoading }) => {
-  const { _id } = post;
+const CommentBox = ({ loggedInUserPhoto, post }) => {
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
+  const dispatch = useDispatch();
+  const [postLoading, setPostLoading] = useState(false);
+
+  const { isLoading, comments, totalComment, currentPage } = useSelector(
+    (state) => state.comments
+  );
 
   const placeholderImg =
     "https://res.cloudinary.com/dscxtnb94/image/upload/v1700723393/health_plus/user/download_dxmyep.png";
 
-  const handleCommentChange = (event) => {
-    setComment(event.target.value);
-  };
+  // only first time load
+  useEffect(() => {
+    dispatch(getCommentThunk({ postId: post._id, page: currentPage }));
+    return () => {
+      dispatch(reset());
+    };
+  }, []);
 
-  const handleCommentSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setPostLoading(true);
     if (!comment) {
-      setLoading(false);
-      return errorNotification("Comment is empty");
+      setPostLoading(false);
+      return errorNotification("comment box is empty");
     }
-
-    await axiosInstance
-      .post(`/comments/create/${_id}`, { comment: comment })
+    dispatch(postCommentThunk({ _id: post._id, comment: comment }))
+      .unwrap()
       .then(() => {
-        setLoading(false);
+        setPostLoading(false);
         setComment("");
+        window.scrollTo(0, 0);
+        // again call to fetch data for ui update
+        dispatch(getCommentThunk({ postId: post._id, page: 1 }));
       })
-      .catch((error) => {
-        setLoading(false);
-        console.log(error);
+      .catch(() => {
+        setPostLoading(false);
       });
   };
 
-  useEffect(() => {
-    const getComments = async () => {
-      setCommentLoading(true);
-      try {
-        const response = await axiosInstance.get(
-          `/comments/read/${_id}?pageSize=5&currentPage=${currentPage}`
-        );
-
-        const { data } = response?.data;
-        setCommentLoading(false);
-        setComments(data.comments);
-        setTotalPage(data.totalPage);
-      } catch (error) {
-        setCommentLoading(false);
-        console.error("Error fetching comments:", error);
-      }
-    };
-
-    getComments();
-  }, [loading, currentPage]);
-
-  const handlePageClick = (number) => {
-    const curr = number.selected + 1;
-    setCurrentPage(curr);
+  const handleViewMore = () => {
+    dispatch(
+      getViewMoreCommentThunk({ postId: post._id, page: currentPage + 1 })
+    );
   };
 
   return (
     <>
-      {/* Comment Box */}
       <div className="mt-4">
         <h2 className="text-lg font-semibold mb-4">Comments</h2>
-        {/* Add your comment form here */}
+
         <div className="flex items-start">
           <img
             src={loggedInUserPhoto ?? placeholderImg}
@@ -80,14 +68,14 @@ const CommentBox = ({ loggedInUserPhoto, post, setCommentLoading }) => {
             className="w-8 h-8 rounded-full mr-2"
           />
           <div className="flex-grow flex flex-col">
-            <form onSubmit={handleCommentSubmit}>
+            <form onSubmit={handleSubmit}>
               <textarea
                 className="w-full p-2 border rounded-md focus:outline-none focus:border-blue-500"
                 placeholder="Write your comment here..."
                 rows="4"
                 name="comment"
                 value={comment}
-                onChange={handleCommentChange}
+                onChange={(e) => setComment(e.target.value)}
                 disabled={!loggedInUserPhoto ? true : false}
               ></textarea>
 
@@ -99,56 +87,62 @@ const CommentBox = ({ loggedInUserPhoto, post, setCommentLoading }) => {
                     : "bg-slate-300"
                 } `}
               >
-                {loading ? "...Loading" : "Comment"}
+                {postLoading ? "...Loading" : "comment"}
               </button>
             </form>
           </div>
         </div>
 
         {comments.length > 0 &&
-          comments.map((com) => {
-            const postDate = new Date(comments[0]?.updatedAt);
-
-            return (
-              <div key={com._id} className="flex items-start mt-4 mb-4">
-                <img
-                  src={com?.user?.picture}
-                  alt="User Avatar"
-                  className="w-8 h-8  rounded-full mr-2 mt-4"
-                />
-                <div className="bg-gray-0 p-3 rounded-md flex-grow">
-                  <p>{postDate.toDateString()}</p>
-                  <p className="text-gray-800 font-semibold mb-1">
-                    {com?.user?.name}
-                  </p>
-                  <p className="text-gray-600">{com?.comment}.</p>
-                </div>
+          comments.map((item) => (
+            <div key={item._id} className="flex items-start mt-4 mb-4">
+              <img
+                src={item?.user?.picture}
+                alt="User Avatar"
+                className="w-8 h-8  rounded-full mr-2 mt-4"
+              />
+              <div className="bg-gray-0 p-3 rounded-md flex-grow">
+                <p>{new Date(item.updatedAt).toDateString()}</p>
+                <p className="text-gray-800 font-semibold mb-1">
+                  {item?.user?.name}
+                </p>
+                <p className="text-gray-600">{item.comment}</p>
               </div>
-            );
-          })}
-      </div>
+            </div>
+          ))}
 
-      {comments.length > 0 && (
-        <ReactPaginate
-          previousLabel={<CaretDoubleLeft size={24} />}
-          nextLabel={<CaretDoubleRight size={24} />}
-          breakLabel={"..."}
-          pageCount={totalPage}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={3}
-          onPageChange={handlePageClick}
-          containerClassName={"list-none flex justify-center items-center"}
-          pageClassName={"bg-neutral cursor-pointer"}
-          pageLinkClassName={"p-2 rounded-full"}
-          previousClassName={"mr-2 cursor-pointer"}
-          previousLinkClassName={"p-2 rounded-full"}
-          nextClassName={"ml-2 cursor-pointer "}
-          nextLinkClassName={"p-2 rounded-full"}
-          breakClassName={"bg-neutral cursor-pointer"}
-          breakLinkClassName={"p-2 rounded-full"}
-          activeClassName={"bg-blue-600 text-white"}
-        />
-      )}
+        {/* for view more button */}
+        {totalComment >= 5 && comments.length < totalComment && (
+          <p
+            className="underline cursor-pointer flex gap-2 items-center"
+            onClick={handleViewMore}
+          >
+            View More comments{" "}
+            {isLoading && (
+              <svg
+                className="animate-spin -ml-1 mr-3 h-5 w-5 text-slate-900"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx={12}
+                  cy={12}
+                  r={10}
+                  stroke="currentColor"
+                  strokeWidth={4}
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+            )}
+          </p>
+        )}
+      </div>
     </>
   );
 };
