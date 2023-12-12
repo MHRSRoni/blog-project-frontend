@@ -50,19 +50,11 @@ export const UserDropdown = () => {
       <Dropdown.Item>
         <div
           className="flex flex-col items-start gap-1 w-40"
-          onClick={() => navigate("/user/dashboard/addCategory")}
+          onClick={() => navigate("/user/dashboard")}
         >
           <p className="text-base font-semibold text-slate-700">
-            Select category
+            Change Password
           </p>
-        </div>
-      </Dropdown.Item>
-      <Dropdown.Item>
-        <div
-          className="flex flex-col items-start gap-1 w-40"
-          onClick={() => navigate("/user/dashboard/read-list")}
-        >
-          <p className="text-base font-semibold text-slate-700">Read List</p>
         </div>
       </Dropdown.Item>
       <Dropdown.Item>
