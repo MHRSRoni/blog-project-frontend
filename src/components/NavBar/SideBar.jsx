@@ -1,6 +1,6 @@
 "use client";
 import { Sidebar } from "keep-react";
-import { House, Folders, CircleNotch } from "phosphor-react";
+import { House, Folders, CaretCircleDown } from "phosphor-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryThunk, loadMore } from "../../redux/category/categorySlice";
@@ -42,7 +42,7 @@ export const SideBar = () => {
             <Sidebar.Item
               onClick={() => dispatch(loadMore())}
               className="cursor-pointer"
-              icon={<CircleNotch size={24} />}
+              icon={<CaretCircleDown size={24} />}
             >
               আরও দেখুন
             </Sidebar.Item>
