@@ -1,32 +1,31 @@
 import { Button } from "keep-react";
-// import Search from "../../components/Search/Search";
-// import { MagnifyingGlass } from "phosphor-react";
-// import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../utilities/axiosInstance";
+import { SpinnerButtonComponent } from "../../components/SpinnerButtonComponent/SpinnerButtonComponent";
 
 const ReadList = () => {
-  // const navigate = useNavigate();
   const [readList, setReadList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const BASE_URL = "http://localhost:5173";
+  const [searchReadList, setSearchReadList] = useState([]);
+  const [inLineLoading, setInLineLoading] = useState(false);
+  const [totalReadList, setTotalReadList] = useState();
+  const [page, setPage] = useState(1);
 
   //fetch read list
   const fetchData = async () => {
     try {
-      const response = await axios.get("post/read/?sort=latest");
+      const response = await axios.get(`post/read/?page=${page}&limit=6`);
       const readListData = response.data.data.resultPosts;
+      const readListCount = response.data.data.totalPost;
+
+      setTotalReadList(readListCount);
 
       if (Array.isArray(readListData)) {
-        const sortedPosts = readListData.sort((a, b) => {
-          return new Date(b.timestamp) - new Date(a.timestamp);
-        });
-
-        // Limit to the last 4 posts
-        setReadList(sortedPosts.slice(0, 10));
+        setReadList([...readList, ...readListData]);
       } else {
         console.error("Read list posts data is not an array:", readListData);
       }
+      setInLineLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -50,13 +49,37 @@ const ReadList = () => {
     setSearchTerm(event.target.value);
   };
 
-  //filteredReadList
-  const filteredReadList = readList.filter((post) =>
-    post.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // fetch search read list
+  useEffect(() => {
+    let timeOut = setTimeout(async () => {
+      try {
+        const response = await axios.get(`post/read/?search=${searchTerm}`);
+        const searchReadListData = response.data.data.resultPosts;
 
-  const displayList = searchTerm ? filteredReadList : readList;
-  const noSearchResults = searchTerm && filteredReadList.length === 0;
+        if (Array.isArray(searchReadListData)) {
+          setSearchReadList(searchReadListData);
+        } else {
+          console.error(
+            "Search read list posts data is not an array:",
+            searchReadListData
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }, 800);
+
+    return () => clearTimeout(timeOut);
+  });
+
+  useEffect(() => {
+    if (page > 1 && totalReadList > readList.length) {
+      fetchData();
+    }
+  }, [page]);
+
+  const displayList = searchTerm ? searchReadList : readList;
+  const noSearchResults = searchTerm && searchReadList.length === 0;
 
   return (
     <div className="container mx-auto p-3 h-screen overflow-auto">
@@ -72,15 +95,6 @@ const ReadList = () => {
           onChange={handleSearch}
           className="px-2 py-1 border border-gray-300 rounded-md"
         />
-
-        {/* <form>
-          <Search
-            Icon={MagnifyingGlass}
-            placeholder="Search anything"
-            style={{ width: "200px" }}
-            iconPosition="right"
-          />
-        </form> */}
       </div>
 
       {/* content */}
@@ -88,7 +102,7 @@ const ReadList = () => {
         {displayList.length > 0 ? (
           displayList.map((post, index) => {
             return (
-              <a href={`${BASE_URL}/post/read?slug=${post.slug}`} key={index}>
+              <a href={`/post/read?slug=${post.slug}`} key={index}>
                 <div className="flex justify-between items-center mb-8">
                   <div className="flex items-center gap-3">
                     <img
@@ -116,6 +130,27 @@ const ReadList = () => {
           <div>No posts found...</div>
         ) : (
           <div>Loading...</div>
+        )}
+
+        {/* loading button */}
+        {totalReadList > displayList?.length && (
+          <div className="flex justify-center items-center m-8">
+            {inLineLoading ? (
+              <SpinnerButtonComponent />
+            ) : (
+              <Button
+                style={{ padding: "0 1rem" }}
+                size="xs"
+                type="primary"
+                onClick={() => {
+                  setInLineLoading(true);
+                  setPage(page + 1);
+                }}
+              >
+                Load More
+              </Button>
+            )}
+          </div>
         )}
       </div>
     </div>
