@@ -28,6 +28,7 @@ import VerifyOtp from "./pages/auth/VerifyOtp";
 import SendOtp from "./pages/auth/SendOtp";
 import AddCategory from "./pages/user/AddCategory";
 import ProfilePage from "./pages/ProfilePage";
+import PasswordChange from "./components/Tooltip/PasswordChange";
 
 
 function App() {
@@ -80,7 +81,7 @@ function App() {
             <Route path="read-list" element={<ReadList />} />
             <Route path="create-post" element={<CreatePost />} />
             <Route path="profile" element={<ProfilePage />} />
-
+            <Route path="change-password" element={<PasswordChange />} />
             <Route path="addCategory" element={<AddCategory />} />
           </Route>
         </Route>
