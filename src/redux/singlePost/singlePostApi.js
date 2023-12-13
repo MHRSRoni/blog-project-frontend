@@ -1,11 +1,6 @@
 import axios from "../../utilities/axiosInstance";
 
-
-
-// Read single blog api
-
-export const singleBlog = async (slugData) => {
-  const response = await axios.get(`post/read?slug=${slugData}`);
-  const result = response.data.data
-  return result;
+export const singleBlog = async (slug) => {
+  const response = await axios.get(`post/read?slug=${slug}`);
+  return response.data;
 };

@@ -1,147 +1,142 @@
 
+//imports
 
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPostsByUserIdThunk } from '../../redux/DTable/Dtableslice';
+import { deletePostThunk, setModalOpen, setPostToDelete } from '../../redux/DTable/Dtableslice';
+import { Modal, Button } from 'keep-react';
+import { useNavigate } from 'react-router-dom';
+import { Trash } from 'phosphor-react';
+import Loader from '../Spinner/Spinner';
+/* import NoPage from '../../pages/NoPage'; */
 
 
 
 
 const DTable = () => {
-    return (
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr>
-              <th className="py-2 px-4 border-b">Blog Title</th>
-              <th className="py-2 px-4 border-b">Likes/Dislikes</th>
-              <th className="py-2 px-4 border-b">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Row 1 */}
-            <tr>
-              <td className="py-2 px-4 border-b">React Basics</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>Likes: 10 | Dislikes: 2</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>
-                <button
-                  className="mr-2 bg-red-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Delete blog with id 1")}
-                >
-                  Delete
-                </button>
-                <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Edit blog with id 1")}
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { posts, isLoading, error, modalOpen, postToDelete } = useSelector((state) => state.table);
 
-            {/* Row 2 */}
-            <tr>
-              <td className="py-2 px-4 border-b">JavaScript Fundamentals</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>Likes: 15 | Dislikes: 3</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>
-                <button
-                  className="mr-2 bg-red-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Delete blog with id 2")}
-                >
-                  Delete
-                </button>
-                <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Edit blog with id 2")}
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [key, setKey] = useState(0); // Introduce a key state
+  /* const [editPostId, setEditPostId] = useState(null); */
+
+  const userId = '655cfb772d7427c243a46273';
+
+  useEffect(() => {
+    dispatch(getPostsByUserIdThunk(userId));
+  }, [dispatch, userId, modalOpen, key]);
+
+
+  const handleDelete = (postSlug) => {
+    dispatch(setPostToDelete(postSlug));
+    console.log(postSlug);
+    setShowDeleteModal(true);
+  };
+
+
+ 
+
+  const handleConfirmDelete = () => {
+    dispatch(deletePostThunk(postToDelete));
+    dispatch(setModalOpen(false));
+    setShowDeleteModal(false);
+
     
-            {/* Row 3 */}
-            <tr>
-              <td className="py-2 px-4 border-b">React Basics</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>Likes: 10 | Dislikes: 2</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>
-                <button
-                  className="mr-2 bg-red-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Delete blog with id 1")}
-                >
-                  Delete
-                </button>
-                <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Edit blog with id 1")}
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
+    setKey((prevKey) => prevKey + 1);
+  };
 
-            {/* Row 4 */}
-            <tr>
-              <td className="py-2 px-4 border-b">JavaScript Fundamentals</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>Likes: 15 | Dislikes: 3</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>
-                <button
-                  className="mr-2 bg-red-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Delete blog with id 2")}
-                >
-                  Delete
-                </button>
-                <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Edit blog with id 2")}
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
-    
-            {/* Row 5 */}
-            <tr>
-              <td className="py-2 px-4 border-b">React Basics</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>Likes: 10 | Dislikes: 2</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>
-                <button
-                  className="mr-2 bg-red-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Delete blog with id 1")}
-                >
-                  Delete
-                </button>
-                <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Edit blog with id 1")}
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
+  const handleCancelDelete = () => {
+    dispatch(setModalOpen(false));
+    dispatch(setPostToDelete(null));
+    setShowDeleteModal(false);
+  };
 
-            {/* Row 6 */}
-            <tr>
-              <td className="py-2 px-4 border-b">JavaScript Fundamentals</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>Likes: 15 | Dislikes: 3</td>
-              <td className="py-2 px-4 border-b" style={{ verticalAlign: 'middle' }}>
-                <button
-                  className="mr-2 bg-red-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Delete blog with id 2")}
-                >
-                  Delete
-                </button>
-                <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                  onClick={() => console.log("Edit blog with id 2")}
-                >
-                  Edit
-                </button>
+
+  if (isLoading) {
+    return <Loader />
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  return (
+    <>
+      <table className="min-w-full bg-white border border-gray-300">
+        <thead>
+          <tr>
+            <th className="py-2 px-4 border-b">Blog Title</th>
+            <th className="py-2 px-4 border-b">Likes</th>
+            <th className="py-2 px-4 border-b">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map((post) => (
+            <tr key={post._id}>
+              <td className="py-2 px-4 border-b">{post.title}</td>
+              <td className="py-2 px-4 border-b align-middle">
+                <div className="flex flex-col items-center">
+                  <span>{`Likes: ${post.react.likes}`}</span>
+                </div>
+              </td>
+              <td className="py-2 px-4 border-b align-middle">
+                <div className="flex flex-col items-center">
+                  <div className="flex items-center">
+                    <button
+                      className="mr-2 bg-red-500 text-white px-2 py-1 rounded"
+                      onClick={() => handleDelete(post.slug)}
+                    >
+                      <span className="ml-1">Delete</span>
+                    </button>
+                    <button
+                      className="bg-blue-500 text-white px-2 py-1 rounded"
+                      onClick={() => navigate(`/edit-post/${post.slug}`)}
+                    >
+                      <span className="ml-1">Edit</span>
+                    </button>
+                  </div>
+                </div>
               </td>
             </tr>
-
-        
-          </tbody>
-        </table>
-      );
+          ))}
+        </tbody>
+      </table>
+  
+      {/* Modal for delete confirmation */}
+      <Modal
+        icon={<Trash size={32} color="#1B4DFF" />}
+        size="md"
+        show={showDeleteModal}
+        position="center"
+        onClose={handleCancelDelete}
+      >
+        <Modal.Header>Do you want to delete this post?</Modal.Header>
+        <Modal.Body>
+          <div className="space-y-6">
+            <p className="text-body-5 md:text-body-4 leading-relaxed text-metal-500">
+              Confirm Post Delete
+            </p>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button type="outlineGray" onClick={handleCancelDelete}>
+            Cancel
+          </Button>
+          <Button type="primary" onClick={handleConfirmDelete}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+  
 };
 
-
-
-
 export default DTable;
+
+
+
+

@@ -3,11 +3,7 @@ import { Card, Dropdown } from "keep-react";
 import { DotsThreeVertical } from "phosphor-react";
 import { successNotification } from "../../utilities/NotificationHelper";
 
-const SocialShare = () => {
-  // Get the slug from the query parameters
-  const queryParams = new URLSearchParams(location.search);
-  const slug = queryParams.get("slug");
-
+const SocialShare = ({ slug }) => {
   const clipBoardCopy = () => {
     const url = `${location.origin}${location.pathname}?slug=${slug}`;
     navigator.clipboard.writeText(url);
@@ -49,15 +45,22 @@ const SocialShare = () => {
         </Dropdown.Item>
         <Dropdown.Item>
           <div className="flex flex-col items-start gap-1 w-40">
-            <p className="text-base font-semibold text-slate-700">
-              Share to Facebook
-            </p>
+            <a
+              href={`https://twitter.com/intent/tweet?url=${location.href}`}
+              target="_blank"
+              className="text-base font-semibold text-slate-700"
+            >
+              Share to twitter
+            </a>
           </div>
         </Dropdown.Item>
         <Dropdown.Item>
           <div className="flex flex-col items-start gap-1 w-40">
-            <p className="text-base font-semibold text-slate-700">
-              Share to Facebook
+            <p
+              className="text-base font-semibold text-slate-700 cursor-pointer"
+              onClick={() => window.print()}
+            >
+              Print this page
             </p>
           </div>
         </Dropdown.Item>
