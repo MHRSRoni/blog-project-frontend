@@ -20,7 +20,6 @@ const PasswordChange = () => {
         setData({ ...data, [event.target.name]: event.target.value });
     }
 
-
     const handleShow = (property, value) => {
         setIsShow({
             ...isShow,
@@ -28,18 +27,15 @@ const PasswordChange = () => {
         });
     };
 
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         await axios.post('/user/profile/update-password', data)
             .then(() => {
                 successNotification("Password Update Successfully");
-
             })
             .catch(error => errorNotification("Something Went Wrong! Please Check your password and try again"))
     }
-
 
     return (
         <div className='container mx-auto flex'>
@@ -74,7 +70,6 @@ const PasswordChange = () => {
                             />
                         </div>
 
-
                         <div className="mb-4 w-[31%]">
 
                             <Label value="New Password" />
@@ -104,7 +99,6 @@ const PasswordChange = () => {
                         </div>
 
                         <div className="mb-4 w-[31%]">
-
                             <Label value="Confirm New Password" />
                             <span className="text-red-600 pl-2">*</span>
                             <TextInput
@@ -130,9 +124,7 @@ const PasswordChange = () => {
                                 name="confirmPassword"
                             />
                         </div>
-
                     </div>
-
                     <div>
                         <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Update</button>
                     </div>
