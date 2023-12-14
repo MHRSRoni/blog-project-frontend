@@ -73,7 +73,9 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
 
           <Route path="/category/:categoryId" element={<CategoryPage />} />
-            <Route path="edit-post/:slug" element={<EditBlogPage />} />
+          <Route path="edit-post/:slug" element={<EditBlogPage />} />
+
+
 
           <Route path="/user/dashboard" element={<UserDashboard />}>
             <Route index element={<DTable />} />

@@ -6,8 +6,6 @@ import axios from "../../utilities/axiosInstance";
 
 export const getPostsByUId = async (userId) => {
 
-
-    console.log(userId+"dtable api >>>>>>>>>.");
   
     const response = await axios.get(
       `/post/read?user=${userId}`
