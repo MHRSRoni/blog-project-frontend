@@ -14,7 +14,7 @@ import Calendar from "../components/Calendar/Calender";
 import { SkeletonComponent } from "../components/Skeleton/SkeletonComponent";
 import SocialShare from "../components/SocialShare/SocialShare";
 import CommentBox from "../components/CommentBox/CommentBox";
-import LatestPosts from "../components/SideCard/LatestPosts";
+import RelatedPosts from "../components/SideCard/RelatedPosts";
 
 const Post = () => {
   const { isLoading, post } = useSelector((state) => state.readSingleBlog);
@@ -31,6 +31,8 @@ const Post = () => {
     dispatch(readSingleBlogThunk(slug));
     return () => dispatch(resetSingleBlogState());
   }, [dispatch, slug]);
+
+ 
 
   return (
     <div className="container mx-auto  flex ">
@@ -75,7 +77,7 @@ const Post = () => {
       <div className="right hidden lg:block  lg:basis-3/12 ">
         <SideCard cardTitle="সাম্প্রতিক পোস্ট ">
           <hr className="my-2" />
-          <LatestPosts />
+          <RelatedPosts categoryId={post.categoryId} />
         </SideCard>
         <SideCard cardTitle="ক্যালেন্ডার">
           <Calendar />

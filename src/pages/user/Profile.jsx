@@ -74,7 +74,7 @@ const Profile = () => {
             <div className="mb-4 w-[31%]">
               <label
                 htmlFor="fileInput"
-                className="block text-sm font-medium text-gray-600"
+                className="block text-lg font-medium text-gray-600"
               >
                 Choose File
               </label>
@@ -91,7 +91,7 @@ const Profile = () => {
             <div className="mb-4 w-[31%]">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-600"
+                className="block text-lg font-medium text-gray-600"
               >
                 Your Email
               </label>
@@ -109,7 +109,7 @@ const Profile = () => {
             <div className="mb-4 w-[31%]">
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-600"
+                className="block text-lg font-medium text-gray-600"
               >
                 Name
               </label>
@@ -126,7 +126,7 @@ const Profile = () => {
             <div className="mb-4 w-[31%]">
               <label
                 htmlFor="userName"
-                className="block text-sm font-medium text-gray-600 "
+                className="block text-lg font-medium text-gray-600 "
               >
                 user name
               </label>
@@ -145,7 +145,7 @@ const Profile = () => {
             <div className="mb-4 w-[31%]">
               <label
                 htmlFor="mobile"
-                className="block text-sm font-medium text-gray-600"
+                className="block text-lg font-medium text-gray-600"
               >
                 Mobile
               </label>
