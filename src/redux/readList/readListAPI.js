@@ -5,6 +5,7 @@ export const getReadList = async () => {
   const result = response?.data?.data?.posts.map((item) => {
     return {
       title: item?.postData[0]?.title,
+      slug: item?.postData[0]?.slug,
       picture: item?.postData[0]?.picture,
       updatedAt: item?.updatedAt,
       readTime: item?.postData[0]?.readTime,

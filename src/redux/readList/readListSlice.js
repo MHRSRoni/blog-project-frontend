@@ -3,7 +3,6 @@ import { getReadList, updateReadListRequest } from "./readListAPI";
 
 const initialState = {
   isLoading: false,
-  isUpdate: false,
   readList: null,
   error: null,
 };
@@ -39,7 +38,7 @@ const readListSlice = createSlice({
   reducers: {
     resetReadList: (state) => {
       state.isLoading = false;
-      (state.isUpdate = false), (state.readList = null);
+      state.readList = null;
       state.error = null;
     },
   },
@@ -47,7 +46,6 @@ const readListSlice = createSlice({
     // for get readList
     builder.addCase(getReadListThunk.pending, (state) => {
       state.isLoading = true;
-      state.readList = null;
       state.error = null;
     });
     builder.addCase(getReadListThunk.fulfilled, (state, action) => {
