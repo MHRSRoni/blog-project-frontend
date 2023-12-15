@@ -6,7 +6,7 @@ import {
   readSingleBlogThunk,
   resetSingleBlogState,
 } from "../redux/singlePost/singlePostSlice";
-import { BookmarkSimple, ThumbsUp } from "phosphor-react";
+import { ThumbsUp } from "phosphor-react";
 
 import { useLocation } from "react-router-dom";
 import SideCard from "../components/SideCard/SideCard";
@@ -15,6 +15,7 @@ import { SkeletonComponent } from "../components/Skeleton/SkeletonComponent";
 import SocialShare from "../components/SocialShare/SocialShare";
 import CommentBox from "../components/CommentBox/CommentBox";
 import LatestPosts from "../components/SideCard/LatestPosts";
+import ReadList from "../components/ReadList/ReadList";
 
 const Post = () => {
   const { isLoading, post } = useSelector((state) => state.readSingleBlog);
@@ -54,7 +55,7 @@ const Post = () => {
                 <Card.Description className="">
                   {post.readTime} min read
                 </Card.Description>
-                <BookmarkSimple size={24} />
+                <ReadList postId={post._id} />
                 <SocialShare slug={slug} />
               </Card.Container>
 

@@ -1,38 +1,10 @@
 import { Avatar, Card } from "keep-react";
-import { BookmarkSimple, ThumbsUp, CaretRight } from "phosphor-react";
+import { ThumbsUp, CaretRight } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "../../utilities/axiosInstance";
+import ReadList from "../ReadList/ReadList";
 
 const PostCard = ({ item }) => {
   const navigate = useNavigate();
-  const [lastComment, setLastComment] = useState([]);
-
-  // Function to add last comment
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get(`comments/read/${item._id}`);
-  //     const allComments = response.data.data.comments;
-  //     // console.log(allComments);
-
-  //     if (Array.isArray(allComments) && allComments.length > 0) {
-  //       const comment = allComments[0];
-  //       setLastComment([comment]);
-  //       // console.log(lastComment);
-  //     } else {
-  //       console.error(
-  //         "No comments found or comments data is not an array:",
-  //         allComments
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   return (
     <Card className="p-4 my-3">
@@ -81,25 +53,7 @@ const PostCard = ({ item }) => {
         <Card.Description className="">
           {item.readTime} min read
         </Card.Description>
-        <BookmarkSimple size={24} />
-      </Card.Container>
-
-      <Card.Container>
-        {lastComment.map((comment, index) => (
-          <div key={index} className="flex items-center w-full ml-10">
-            <Avatar
-              className="w-1/5"
-              size="sm"
-              shape="circle"
-              img="https://randomuser.me/api/portraits/men/11.jpg"
-            />
-            <Card.Container className="ml-4 w-4/5">
-              <Card.Description className="text-sm font-normal bg-gray-25 p-3 rounded-xl text-slate-400">
-                {comment.comment}
-              </Card.Description>
-            </Card.Container>
-          </div>
-        ))}
+        <ReadList postId={item._id} />
       </Card.Container>
     </Card>
   );

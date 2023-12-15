@@ -6,10 +6,12 @@ import readSingleBlogReducer from "./redux/singlePost/singlePostSlice";
 import profileReducer from "./redux/user/userProfileSlice";
 import tableReducer from "./redux/DTable/Dtableslice";
 import commentReducer from "./redux/comment/commentSlice";
+import readListReducer from "./redux/readList/readListSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    readList: readListReducer,
     posts: postReducer,
     category: categoryReducer,
     comments: commentReducer,
