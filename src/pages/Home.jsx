@@ -16,6 +16,7 @@ import Contact from "../components/Contact/Contact";
 const Home = () => {
   const dispatch = useDispatch();
   const { isLoading, posts, error } = useSelector((state) => state.posts);
+
   const [showModal, setShowModal] = useState(false);
   const [inLineLoading, setInLineLoading] = useState(false);
   const [page, setPage] = useState(1);
