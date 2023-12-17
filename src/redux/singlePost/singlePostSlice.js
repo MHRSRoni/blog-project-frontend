@@ -30,6 +30,20 @@ const readSingleBlogSlice = createSlice({
       state.post = {};
       state.error = null;
     },
+    singlePostUpdateLike: (state, action) => {
+      const targetObj = state.post;
+      const userIdIndex = targetObj.react.reactUserId.findIndex(
+        (id) => id === action.payload.userId
+      );
+
+      if (userIdIndex === -1) {
+        targetObj.react.reactUserId.push(action.payload.userId);
+        targetObj.react.like = targetObj.react.like + 1;
+      } else {
+        targetObj.react.reactUserId.splice(userIdIndex, 1);
+        targetObj.react.like = targetObj.react.like - 1;
+      }
+    },
   },
   extraReducers: (builder) => {
     // readSingleBlogThunk api call
@@ -52,4 +66,5 @@ const readSingleBlogSlice = createSlice({
 });
 
 export default readSingleBlogSlice.reducer;
-export const { resetSingleBlogState } = readSingleBlogSlice.actions;
+export const { resetSingleBlogState, singlePostUpdateLike } =
+  readSingleBlogSlice.actions;

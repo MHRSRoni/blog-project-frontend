@@ -1,7 +1,8 @@
 import { Avatar, Card } from "keep-react";
-import { ThumbsUp, CaretRight } from "phosphor-react";
+import { CaretRight } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 import ReadList from "../ReadList/ReadList";
+import Like from "../Like/Like";
 
 const PostCard = ({ item }) => {
   const navigate = useNavigate();
@@ -43,10 +44,7 @@ const PostCard = ({ item }) => {
       </button>
 
       <Card.Container className="flex flex-row items-center justify-between">
-        <button className="flex flex-row items-center text-md ml-2 rounded-md pr-4 pl-4 pt-2 pb-2 hover:bg-[#f5f5f5] ">
-          <ThumbsUp size={24} />
-          <span className="pl-2">{item.react.like} likes</span>
-        </button>
+        <Like react={item.react} postId={item._id} sliceType="postSlice" />
         <button className="ml-[-10] hover:bg-[#f5f5f5] pr-4 pl-4 pt-2 pb-2 rounded-md">
           <span>Comments</span>
         </button>
