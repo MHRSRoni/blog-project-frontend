@@ -19,7 +19,7 @@ const SearchPage = () => {
           const response = await axios.get(
             `https://health-plus-q4tt.onrender.com/api/v1/post/read/?search=${query}`
           );
-          const searchData = response.data.data;
+            const searchData = response.data.data.resultPosts;
 
           if (searchData.length === 0) {
             setNoResults(true); // Set noResults state to true if no search results
