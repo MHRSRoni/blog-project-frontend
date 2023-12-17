@@ -6,7 +6,6 @@ import {
   readSingleBlogThunk,
   resetSingleBlogState,
 } from "../redux/singlePost/singlePostSlice";
-import { ThumbsUp } from "phosphor-react";
 
 import { useLocation } from "react-router-dom";
 import SideCard from "../components/SideCard/SideCard";
