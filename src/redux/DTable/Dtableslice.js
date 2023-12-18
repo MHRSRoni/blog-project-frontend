@@ -14,9 +14,7 @@ const initialState = {
 export const getPostsByUserIdThunk = createAsyncThunk(
   "/readUserProfileThunk",
   async (userId) => {
-    console.log(userId);
     const posts = await getPostsByUId(userId);
-    console.log(posts);
     return posts;
   }
 );

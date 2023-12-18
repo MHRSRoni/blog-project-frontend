@@ -16,6 +16,7 @@ import Contact from "../components/Contact/Contact";
 const Home = () => {
   const dispatch = useDispatch();
   const { isLoading, posts, error } = useSelector((state) => state.posts);
+
   const [showModal, setShowModal] = useState(false);
   const [inLineLoading, setInLineLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -71,7 +72,7 @@ const Home = () => {
           borderPosition="bottom"
           onActiveTabChange={handleTabChange}
         >
-          <Tabs.Item title="Relevant">
+          <Tabs.Item title="প্রাসঙ্গিক">
             {posts?.resultPosts?.length > 1 ? (
               posts?.resultPosts.map((item) => (
                 <PostCard key={item._id} item={item} />
@@ -98,13 +99,13 @@ const Home = () => {
                       setPage(page + 1);
                     }}
                   >
-                    Load More
+                    লোড মোর
                   </Button>
                 )}
               </div>
             )}
           </Tabs.Item>
-          <Tabs.Item title="Latest">
+          <Tabs.Item title="সাম্প্রতিক">
             {posts?.resultPosts?.length > 1 ? (
               posts?.resultPosts.map((item) => (
                 <PostCard key={item._id} item={item} />
@@ -130,13 +131,13 @@ const Home = () => {
                       setPage(page + 1);
                     }}
                   >
-                    Load More
+                    লোড মোর
                   </Button>
                 )}
               </div>
             )}
           </Tabs.Item>
-          <Tabs.Item title="Top">
+          <Tabs.Item title="টপ">
             {posts?.resultPosts?.length > 1 ? (
               posts?.resultPosts.map((item) => (
                 <PostCard key={item._id} item={item} />
@@ -162,7 +163,7 @@ const Home = () => {
                       setPage(page + 1);
                     }}
                   >
-                    Load More
+                    লোড মোর
                   </Button>
                 )}
               </div>

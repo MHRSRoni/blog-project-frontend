@@ -1,38 +1,11 @@
 import { Avatar, Card } from "keep-react";
-import { BookmarkSimple, ThumbsUp, CaretRight } from "phosphor-react";
+import { CaretRight } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "../../utilities/axiosInstance";
+import ReadList from "../ReadList/ReadList";
+import Like from "../Like/Like";
 
 const PostCard = ({ item }) => {
   const navigate = useNavigate();
-  const [lastComment, setLastComment] = useState([]);
-
-  // Function to add last comment
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get(`comments/read/${item._id}`);
-  //     const allComments = response.data.data.comments;
-  //     // console.log(allComments);
-
-  //     if (Array.isArray(allComments) && allComments.length > 0) {
-  //       const comment = allComments[0];
-  //       setLastComment([comment]);
-  //       // console.log(lastComment);
-  //     } else {
-  //       console.error(
-  //         "No comments found or comments data is not an array:",
-  //         allComments
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   return (
     <Card className="p-4 my-3">
@@ -43,11 +16,7 @@ const PostCard = ({ item }) => {
       ></Card>
 
       <Card.Container className="flex items-center">
-        <Avatar
-          size="lg"
-          shape="circle"
-          img="https://randomuser.me/api/portraits/men/11.jpg"
-        />
+        <Avatar size="lg" shape="circle" img={item?.userId?.picture} />
         <Card.Container className="ml-3">
           <Card.Title className="md:text-base text-sm font-semibold text-slate-800">
             {item?.userId?.name}
@@ -66,40 +35,17 @@ const PostCard = ({ item }) => {
         style={{ color: "#1B4DFF" }}
         className="text-primary font-semibold flex items-center"
       >
-        Read More
+        আরোও পড়ুন ...
         <CaretRight size={16} className="ml-2" />
       </button>
 
       <Card.Container className="flex flex-row items-center justify-between">
-        <button className="flex flex-row items-center text-md ml-2 rounded-md pr-4 pl-4 pt-2 pb-2 hover:bg-[#f5f5f5] ">
-          <ThumbsUp size={24} />
-          <span className="pl-2">{item.react.like} likes</span>
-        </button>
+        <Like react={item.react} postId={item._id} sliceType="postSlice" />
         <button className="ml-[-10] hover:bg-[#f5f5f5] pr-4 pl-4 pt-2 pb-2 rounded-md">
-          <span>Comments</span>
+          <span>কমেন্টস</span>
         </button>
-        <Card.Description className="">
-          {item.readTime} min read
-        </Card.Description>
-        <BookmarkSimple size={24} />
-      </Card.Container>
-
-      <Card.Container>
-        {lastComment.map((comment, index) => (
-          <div key={index} className="flex items-center w-full ml-10">
-            <Avatar
-              className="w-1/5"
-              size="sm"
-              shape="circle"
-              img="https://randomuser.me/api/portraits/men/11.jpg"
-            />
-            <Card.Container className="ml-4 w-4/5">
-              <Card.Description className="text-sm font-normal bg-gray-25 p-3 rounded-xl text-slate-400">
-                {comment.comment}
-              </Card.Description>
-            </Card.Container>
-          </div>
-        ))}
+        <Card.Description className="">{item.readTime} মিনিট</Card.Description>
+        <ReadList postId={item._id} />
       </Card.Container>
     </Card>
   );

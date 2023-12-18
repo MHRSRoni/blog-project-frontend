@@ -11,7 +11,8 @@ import {
 } from "../../utilities/SessionHelper";
 
 const AddCategory = () => {
-  const { category } = useSelector((state) => state.category);
+  const { all: category } = useSelector((state) => state.category);
+
   const dispatch = useDispatch();
   const { isLoading, user } = useSelector((state) => state.auth);
   const interestCategory = user.data.interest;
@@ -67,6 +68,7 @@ const CategoryListItem = ({
   _id,
   handleFollow,
   interestCategory,
+  postCount,
 }) => {
   const isExist = interestCategory.find((id) => id === _id);
 
@@ -78,7 +80,7 @@ const CategoryListItem = ({
             <span># </span>
             {title}
           </h2>
-          <h1 className="text-[12px]"> 139515 posts</h1>
+          <h1 className="text-[12px]"> {postCount} posts</h1>
         </div>
 
         <p className="text-gray-900 text-sm">{description.slice(0, 100)}...</p>

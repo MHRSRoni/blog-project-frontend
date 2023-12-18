@@ -31,7 +31,25 @@ export const getMorePostThunk = createAsyncThunk(
 const postSlice = createSlice({
   name: "post",
   initialState,
-  reducers: {},
+  reducers: {
+    updateLike: (state, action) => {
+      const targetObj = state.posts.resultPosts.find(
+        (item) => item._id === action.payload.postId
+      );
+
+      const userIdIndex = targetObj.react.reactUserId.findIndex(
+        (id) => id === action.payload.userId
+      );
+
+      if (userIdIndex === -1) {
+        targetObj.react.reactUserId.push(action.payload.userId);
+        targetObj.react.like = targetObj.react.like + 1;
+      } else {
+        targetObj.react.reactUserId.splice(userIdIndex, 1);
+        targetObj.react.like = targetObj.react.like - 1;
+      }
+    },
+  },
   extraReducers: (builder) => {
     // getPostThunk api call
     builder.addCase(getPostThunk.pending, (state) => {
@@ -54,6 +72,7 @@ const postSlice = createSlice({
       const previousPost = state.posts.resultPosts;
       state.posts = {
         ...state.posts,
+        // eslint-disable-next-line no-unsafe-optional-chaining
         resultPosts: [...previousPost, ...action?.payload?.data?.resultPosts],
       };
       state.error = null;
@@ -65,3 +84,4 @@ const postSlice = createSlice({
 });
 
 export default postSlice.reducer;
+export const { updateLike } = postSlice.actions;
