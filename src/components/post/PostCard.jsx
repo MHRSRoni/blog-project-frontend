@@ -35,18 +35,16 @@ const PostCard = ({ item }) => {
         style={{ color: "#1B4DFF" }}
         className="text-primary font-semibold flex items-center"
       >
-        Read More
+        আরোও পড়ুন ...
         <CaretRight size={16} className="ml-2" />
       </button>
 
       <Card.Container className="flex flex-row items-center justify-between">
         <Like react={item.react} postId={item._id} sliceType="postSlice" />
         <button className="ml-[-10] hover:bg-[#f5f5f5] pr-4 pl-4 pt-2 pb-2 rounded-md">
-          <span>Comments</span>
+          <span>কমেন্টস</span>
         </button>
-        <Card.Description className="">
-          {item.readTime} min read
-        </Card.Description>
+        <Card.Description className="">{item.readTime} মিনিট</Card.Description>
         <ReadList postId={item._id} />
       </Card.Container>
     </Card>
