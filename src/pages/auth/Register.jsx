@@ -129,6 +129,8 @@ export const Register = () => {
               handleOnChange={(e) => changeHandler("email", e.target.value)}
             />
           </div>
+
+
           <div className="w-full mb-4">
             <Label value="Password" />
             <span className="text-red-600 pl-2">*</span>
@@ -154,6 +156,7 @@ export const Register = () => {
               handleOnChange={(e) => changeHandler("password", e.target.value)}
             />
           </div>
+
           <div className="w-full mb-4">
             <Label value="Confirm Password" />
             <span className="text-red-600 pl-2">*</span>
