@@ -36,7 +36,7 @@ export const UserDropdown = () => {
           className="flex flex-col items-start gap-1 w-40"
           onClick={() => navigate("/user/dashboard")}
         >
-          <p className="text-base font-semibold text-slate-700">Dashboard</p>
+          <p className="text-base font-medium text-slate-700">ড্যাশবোর্ড </p>
         </div>
       </Dropdown.Item>
       <Dropdown.Item>
@@ -44,7 +44,7 @@ export const UserDropdown = () => {
           className="flex flex-col items-start gap-1 w-40"
           onClick={() => navigate("/user/dashboard/profile")}
         >
-          <p className="text-base font-semibold text-slate-700">Profile</p>
+          <p className="text-base font-medium text-slate-700">প্রোফাইল</p>
         </div>
       </Dropdown.Item>
       <Dropdown.Item>
@@ -52,8 +52,8 @@ export const UserDropdown = () => {
           className="flex flex-col items-start gap-1 w-40"
           onClick={() => navigate("/user/dashboard")}
         >
-          <p className="text-base font-semibold text-slate-700">
-            Change Password
+          <p className="text-base font-medium text-slate-700">
+            চেঞ্জ পাসওয়ার্ড{" "}
           </p>
         </div>
       </Dropdown.Item>
@@ -62,7 +62,7 @@ export const UserDropdown = () => {
           className="flex flex-col items-start gap-1 w-40 "
           onClick={() => handleLogOut()}
         >
-          <p className="text-base font-semibold text-slate-700">Logout</p>
+          <p className="text-base font-medium text-slate-700">লগ আউট </p>
         </div>
       </Dropdown.Item>
     </Dropdown>

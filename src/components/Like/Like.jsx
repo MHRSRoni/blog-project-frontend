@@ -35,7 +35,7 @@ const Like = ({ react, postId, sliceType }) => {
       onClick={handleLike}
     >
       <ThumbsUp size={24} style={{ color: `${isLiked ? "red" : ""}` }} />
-      <span className="pl-2">{react.like} likes</span>
+      <span className="pl-2">{react.like} লাইক</span>
     </button>
   );
 };

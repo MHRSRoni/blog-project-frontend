@@ -25,10 +25,10 @@ const SocialShare = ({ slug }) => {
         <Dropdown.Item>
           <div className="flex flex-col items-start gap-1 w-40">
             <p
-              className="text-base font-semibold text-slate-700"
+              className="text-base font-normal text-slate-700"
               onClick={clipBoardCopy}
             >
-              Copy Link
+              কপি লিংক{" "}
             </p>
           </div>
         </Dropdown.Item>
@@ -37,9 +37,9 @@ const SocialShare = ({ slug }) => {
             <a
               href={`https://www.facebook.com/sharer.php?u=${location.href}`}
               target="_blank"
-              className="text-base font-semibold text-slate-700"
+              className="text-base font-normal text-slate-700"
             >
-              Share to Facebook
+              ফেসবুকে শেয়ার
             </a>
           </div>
         </Dropdown.Item>
@@ -48,19 +48,19 @@ const SocialShare = ({ slug }) => {
             <a
               href={`https://twitter.com/intent/tweet?url=${location.href}`}
               target="_blank"
-              className="text-base font-semibold text-slate-700"
+              className="text-base font-normal text-slate-700"
             >
-              Share to twitter
+              টুইটারে শেয়ার
             </a>
           </div>
         </Dropdown.Item>
         <Dropdown.Item>
           <div className="flex flex-col items-start gap-1 w-40">
             <p
-              className="text-base font-semibold text-slate-700 cursor-pointer"
+              className="text-base font-normal text-slate-700 cursor-pointer"
               onClick={() => window.print()}
             >
-              Print this page
+              পেজটি প্রিন্ট করুন{" "}
             </p>
           </div>
         </Dropdown.Item>

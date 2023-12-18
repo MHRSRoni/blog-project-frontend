@@ -59,7 +59,7 @@ const CommentBox = ({ loggedInUserPhoto, post }) => {
   return (
     <>
       <div className="mt-4">
-        <h2 className="text-lg font-semibold mb-4">Comments</h2>
+        <h2 className="text-lg font-semibold mb-4">কমেন্টস</h2>
 
         <div className="flex items-start">
           <img
@@ -71,7 +71,7 @@ const CommentBox = ({ loggedInUserPhoto, post }) => {
             <form onSubmit={handleSubmit}>
               <textarea
                 className="w-full p-2 border rounded-md focus:outline-none focus:border-blue-500"
-                placeholder="Write your comment here..."
+                placeholder="আপনার মন্তব্য এখানে করুন ..."
                 rows="4"
                 name="comment"
                 value={comment}
@@ -87,7 +87,7 @@ const CommentBox = ({ loggedInUserPhoto, post }) => {
                     : "bg-slate-300"
                 } `}
               >
-                {postLoading ? "...Loading" : "comment"}
+                {postLoading ? "...Loading" : "কমেন্টস"}
               </button>
             </form>
           </div>
@@ -117,7 +117,7 @@ const CommentBox = ({ loggedInUserPhoto, post }) => {
             className="underline cursor-pointer flex gap-2 items-center"
             onClick={handleViewMore}
           >
-            View More comments{" "}
+            আরোও কমেন্টস দেখুন{" "}
             {isLoading && (
               <svg
                 className="animate-spin -ml-1 mr-3 h-5 w-5 text-slate-900"

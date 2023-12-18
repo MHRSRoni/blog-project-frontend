@@ -51,10 +51,10 @@ const Post = () => {
                   sliceType="readSingleBlogSlice"
                 />
                 <button className="ml-[-10] hover:bg-[#f5f5f5] pr-4 pl-4 pt-2 pb-2 rounded-md">
-                  <span>Comments</span>
+                  <span>কমেন্টস </span>
                 </button>
                 <Card.Description className="">
-                  {post.readTime} min read
+                  {post.readTime} মিনিট
                 </Card.Description>
                 <ReadList postId={post._id} />
                 <SocialShare slug={slug} />
