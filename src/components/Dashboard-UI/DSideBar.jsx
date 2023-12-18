@@ -15,15 +15,15 @@ const DSidebarComponent = () => {
             onClick={() => navigate("/user/dashboard")}
             className=" cursor-pointer"
           >
-            <p className="text-base font-semibold text-slate-700">Posts</p>
+            <p className="text-base font-medium text-slate-700">সকল পোস্ট</p>
           </Sidebar.Item>
           <Sidebar.Item
             icon={<Folders size={24} />}
             className=" cursor-pointer"
             onClick={() => navigate("/user/dashboard/addCategory")}
           >
-            <p className="text-base font-semibold text-slate-700">
-              Select category
+            <p className="text-base font-medium text-slate-700">
+              সিলেক্ট ক্যাটাগরি
             </p>
           </Sidebar.Item>
           <Sidebar.Item
@@ -31,7 +31,7 @@ const DSidebarComponent = () => {
             className=" cursor-pointer"
             onClick={() => navigate("/user/dashboard/read-list")}
           >
-            <p className="text-base font-semibold text-slate-600">Read List</p>
+            <p className="text-base font-medium text-slate-600">রিড লিস্ট </p>
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar>
