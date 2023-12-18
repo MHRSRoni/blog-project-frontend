@@ -15,7 +15,7 @@ const CategoryPage = () => {
       );
       const categoryData = response.data.data.resultPosts;
       // console.log(categoryData);
-      const catName = response.data.categoryName;
+      const catName = response.data.data.categoryName;
       setcategoryName(catName);
 
       if (Array.isArray(categoryData)) {

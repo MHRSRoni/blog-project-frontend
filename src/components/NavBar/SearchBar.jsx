@@ -32,7 +32,7 @@ const SearchBar = () => {
             <div>
               <input
                 className="w-96 p-2 border-2 rounded"
-                placeholder="Search anything"
+                placeholder="সার্চ করুন"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

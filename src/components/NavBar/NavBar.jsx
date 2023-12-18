@@ -52,7 +52,7 @@ export const NavBar = () => {
               pill={true}
               onClick={() => navigate("/user/dashboard/create-post")}
             >
-              Create Post
+              ক্রিয়েট পোস্ট
             </Button>
             <UserDropdown />
           </Navbar.Container>
@@ -63,11 +63,11 @@ export const NavBar = () => {
               type="default"
               onClick={() => navigate("/register")}
             >
-              Create Account
+              ক্রিয়েট একাউন্ট
             </Button>
 
             <Button size="xs" type="primary" onClick={() => navigate("/login")}>
-              Login
+              লগইন{" "}
             </Button>
           </Navbar.Container>
         )}

@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../components/Spinner/Spinner";
 import { loginRequestThunk } from "../../redux/auth/authSlice";
 import { setLocalStorage } from "../../utilities/SessionHelper";
+import { getReadListThunk } from "../../redux/readList/readListSlice";
 
 const initialFormState = {
   email: "test7@gmail.com",
@@ -53,6 +54,7 @@ export const Login = () => {
           successNotification("login success");
           setLocalStorage("user", res);
           setData(initialFormState);
+
           navigate(from);
         }
       })

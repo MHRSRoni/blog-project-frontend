@@ -269,9 +269,9 @@ const DTable = () => {
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b">Blog Title</th>
-            <th className="py-2 px-4 border-b">Likes</th>
-            <th className="py-2 px-4 border-b">Actions</th>
+            <th className="py-2 px-4 border-b">ব্লগ টাইটেল </th>
+            <th className="py-2 px-4 border-b">লাইক</th>
+            <th className="py-2 px-4 border-b">অ্যাকশন</th>
           </tr>
         </thead>
         <tbody>
