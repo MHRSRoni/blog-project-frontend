@@ -52,7 +52,7 @@ export const NavBar = () => {
               pill={true}
               onClick={() => navigate("/user/dashboard/create-post")}
             >
-              ক্রিয়েট পোস্ট
+              নতুন পোস্ট
             </Button>
             <UserDropdown />
           </Navbar.Container>
