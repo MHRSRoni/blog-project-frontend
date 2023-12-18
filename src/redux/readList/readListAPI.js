@@ -9,7 +9,7 @@ export const getReadList = async () => {
       picture: item?.postData[0]?.picture,
       updatedAt: item?.updatedAt,
       readTime: item?.postData[0]?.readTime,
-      userName: item?.postData[0]?.userName || "demo user",
+      userName: item?.userData[0]?.name || "demo user",
       postId: item?.post,
     };
   });
