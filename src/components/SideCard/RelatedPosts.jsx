@@ -2,34 +2,44 @@ import { useEffect, useState } from "react";
 import axios from "../../utilities/axiosInstance";
 import TooltipComponent from "../Tooltip/TooltipComponent";
 
-const RelatedPosts = ( { categoryId } ) => {
-  const [latestPosts, setLatestPosts] = useState([]);
+const RelatedPosts = ( { categoryId, slug } ) => {
+  const [relatedPosts, setRelatedPosts] = useState([]);
 
   console.log(categoryId);
 
   const fetchData = async () => {
     try {
-        const response = await axios.get(
-            `https://health-plus-q4tt.onrender.com/api/v1/post/read/?category=${categoryId}`
-          );
-      const latestPostsData = response.data.data.resultPosts;
-
-      if (Array.isArray(latestPostsData)) {
-        const sortedPosts = latestPostsData.sort((a, b) => {
+      const response = await axios.get(
+        `https://health-plus-q4tt.onrender.com/api/v1/post/read/?category=${categoryId}`
+      );
+      const relatedPosts = response.data.data.resultPosts;
+  
+      if (Array.isArray(relatedPosts)) {
+   
+        const filteredPosts = relatedPosts.filter(
+          (post) => post.slug !== slug
+        );
+  
+        
+        const sortedPosts = filteredPosts.sort((a, b) => {
           return new Date(b.timestamp) - new Date(a.timestamp);
         });
-
-        console.log(latestPosts);
-
-        // Limit to the last 4 posts
-        setLatestPosts(sortedPosts.slice(0, 4));
+  
+      
+        setRelatedPosts(sortedPosts.slice(0, 4));
       } else {
-        console.error("Latest posts data is not an array:", latestPostsData);
+        console.error(
+          "Latest posts data is not an array:",
+          relatedPosts
+        );
       }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
+
+  console.log();
 
   useEffect(() => {
     if (categoryId) {
@@ -40,8 +50,8 @@ const RelatedPosts = ( { categoryId } ) => {
 
   return (
     <div className="py-2">
-      {latestPosts.length > 0 ? (
-        latestPosts.map((post, index) => {
+      {relatedPosts.length > 0 ? (
+        relatedPosts.map((post, index) => {
           return (
             <a href={`/post/read?slug=${post.slug}`} key={index}>
               <div className=" border-t" key={index}>
