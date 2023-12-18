@@ -62,7 +62,16 @@ const Post = () => {
 
               <Card.Title>{post.title}</Card.Title>
 
-              <Card.Description>{post.description}</Card.Description>
+              <Card.Description>
+                <div
+                  style={{
+                    whiteSpace: "pre-line",
+                    wordBreak: "break-all",
+                  }}
+                >
+                  {post.description}
+                </div>
+              </Card.Description>
             </>
 
             <CommentBox post={post} loggedInUserPhoto={user?.data?.picture} />
@@ -77,7 +86,7 @@ const Post = () => {
       <div className="right hidden lg:block  lg:basis-3/12 ">
         <SideCard cardTitle="সাম্প্রতিক পোস্ট ">
           <hr className="my-2" />
-          <RelatedPosts categoryId={post.categoryId} />
+          <RelatedPosts categoryId={post?.categoryId?._id} postId={post._id} />
         </SideCard>
         <SideCard cardTitle="ক্যালেন্ডার">
           <Calendar />

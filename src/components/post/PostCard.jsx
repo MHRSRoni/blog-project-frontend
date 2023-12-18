@@ -16,11 +16,7 @@ const PostCard = ({ item }) => {
       ></Card>
 
       <Card.Container className="flex items-center">
-        <Avatar
-          size="lg"
-          shape="circle"
-          img="https://randomuser.me/api/portraits/men/11.jpg"
-        />
+        <Avatar size="lg" shape="circle" img={item?.userId?.picture} />
         <Card.Container className="ml-3">
           <Card.Title className="md:text-base text-sm font-semibold text-slate-800">
             {item?.userId?.name}
