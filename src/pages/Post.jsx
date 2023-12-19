@@ -23,9 +23,8 @@ const Post = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  // Get the location object from react-router
+  
   const location = useLocation();
-  // Get the slug from the query parameters
   const queryParams = new URLSearchParams(location.search);
   const slug = queryParams.get("slug");
 
@@ -82,7 +81,7 @@ const Post = () => {
         )}
       </div>
       <div className="right hidden lg:block  lg:basis-3/12 ">
-        <SideCard cardTitle="সাম্প্রতিক পোস্ট ">
+        <SideCard cardTitle="সম্পর্কিত পোস্ট">
           <hr className="my-2" />
           <RelatedPosts categoryId={post?.categoryId?._id} postId={post._id} />
         </SideCard>
