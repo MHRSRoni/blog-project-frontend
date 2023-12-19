@@ -64,6 +64,7 @@ const Post = () => {
                 <div
                   style={{
                     whiteSpace: "pre-wrap",
+                    wordBreak: "keep-all",
                   }}
                 >
                   {post.description}

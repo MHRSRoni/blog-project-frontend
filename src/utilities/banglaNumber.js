@@ -1,17 +1,18 @@
 /* eslint-disable no-compare-neg-zero */
-const banglaNumber = (input) => {
-  const isChecking = Math.sign(input);
-  if (isNaN(isChecking)) return "invalid input";
-  const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
-  const result = input
-    .toString()
-    .split("")
-    .map((digit) => {
-      return banglaDigits[Number(digit)];
-    })
-    .join("");
+function banglaNumber (englishNumber) {
+  const banglaDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  const decimalIndex = englishNumber.toString().indexOf('.');
+  const convertedNumber = englishNumber
+      .toString()
+      .split('')
+      .map((digit, index) =>{
+          if(index === decimalIndex) return '.'
+          return banglaDigits[Number(digit)];
+      })
+      .join('')
 
-  return result;
-};
+  return convertedNumber
+
+}
 
 export default banglaNumber;

@@ -30,7 +30,13 @@ const PostCard = ({ item }) => {
 
       <Card.Title>{item.title}</Card.Title>
 
-      <Card.Description>{item.description.slice(0, 300)}</Card.Description>
+      <Card.Description>
+      <div style={{
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "keep-all",
+                  }}>{item.description.slice(0, 300)}
+      </div>
+      </Card.Description>
       <button
         onClick={() => navigate(`/post/read?slug=${item.slug}`)}
         style={{ color: "#1B4DFF" }}

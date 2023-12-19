@@ -502,7 +502,9 @@ const CreatePost = () => {
 
   const [title, setTitle] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const { category } = useSelector((state) => state.category);
+
+  const { all:category } = useSelector((state) => state.category);
+  
   const [description, setDescription] = useState('');
   const [picture, setPicture] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -511,7 +513,7 @@ const CreatePost = () => {
     setTitle(e.target.value);
   };
 
-  const WORD_LIMIT = 500;
+  const WORD_LIMIT = 1500;
 
   const handleContentChange = (e) => {
     const content = e.target.value;

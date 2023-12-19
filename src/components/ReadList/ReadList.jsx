@@ -1,36 +1,11 @@
-// import { BookmarkSimple } from "phosphor-react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { updateReadListThunk } from "../../redux/readList/readListSlice";
-
-// const ReadList = ({ postId }) => {
-//   const dispatch = useDispatch();
-//   const { readList } = useSelector((state) => state.readList);
-//   const { user } = useSelector((state) => state.auth);
-//   const isBooked = readList?.data.find((item) => item.postId === postId);
-
-//   const handleReadList = () => {
-//     if (user?.data && user?.token) {
-//       dispatch(updateReadListThunk(postId));
-//     } else {
-//       alert("please login first");
-//     }
-//   };
-
-//   return (
-//     <div className="cursor-pointer" onClick={handleReadList}>
-//       <BookmarkSimple size={24} style={{ color: `${isBooked ? "red" : ""}` }} />
-//     </div>
-//   );
-// };
-
-// export default ReadList;
 
 
-
-import { BookmarkSimple, CloudArrowUp } from "phosphor-react";
+import { BookmarkSimple } from "phosphor-react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateReadListThunk } from "../../redux/readList/readListSlice";
 import { successNotification } from "../../utilities/NotificationHelper";
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 const ReadList = ({ postId }) => {
   const navigate = useNavigate();
@@ -73,7 +48,6 @@ const ReadList = ({ postId }) => {
         <div className="fixed inset-0 overflow-y-auto z-50 flex items-center justify-center">
           <div className="flex fixed inset-0 bg-black bg-opacity-50"></div>
           <div className="bg-white w-96 p-4 rounded-md z-10">
-            <CloudArrowUp size={28} color="#1B4DFF" />
             <p className="text-body-5 md:text-body-4 leading-relaxed text-metal-500">
               You are not logged in. Please login first.
             </p>
