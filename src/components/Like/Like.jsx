@@ -108,7 +108,7 @@ import banglaNumber from "../../utilities/banglaNumber";
 
 
 
-import { ThumbsUp, CloudArrowUp } from "phosphor-react";
+import { ThumbsUp } from "phosphor-react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLike } from "../../redux/post/postSlice";
 import axios from "../../utilities/axiosInstance";
@@ -168,7 +168,6 @@ const Like = ({ react, postId, sliceType }) => {
         <div className="fixed inset-0 overflow-y-auto z-50 flex items-center justify-center">
           <div className="flex fixed inset-0 bg-black bg-opacity-50"></div>
           <div className="bg-white w-96 p-4 rounded-md z-10">
-            <CloudArrowUp size={28} color="#1B4DFF" />
             <p className="text-body-5 md:text-body-4 leading-relaxed text-metal-500">
               You are not logged in. Please login first.
             </p>

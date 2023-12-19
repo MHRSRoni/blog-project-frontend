@@ -51,7 +51,10 @@ const LatestPosts = () => {
                 </div>
               </div>
               <div>
-                <p className="text-xs text-gray-500 mb-2">
+                <p style={{
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "keep-all",
+                  }} className="text-xs text-gray-500 mb-2">
                   {post.description.substring(0, 100)}...
                 </p>
               </div>

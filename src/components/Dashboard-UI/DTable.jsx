@@ -72,7 +72,7 @@ const DTable = () => {
               <td className="py-2 px-4 border-b">{post.title}</td>
               <td className="py-2 px-4 border-b align-middle">
                 <div className="flex flex-col items-center">
-                  <span>{`Likes: ${post.react.likes}`}</span>
+                  <span>{`Likes: ${post.react.like}`}</span>
                 </div>
               </td>
               <td className="py-2 px-4 border-b align-middle">
