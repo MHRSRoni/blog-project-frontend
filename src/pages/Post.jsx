@@ -16,6 +16,7 @@ import CommentBox from "../components/CommentBox/CommentBox";
 import RelatedPosts from "../components/SideCard/RelatedPosts";
 import ReadList from "../components/ReadList/ReadList";
 import Like from "../components/Like/Like";
+import banglaNumber from "../utilities/banglaNumber";
 
 const Post = () => {
   const { isLoading, post } = useSelector((state) => state.readSingleBlog);
@@ -50,11 +51,9 @@ const Post = () => {
                   postId={post._id}
                   sliceType="readSingleBlogSlice"
                 />
-                <button className="ml-[-10] hover:bg-[#f5f5f5] pr-4 pl-4 pt-2 pb-2 rounded-md">
-                  <span>কমেন্টস </span>
-                </button>
+
                 <Card.Description className="">
-                  {post.readTime} মিনিট
+                  {banglaNumber(post.readTime)} মিনিট
                 </Card.Description>
                 <ReadList postId={post._id} />
                 <SocialShare slug={slug} />
@@ -65,8 +64,7 @@ const Post = () => {
               <Card.Description>
                 <div
                   style={{
-                    whiteSpace: "pre-line",
-                    wordBreak: "break-all",
+                    whiteSpace: "pre-wrap",
                   }}
                 >
                   {post.description}

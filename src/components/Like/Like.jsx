@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateLike } from "../../redux/post/postSlice";
 import axios from "../../utilities/axiosInstance";
 import { singlePostUpdateLike } from "../../redux/singlePost/singlePostSlice";
+import banglaNumber from "../../utilities/banglaNumber";
 
 const Like = ({ react, postId, sliceType }) => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Like = ({ react, postId, sliceType }) => {
       onClick={handleLike}
     >
       <ThumbsUp size={24} style={{ color: `${isLiked ? "red" : ""}` }} />
-      <span className="pl-2">{react.like} লাইক</span>
+      <span className="pl-2">{banglaNumber(react.like)} লাইক</span>
     </button>
   );
 };
