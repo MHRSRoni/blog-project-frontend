@@ -3,6 +3,7 @@ import { CaretRight } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 import ReadList from "../ReadList/ReadList";
 import Like from "../Like/Like";
+import banglaNumber from "../../utilities/banglaNumber";
 
 const PostCard = ({ item }) => {
   const navigate = useNavigate();
@@ -16,11 +17,7 @@ const PostCard = ({ item }) => {
       ></Card>
 
       <Card.Container className="flex items-center">
-        <Avatar
-          size="lg"
-          shape="circle"
-          img="https://randomuser.me/api/portraits/men/11.jpg"
-        />
+        <Avatar size="lg" shape="circle" img={item?.userId?.picture} />
         <Card.Container className="ml-3">
           <Card.Title className="md:text-base text-sm font-semibold text-slate-800">
             {item?.userId?.name}
@@ -45,10 +42,15 @@ const PostCard = ({ item }) => {
 
       <Card.Container className="flex flex-row items-center justify-between">
         <Like react={item.react} postId={item._id} sliceType="postSlice" />
-        <button className="ml-[-10] hover:bg-[#f5f5f5] pr-4 pl-4 pt-2 pb-2 rounded-md">
+        <button
+          className="ml-[-10] hover:bg-[#f5f5f5] pr-4 pl-4 pt-2 pb-2 rounded-md"
+          onClick={() => navigate(`/post/read?slug=${item.slug}`)}
+        >
           <span>কমেন্টস</span>
         </button>
-        <Card.Description className="">{item.readTime} মিনিট</Card.Description>
+        <Card.Description className="">
+          {banglaNumber(item.readTime)} মিনিট
+        </Card.Description>
         <ReadList postId={item._id} />
       </Card.Container>
     </Card>

@@ -16,6 +16,7 @@ import CommentBox from "../components/CommentBox/CommentBox";
 import RelatedPosts from "../components/SideCard/RelatedPosts";
 import ReadList from "../components/ReadList/ReadList";
 import Like from "../components/Like/Like";
+import banglaNumber from "../utilities/banglaNumber";
 
 const Post = () => {
   const { isLoading, post } = useSelector((state) => state.readSingleBlog);
@@ -49,11 +50,9 @@ const Post = () => {
                   postId={post._id}
                   sliceType="readSingleBlogSlice"
                 />
-                <button className="ml-[-10] hover:bg-[#f5f5f5] pr-4 pl-4 pt-2 pb-2 rounded-md">
-                  <span>কমেন্টস </span>
-                </button>
+
                 <Card.Description className="">
-                  {post.readTime} মিনিট
+                  {banglaNumber(post.readTime)} মিনিট
                 </Card.Description>
                 <ReadList postId={post._id} />
                 <SocialShare slug={slug} />
@@ -61,7 +60,15 @@ const Post = () => {
 
               <Card.Title>{post.title}</Card.Title>
 
-              <Card.Description>{post.description}</Card.Description>
+              <Card.Description>
+                <div
+                  style={{
+                    whiteSpace: "pre-wrap",
+                  }}
+                >
+                  {post.description}
+                </div>
+              </Card.Description>
             </>
 
             <CommentBox post={post} loggedInUserPhoto={user?.data?.picture} />
@@ -76,7 +83,7 @@ const Post = () => {
       <div className="right hidden lg:block  lg:basis-3/12 ">
         <SideCard cardTitle="সম্পর্কিত পোস্ট">
           <hr className="my-2" />
-          <RelatedPosts categoryId={post.categoryId} slug={post.slug}/>
+          <RelatedPosts categoryId={post?.categoryId?._id} postId={post._id} />
         </SideCard>
         <SideCard cardTitle="ক্যালেন্ডার">
           <Calendar />

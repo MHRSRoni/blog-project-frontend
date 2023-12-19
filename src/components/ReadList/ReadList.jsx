@@ -30,8 +30,7 @@
 import { BookmarkSimple, CloudArrowUp } from "phosphor-react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateReadListThunk } from "../../redux/readList/readListSlice";
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { successNotification } from "../../utilities/NotificationHelper";
 
 const ReadList = ({ postId }) => {
   const navigate = useNavigate();
@@ -44,7 +43,11 @@ const ReadList = ({ postId }) => {
 
   const handleReadList = () => {
     if (user?.data && user?.token) {
-      dispatch(updateReadListThunk(postId));
+      dispatch(updateReadListThunk(postId))
+        .unwrap()
+        .then(() => {
+          successNotification("আপনার কাজ সফল হয়েছে ");
+        });
     } else {
       setShowModal(true);
     }

@@ -76,7 +76,7 @@ const Profile = () => {
                 htmlFor="fileInput"
                 className="block text-lg font-medium text-gray-600"
               >
-                Choose File
+                ছবি নির্বাচন করুন
               </label>
               <input
                 onChange={handleImageChange}
@@ -93,7 +93,7 @@ const Profile = () => {
                 htmlFor="email"
                 className="block text-lg font-medium text-gray-600"
               >
-                Your Email
+                ইমেইল
               </label>
               <input
                 placeholder={email}
@@ -111,7 +111,7 @@ const Profile = () => {
                 htmlFor="name"
                 className="block text-lg font-medium text-gray-600"
               >
-                Name
+                নেম
               </label>
               <input
                 onChange={handleChange}
@@ -128,7 +128,7 @@ const Profile = () => {
                 htmlFor="userName"
                 className="block text-lg font-medium text-gray-600 "
               >
-                user name
+                ইউজার নেম
               </label>
               <input
                 onChange={handleChange}
@@ -147,7 +147,7 @@ const Profile = () => {
                 htmlFor="mobile"
                 className="block text-lg font-medium text-gray-600"
               >
-                Mobile
+                মোবাইল
               </label>
               <input
                 onChange={handleChange}
@@ -163,7 +163,7 @@ const Profile = () => {
 
           <div>
             <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-              Update
+              আপডেট
             </button>
           </div>
         </form>

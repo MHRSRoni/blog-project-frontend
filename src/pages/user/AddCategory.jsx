@@ -11,8 +11,8 @@ import {
 } from "../../utilities/SessionHelper";
 
 const AddCategory = () => {
-  const { category } = useSelector((state) => state.category);
-  console.log(category);
+  const { all: category } = useSelector((state) => state.category);
+
   const dispatch = useDispatch();
   const { isLoading, user } = useSelector((state) => state.auth);
   const interestCategory = user.data.interest;

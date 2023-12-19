@@ -26,6 +26,7 @@ import { ForgotPassword } from "./pages/auth/ForgotPassword";
 import VerifyOtp from "./pages/auth/VerifyOtp";
 import SendOtp from "./pages/auth/SendOtp";
 import AddCategory from "./pages/user/AddCategory";
+import PasswordChange from "./components/Tooltip/PasswordChange";
 import DTable from "./components/Dashboard-UI/DTable";
 import UserDashboard from "./pages/UserDashboard";
 
@@ -80,6 +81,7 @@ function App() {
             <Route path="read-list" element={<ReadList />} />
             <Route path="create-post" element={<CreatePost />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="change-password" element={<PasswordChange />} />
             <Route path="addCategory" element={<AddCategory />} />
           </Route>
         </Route>

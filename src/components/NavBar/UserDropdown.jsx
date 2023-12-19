@@ -39,6 +39,7 @@ export const UserDropdown = () => {
           <p className="text-base font-medium text-slate-700">ড্যাশবোর্ড </p>
         </div>
       </Dropdown.Item>
+
       <Dropdown.Item>
         <div
           className="flex flex-col items-start gap-1 w-40"
@@ -50,13 +51,17 @@ export const UserDropdown = () => {
       <Dropdown.Item>
         <div
           className="flex flex-col items-start gap-1 w-40"
-          onClick={() => navigate("/user/dashboard")}
+          onClick={() => navigate("/user/dashboard/change-password")}
         >
           <p className="text-base font-medium text-slate-700">
             চেঞ্জ পাসওয়ার্ড{" "}
           </p>
         </div>
       </Dropdown.Item>
+
+
+
+
       <Dropdown.Item>
         <div
           className="flex flex-col items-start gap-1 w-40 "

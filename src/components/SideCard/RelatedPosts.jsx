@@ -46,7 +46,6 @@ const RelatedPosts = ( { categoryId, slug } ) => {
       fetchData();
     }
   }, [categoryId]);
-  
 
   return (
     <div className="py-2">

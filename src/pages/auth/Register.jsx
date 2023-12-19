@@ -89,15 +89,15 @@ export const Register = () => {
         <form>
           <div className="text-center mb-4">
             <h1 className="block mb-2 text-2xl font-medium text-gray-900">
-              Registration
+              রেজিস্ট্রেশন
             </h1>
             <div className="w-full border-b border-primary-300 mb-4"></div>
           </div>
           <div className="w-full mb-4">
-            <Label value="Name" />
+            <Label value="নেম" />
             <span className="text-red-600 pl-2">*</span>
             <TextInput
-              placeholder="Type Your name"
+              placeholder="নেম লিখুন"
               type="text"
               color="gray"
               className="w-full border p-2 rounded"
@@ -106,11 +106,11 @@ export const Register = () => {
             />
           </div>
           <div className="w-full mb-4">
-            <Label value="User Name" />
+            <Label value="ইউজার নেম" />
             <span className="text-red-600 pl-2">*</span>
             <TextInput
               type="text"
-              placeholder="Type Your User name"
+              placeholder="ইউজার নেম লিখুন"
               color="gray"
               className="w-full border p-2 rounded"
               value={data.userName}
@@ -118,22 +118,23 @@ export const Register = () => {
             />
           </div>
           <div className="w-full mb-4">
-            <Label value="Email" />
+            <Label value="ইমেইল" />
             <span className="text-red-600 pl-2">*</span>
             <TextInput
               type="email"
-              placeholder="Email"
+              placeholder="ইমেইল"
               color="gray"
               className="w-full border p-2 rounded"
               value={data.email}
               handleOnChange={(e) => changeHandler("email", e.target.value)}
             />
           </div>
+
           <div className="w-full mb-4">
-            <Label value="Password" />
+            <Label value="পাসওয়ার্ড" />
             <span className="text-red-600 pl-2">*</span>
             <TextInput
-              placeholder="Password"
+              placeholder="পাসওয়ার্ড"
               type={isShow.password ? "text" : "password"}
               color="gray"
               className="w-full border p-2 rounded"
@@ -154,11 +155,12 @@ export const Register = () => {
               handleOnChange={(e) => changeHandler("password", e.target.value)}
             />
           </div>
+
           <div className="w-full mb-4">
-            <Label value="Confirm Password" />
+            <Label value="কন্ফার্ম পাসওয়ার্ড" />
             <span className="text-red-600 pl-2">*</span>
             <TextInput
-              placeholder="Confirm Password"
+              placeholder="কন্ফার্ম  পাসওয়ার্ড"
               color="gray"
               type={isShow.repeatPassword ? "text" : "password"}
               className="w-full border p-2 rounded"
@@ -185,7 +187,7 @@ export const Register = () => {
           </div>
           <div className="flex justify-center">
             <Button size="md" type="primary" onClick={handleSubmit}>
-              Sign Up
+              সাইন আপ
             </Button>
           </div>
         </form>

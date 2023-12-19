@@ -76,14 +76,14 @@ export const ForgotPassword = () => {
     <div className="flex justify-center items-center h-screen">
       <Card className="w-4/5 sm:w-2/3 lg:w-1/3 mx-auto p-8 bg-white border border-gray-200 rounded-lg shadow">
         <h1 className="block mb-2 mt-4 text-center text-2xl font-medium text-gray-900">
-          Reset Password
+          পাসওয়ার্ড রিসেট করুন
         </h1>
         <div className="w-full border-b border-primary-300 mb-4"></div>
         <div className="mb-4">
-          <Label value="New Password" />
+          <Label value="নতুন পাসওয়ার্ড" />
           <span className="text-red-600 pl-2">*</span>
           <TextInput
-            placeholder="Password"
+            placeholder="পাসওয়ার্ড"
             type={isShow.password ? "text" : "password"}
             color="gray"
             className="w-full border p-2 rounded"
@@ -105,11 +105,11 @@ export const ForgotPassword = () => {
           />
         </div>
         <div className="mb-4">
-          <Label value="Confirm Password" />
+          <Label value="কন্ফার্ম পাসওয়ার্ড" />
           <span className="text-red-600 pl-2">*</span>
 
           <TextInput
-            placeholder="Confirm Password"
+            placeholder="কন্ফার্ম পাসওয়ার্ড"
             color="gray"
             type={isShow.repeatPassword ? "text" : "password"}
             className="w-full border p-2 rounded"
@@ -136,7 +136,7 @@ export const ForgotPassword = () => {
         </div>
         <div className="flex justify-center" onClick={handleSubmit}>
           <Button size="md" type="primary">
-            Reset
+            রিসেট
           </Button>
         </div>
       </Card>
