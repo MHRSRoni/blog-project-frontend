@@ -99,7 +99,7 @@ const Home = () => {
                       setPage(page + 1);
                     }}
                   >
-                    লোড মোর
+                    আরো যুক্ত করুন
                   </Button>
                 )}
               </div>
@@ -131,7 +131,7 @@ const Home = () => {
                       setPage(page + 1);
                     }}
                   >
-                    লোড মোর
+                    আরো যুক্ত করুন
                   </Button>
                 )}
               </div>
@@ -163,7 +163,7 @@ const Home = () => {
                       setPage(page + 1);
                     }}
                   >
-                    লোড মোর
+                    আরো যুক্ত করুন
                   </Button>
                 )}
               </div>

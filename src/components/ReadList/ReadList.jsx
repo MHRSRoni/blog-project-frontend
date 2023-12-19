@@ -1,6 +1,7 @@
 import { BookmarkSimple } from "phosphor-react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateReadListThunk } from "../../redux/readList/readListSlice";
+import { successNotification } from "../../utilities/NotificationHelper";
 
 const ReadList = ({ postId }) => {
   const dispatch = useDispatch();
@@ -10,7 +11,11 @@ const ReadList = ({ postId }) => {
 
   const handleReadList = () => {
     if (user?.data && user?.token) {
-      dispatch(updateReadListThunk(postId));
+      dispatch(updateReadListThunk(postId))
+        .unwrap()
+        .then(() => {
+          successNotification("আপনার কাজ সফল হয়েছে ");
+        });
     } else {
       alert("please login first");
     }

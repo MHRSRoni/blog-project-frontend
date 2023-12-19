@@ -12,7 +12,7 @@ export const SpinnerButtonComponent = () => {
         <span className="pr-2">
           <Spinner color="info" size="md" />
         </span>
-        Loading...
+        আরো যুক্ত হচ্ছে ...
       </Button>
     </>
   );

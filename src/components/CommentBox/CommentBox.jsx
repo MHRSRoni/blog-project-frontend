@@ -59,7 +59,7 @@ const CommentBox = ({ loggedInUserPhoto, post }) => {
   return (
     <>
       <div className="mt-4">
-        <h2 className="text-lg font-semibold mb-4">কমেন্টস</h2>
+        <h2 className="text-lg font-semibold mb-4">আপনার মতামত প্রদান করুন </h2>
 
         <div className="flex items-start">
           <img
@@ -87,7 +87,7 @@ const CommentBox = ({ loggedInUserPhoto, post }) => {
                     : "bg-slate-300"
                 } `}
               >
-                {postLoading ? "...Loading" : "কমেন্টস"}
+                {postLoading ? "...মতামত যুক্ত হচ্ছে " : "মতামত দিন"}
               </button>
             </form>
           </div>
