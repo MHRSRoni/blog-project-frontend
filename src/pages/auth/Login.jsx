@@ -67,14 +67,14 @@ export const Login = () => {
     <div className="flex justify-center items-center h-screen">
       <Card className="w-4/5 sm:w-2/3 lg:w-1/3 mx-auto p-8 bg-white border border-gray-200 rounded-lg shadow">
         <h1 className="block mb-2 mt-4 text-center text-2xl font-medium text-gray-900">
-          User Log In
+          লগইন
         </h1>
         <div className="w-full border-b border-primary-300 mb-4"></div>
         <div className="mb-4">
-          <Label value="Email" />
+          <Label value="ইমেইল" />
           <span className="text-red-600 pl-2">*</span>
           <TextInput
-            placeholder="Email"
+            placeholder="ইমেইল"
             color="gray"
             className="w-full border p-2 rounded"
             value={data.email}
@@ -82,10 +82,10 @@ export const Login = () => {
           />
         </div>
         <div className="mb-4">
-          <Label value="Password" />
+          <Label value="পাসওয়ার্ড" />
           <span className="text-red-600 pl-2">*</span>
           <TextInput
-            placeholder="Password"
+            placeholder="পাসওয়ার্ড"
             type={isShow ? "text" : "password"}
             color="gray"
             className="w-full border p-2 rounded"
@@ -109,12 +109,12 @@ export const Login = () => {
 
         <div className="flex justify-center" onClick={handleSubmit}>
           <Button size="md" type="primary">
-            Login
+            লগইন
           </Button>
         </div>
         <div className="mt-3 mb-4 text-center">
           <span className="text-primary-400 hover:underline">
-            <Link to="/send-otp">Forgotten password?</Link>
+            <Link to="/send-otp">পাসওয়ার্ড ভুলে গেছেন?</Link>
           </span>
         </div>
       </Card>
