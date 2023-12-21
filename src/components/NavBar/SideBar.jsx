@@ -1,6 +1,12 @@
 "use client";
 import { Sidebar } from "keep-react";
-import { House, Folders, CaretCircleDown } from "phosphor-react";
+import {
+  BookOpen,
+  Phone,
+  House,
+  Folders,
+  CaretCircleDown,
+} from "phosphor-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryThunk, loadMore } from "../../redux/category/categorySlice";
@@ -47,6 +53,20 @@ export const SideBar = () => {
               আরও দেখুন
             </Sidebar.Item>
           )}
+          <Sidebar.Item
+            className="cursor-pointer"
+            icon={<BookOpen size={24} />}
+            onClick={() => navigate("/about")}
+          >
+            আমাদের সম্পর্কে
+          </Sidebar.Item>
+          <Sidebar.Item
+            className="cursor-pointer"
+            onClick={() => navigate("/contact")}
+            icon={<Phone size={24} />}
+          >
+            যোগাযোগ
+          </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
