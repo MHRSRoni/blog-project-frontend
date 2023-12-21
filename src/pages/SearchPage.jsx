@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import SearchCard from "../components/Search/SearchCard";
 import { Link } from "react-router-dom";
 
-import axios from "axios";
+import axios from "../utilities/axiosInstance";
 
 const SearchPage = () => {
   const location = useLocation();
@@ -17,7 +17,7 @@ const SearchPage = () => {
       try {
         if (query) {
           const response = await axios.get(
-            `https://health-plus-q4tt.onrender.com/api/v1/post/read/?search=${query}`
+            `/post/read/?search=${query}`
           );
             const searchData = response.data.data.resultPosts;
 

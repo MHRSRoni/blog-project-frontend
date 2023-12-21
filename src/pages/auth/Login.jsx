@@ -16,8 +16,8 @@ import { setLocalStorage } from "../../utilities/SessionHelper";
 import { getReadListThunk } from "../../redux/readList/readListSlice";
 
 const initialFormState = {
-  email: "test7@gmail.com",
-  password: "123321",
+  email: "",
+  password: "",
 };
 
 export const Login = () => {

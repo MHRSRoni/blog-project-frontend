@@ -31,7 +31,7 @@ const SearchBar = () => {
           <div className="flex items-center">
             <div>
               <input
-                className="w-96 p-2 border-2 rounded"
+                className="w-96 p-2 border-2 rounded border-primary-200 active:outline-primary-500"
                 placeholder="সার্চ করুন"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}

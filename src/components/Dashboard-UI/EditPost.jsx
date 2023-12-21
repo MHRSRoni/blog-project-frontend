@@ -16,7 +16,7 @@ import {
 import Loader from '../Spinner/Spinner';
 
 const EditBlogPage = () => {
-  const { category } = useSelector((state) => state.category);
+  const { all:category } = useSelector((state) => state.category);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const EditBlogPage = () => {
         setDescription(response.data.data.description);
 
         if (response.data.data.categoryId) {
-          // If there's a category, find and set it
+          
           const selectedCategory = category.find((item) => item._id === response.data.data.categoryId);
           setSelectedCategory(selectedCategory);
         }
@@ -116,19 +116,19 @@ const EditBlogPage = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
       <div className="max-w-4xl mx-auto border rounded shadow bg-white flex flex-col md:p-20 gap-4">
         <Toaster />
-        <h2 className="text-2xl font-bold mb-1 text-center">Edit Blog Post</h2>
+        <h2 className="text-2xl font-bold mb-1 text-center">ব্লগ পোস্ট সম্পাদনা</h2>
         <hr className="mb-4 border-t-2 border-blue-200 mx-auto w-1/2" />
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 focus:border-highlight w-full">
               <Label
                 style={{ fontWeight: 'bold', fontSize: '1.25rem' }}
-                value="Blog Title"
+                value="ব্লগ শিরোনাম লিখুন"
                 className="mb-3"
               />
               <TextInput
                 sizing="lg"
                 id="blogTitle"
-                placeholder="Enter Blog Title"
+                placeholder="ব্লগ শিরোনাম লিখুন"
                 color="gray"
                 handleOnChange={handleTitleChange}
                 value={title}
@@ -137,7 +137,7 @@ const EditBlogPage = () => {
             </div>
 
           <div className="mb-4 w-full">
-            <label className="block text-gray-600">Upload Image:</label>
+            <label style={{ fontWeight: 'bold', fontSize: '1.25rem' }} className="block text-gray-600">ছবি আপলোড করুন</label>
             <input
               className="border p-2 w-full"
               type="file"
@@ -160,7 +160,7 @@ const EditBlogPage = () => {
           </div>
 
           <div className="mb-4 w-full">
-            <Dropdown label="Select Category" size="md" type="primary" dismissOnClick={true}>
+            <Dropdown label="ক্যাটাগরি নির্বাচন করুন" style={{ fontWeight: 'bold', fontSize: '1.25rem' }} size="md" type="primary" dismissOnClick={true}>
               {category.map((item) => (
                 <Dropdown.Item
                   key={item._id}
@@ -173,15 +173,15 @@ const EditBlogPage = () => {
             </Dropdown>
             {/* Display selected category */}
             {selectedCategory && (
-              <p className="mt-2 text-gray-600">Selected Category: {selectedCategory.title}</p>
+              <p className="mt-2 text-gray-600">নির্বাচিত বিভাগ: {selectedCategory.title}</p>
             )}
           </div>
 
           <div className="mb-4 w-full">
-            <Label value="Description" />
+            <Label value="বিবরণ" style={{ fontWeight: 'bold', fontSize: '1.25rem' }}/>
             <Textarea
               id="description"
-              placeholder="Your Blog Content..."
+              placeholder="আপনার ব্লগ সামগ্রী..."
               withBg={true}
               color="gray"
               border={true}
@@ -193,14 +193,14 @@ const EditBlogPage = () => {
 
           <div className="flex gap-2 w-full">
             <Button size="md" type="primary" onClick={handleSubmit}>
-              Update
+            আপডেট করুন
             </Button>
             <Button
               size="md"
               type="outlinePrimary"
               onClick={() => navigate('/user/dashboard')}
             >
-              Back to Dashboard
+              ড্যাশবোর্ডে ফিরুন
             </Button>
           </div>
         </form>

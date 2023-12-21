@@ -49,19 +49,19 @@ const ReadList = ({ postId }) => {
           <div className="flex fixed inset-0 bg-black bg-opacity-50"></div>
           <div className="bg-white w-96 p-4 rounded-md z-10">
             <p className="text-body-5 md:text-body-4 leading-relaxed text-metal-500">
-              You are not logged in. Please login first.
+            আপনি লগইন করা হয়নি। অনুগ্রহ করে প্রথমে লগইন করুন।
             </p>
             <button
-              className="mt-4 px-4 py-2 bg-[#1B4DFF] text-white rounded-md"
+              className="mt-4 px-4 py-2 border border-[#1B4DFF] text-black rounded-md"
               onClick={onClickModalCancel}
             >
-              Close
+              বন্ধ করুন
             </button>
             <button
               className="mt-4 px-4 py-2 bg-[#1B4DFF] text-white rounded-md ml-2"
               onClick={onClickModalLogin}
             >
-              Login
+              লগইন
             </button>
           </div>
         </div>
