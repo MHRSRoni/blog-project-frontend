@@ -80,7 +80,7 @@ const CategoryListItem = ({
             <span># </span>
             {title}
           </h2>
-          <h1 className="text-[12px]"> {postCount} posts</h1>
+          <h1 className="text-[12px]"> {postCount} পোস্ট </h1>
         </div>
 
         <p className="text-gray-900 text-sm">{description.slice(0, 100)}...</p>
@@ -94,7 +94,7 @@ const CategoryListItem = ({
           } text-white w-32 font-xl py-1 px-4  rounded`}
           onClick={() => handleFollow(_id)}
         >
-          Follow
+          ফলো
         </button>
         <button
           disabled={isExist ? false : true}
@@ -103,7 +103,7 @@ const CategoryListItem = ({
           } text-white w-32 font-xl py-1 px-4  rounded`}
           onClick={() => handleFollow(_id)}
         >
-          UnFollow
+          আনফলো
         </button>
       </div>
     </div>

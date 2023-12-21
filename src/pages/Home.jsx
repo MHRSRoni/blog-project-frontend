@@ -72,7 +72,7 @@ const Home = () => {
           borderPosition="bottom"
           onActiveTabChange={handleTabChange}
         >
-          <Tabs.Item title="প্রাসঙ্গিক">
+          <Tabs.Item title="রিলেভেন্ট">
             {posts?.resultPosts?.length > 1 ? (
               posts?.resultPosts.map((item) => (
                 <PostCard key={item._id} item={item} />
@@ -105,7 +105,7 @@ const Home = () => {
               </div>
             )}
           </Tabs.Item>
-          <Tabs.Item title="সাম্প্রতিক">
+          <Tabs.Item title="লেটেস্ট">
             {posts?.resultPosts?.length > 1 ? (
               posts?.resultPosts.map((item) => (
                 <PostCard key={item._id} item={item} />
@@ -172,7 +172,7 @@ const Home = () => {
         </Tabs>
       </div>
       <div className="right hidden lg:block  lg:basis-3/12 ">
-        <SideCard cardTitle="সাম্প্রতিক পোস্ট ">
+        <SideCard cardTitle="লেটেস্ট পোস্ট ">
           <LatestPosts />
         </SideCard>
         <SideCard cardTitle="ক্যালেন্ডার">
