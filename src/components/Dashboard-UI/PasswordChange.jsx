@@ -55,10 +55,10 @@ const PasswordChange = () => {
         <form onSubmit={handleSubmit}>
           <div className="flex justify-start flex-wrap gap-4">
             <div className="mb-4 w-[31%]">
-              <Label value="Current Password" />
+              <Label value="বর্তমান পাসওয়ার্ড" />
               <span className="text-red-600 pl-2">*</span>
               <TextInput
-                placeholder="Current Password"
+                placeholder="বর্তমান পাসওয়ার্ড"
                 type={isShow.curPass ? "text" : "password"}
                 color="gray"
                 className="w-full border p-2 rounded"
@@ -82,10 +82,10 @@ const PasswordChange = () => {
             </div>
 
             <div className="mb-4 w-[31%]">
-              <Label value="New Password" />
+              <Label value="নতুন পাসওয়ার্ড" />
               <span className="text-red-600 pl-2">*</span>
               <TextInput
-                placeholder="New Password"
+                placeholder="নতুন পাসওয়ার্ড"
                 type={isShow.newPass ? "text" : "password"}
                 color="gray"
                 className="w-full border p-2 rounded"
@@ -109,10 +109,10 @@ const PasswordChange = () => {
             </div>
 
             <div className="mb-4 w-[31%]">
-              <Label value="Confirm New Password" />
+              <Label value="নিশ্চিত নতুন পাসওয়ার্ড" />
               <span className="text-red-600 pl-2">*</span>
               <TextInput
-                placeholder="Confirm New Password"
+                placeholder="নিশ্চিত নতুন পাসওয়ার্ড"
                 type={isShow.conNewPass ? "text" : "password"}
                 color="gray"
                 className="w-full border p-2 rounded"
@@ -137,7 +137,7 @@ const PasswordChange = () => {
           </div>
           <div>
             <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-              Update
+              আপডেট
             </button>
           </div>
         </form>
