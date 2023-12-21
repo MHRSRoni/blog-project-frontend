@@ -61,9 +61,9 @@ const DTable = () => {
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b">Blog Title</th>
-            <th className="py-2 px-4 border-b">Likes</th>
-            <th className="py-2 px-4 border-b">Actions</th>
+            <th className="py-2 px-4 border-b">ব্লগ শিরোনাম</th>
+            <th className="py-2 px-4 border-b">লাইক</th>
+            <th className="py-2 px-4 border-b">ক্রিয়াসমূহ</th>
           </tr>
         </thead>
         <tbody>
@@ -82,13 +82,13 @@ const DTable = () => {
                       className="mr-2 bg-red-500 text-white px-2 py-1 rounded"
                       onClick={() => handleDelete(post.slug)}
                     >
-                      <span className="ml-1">Delete</span>
+                      <span className="ml-1">ডিলিট</span>
                     </button>
                     <button
                       className="bg-blue-500 text-white px-2 py-1 rounded"
                       onClick={() => navigate(`/edit-post/${post.slug}`)}
                     >
-                      <span className="ml-1">Edit</span>
+                      <span className="ml-1">এডিট</span>
                     </button>
                   </div>
                 </div>
@@ -106,20 +106,20 @@ const DTable = () => {
         position="center"
         onClose={handleCancelDelete}
       >
-        <Modal.Header>Do you want to delete this post?</Modal.Header>
+        <Modal.Header>আপনি কি এই পোস্টটি মুছতে চান?</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
             <p className="text-body-5 md:text-body-4 leading-relaxed text-metal-500">
-              Confirm Post Delete
+            পোস্ট মুছতে নিশ্চিত করুন
             </p>
           </div>
         </Modal.Body>
         <Modal.Footer>
           <Button type="outlineGray" onClick={handleCancelDelete}>
-            Cancel
+          বাতিল করুন
           </Button>
           <Button type="primary" onClick={handleConfirmDelete}>
-            Confirm
+          Confirm
           </Button>
         </Modal.Footer>
       </Modal>

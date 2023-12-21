@@ -47,10 +47,8 @@ const CreatePost = () => {
 
   const handleCategoryClick = async (categoryId) => {
     try {
-      // Dispatch the loadMore action to make the API call
       await dispatch(loadMore());
 
-      // Find the selected category
       const selectedCategory = category.find((item) => item._id === categoryId);
       setSelectedCategory(selectedCategory);
     } catch (error) {
@@ -102,7 +100,7 @@ const CreatePost = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 w-full">
       <div className="w-full max-w-4xl mx-auto border rounded shadow bg-white flex flex-col md:p-20 gap-4 focus:border-highlight">
         <Toaster />
-        <h2 className="text-2xl font-bold text-center">Create a New Post</h2>
+        <h2 className="text-2xl font-bold text-center">নতুন পোস্ট তৈরি করুন</h2>
         <hr className="mb-4 border-t-2 border-blue-200 mx-auto w-1/2" />
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {/* First Column */}
@@ -110,13 +108,13 @@ const CreatePost = () => {
             <div className="flex flex-col gap-3 focus:border-highlight w-full">
               <Label
                 style={{ fontWeight: "bold", fontSize: "1.25rem" }}
-                value="Blog Title"
+                value="ব্লগ শিরোনাম"
                 className="mb-3"
               />
               <TextInput
                 sizing="lg"
                 id="blogTitle"
-                placeholder="Enter Blog Title"
+                placeholder="ব্লগ শিরোনাম লিখুন"
                 color="gray"
                 handleOnChange={handleTitleChange}
                 value={title}
@@ -124,7 +122,7 @@ const CreatePost = () => {
               />
             </div>
             <div className="w-full">
-              <label className="block text-lg font-bold ">Upload Image:</label>
+              <label className="block text-lg font-bold ">ছবি আপলোড করুন:</label>
               <input
                 className="border p-2 w-full"
                 type="file"
@@ -145,12 +143,12 @@ const CreatePost = () => {
               <div className="mb-2">
                 <Label
                   style={{ fontWeight: "bold", fontSize: "1.25rem" }}
-                  value="Select Category"
+                  value="ক্যাটাগরি নির্বাচন করুন"
                 />
               </div>
               <Dropdown
                 className="w-full"
-                label="Select Category"
+                label="ক্যাটাগরি নির্বাচন করুন"
                 size="md"
                 type="primary"
                 dismissOnClick={true}
@@ -167,7 +165,7 @@ const CreatePost = () => {
               </Dropdown>
               {selectedCategory && (
                 <p className="mt-2 font-bold text-lg text-gray-800">
-                  Selected Category: {selectedCategory.title}
+                  নির্বাচিত ক্যাটাগরি: {selectedCategory.title}
                 </p>
               )}
             </div>
@@ -175,10 +173,10 @@ const CreatePost = () => {
 
           {/* Description */}
           <div className="mb-4 w-full">
-            <Label value="Description" />
+            <Label value="বিবরণ" style={{ fontWeight: "bold", fontSize: "1.25rem" }} />
             <Textarea
               id="description"
-              placeholder="Your Blog Content..."
+              placeholder="আপনার ব্লগ সামগ্রী..."
               withBg={true}
               color="gray"
               border={true}
@@ -196,14 +194,14 @@ const CreatePost = () => {
             ) : (
               <>
                 <Button size="md" type="primary" onClick={handleSubmit}>
-                  Post
+                পোস্ট
                 </Button>
                 <Button
                   size="md"
                   type="outlinePrimary"
                   onClick={() => navigate("/")}
                 >
-                  Back Home
+                  হোমে ফিরুন
                 </Button>
               </>
             )}

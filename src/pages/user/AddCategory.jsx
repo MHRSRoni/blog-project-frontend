@@ -9,6 +9,7 @@ import {
   getLocalStorage,
   setLocalStorage,
 } from "../../utilities/SessionHelper";
+import banglaNumber from "../../utilities/banglaNumber";
 
 const AddCategory = () => {
   const { all: category } = useSelector((state) => state.category);
@@ -80,7 +81,7 @@ const CategoryListItem = ({
             <span># </span>
             {title}
           </h2>
-          <h1 className="text-[12px]"> {postCount} পোস্ট </h1>
+          <h1 className="text-[12px]"> {banglaNumber(postCount)} পোস্ট </h1>
         </div>
 
         <p className="text-gray-900 text-sm">{description.slice(0, 100)}...</p>
