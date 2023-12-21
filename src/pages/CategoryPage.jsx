@@ -1,7 +1,7 @@
 import Category from "../components/Category/Category";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../../src/utilities/axiosInstance";
 
 const CategoryPage = () => {
   const { categoryId } = useParams();
@@ -11,7 +11,7 @@ const CategoryPage = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://health-plus-q4tt.onrender.com/api/v1/post/read/?category=${categoryId}`
+        `/post/read/?category=${categoryId}`
       );
       const categoryData = response.data.data.resultPosts;
       // console.log(categoryData);

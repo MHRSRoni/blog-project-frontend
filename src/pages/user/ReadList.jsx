@@ -6,6 +6,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import ConfirmationModal from "../../components/Modal/ConfirmationModal";
 import { useEffect, useState } from "react";
 import { updateReadListThunk } from "../../redux/readList/readListSlice";
+import banglaNumber from "../../utilities/banglaNumber";
 
 const ReadList = () => {
   const dispatch = useDispatch();
@@ -94,7 +95,7 @@ const ReadList = () => {
                         <p className="mr-4">
                           {new Date(item.updatedAt).toDateString()}
                         </p>
-                        <p>{item.readTime} minutes</p>
+                        <p>{banglaNumber(item.readTime)} মিনিট</p>
                       </div>
                     </div>
                   </div>
@@ -105,7 +106,7 @@ const ReadList = () => {
                 color="error"
                 onClick={() => handleShow(item.postId)}
               >
-                Remove
+                রিমুভ
               </Button>
             </div>
           ))

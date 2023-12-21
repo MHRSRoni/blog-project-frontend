@@ -1,5 +1,6 @@
 
 
+
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsByUserIdThunk } from '../../redux/DTable/Dtableslice.js';
@@ -9,37 +10,29 @@ import { useNavigate } from 'react-router-dom';
 import { Trash } from 'phosphor-react';
 import Loader from '../Spinner/Spinner';
 
-
-
 const DTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { posts, isLoading, error, modalOpen, postToDelete } = useSelector((state) => state.table);
   const { user } = useSelector((state) => state.auth);
 
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [key, setKey] = useState(0);
-  
 
   useEffect(() => {
-
-      dispatch(getPostsByUserIdThunk(user.data._id));
-    
-  }, [dispatch, modalOpen, key]);
+    dispatch(getPostsByUserIdThunk(user.data._id));
+  }, [dispatch, modalOpen]);
 
   const handleDelete = (postSlug) => {
     dispatch(setPostToDelete(postSlug));
     setShowDeleteModal(true);
   };
 
-
-
-  const handleConfirmDelete = () => {
-    dispatch(deletePostThunk(postToDelete));
+  const handleConfirmDelete = async () => {
+    await dispatch(deletePostThunk(postToDelete));
     dispatch(setModalOpen(false));
     setShowDeleteModal(false);
-    setKey((prevKey) => prevKey + 1);
+    
+    dispatch(getPostsByUserIdThunk(user.data._id));
   };
 
   const handleCancelDelete = () => {
@@ -72,7 +65,7 @@ const DTable = () => {
               <td className="py-2 px-4 border-b">{post.title}</td>
               <td className="py-2 px-4 border-b align-middle">
                 <div className="flex flex-col items-center">
-                  <span>{`Likes: ${post.react.like}`}</span>
+                  <span>{`লাইক: ${post.react.like}`}</span>
                 </div>
               </td>
               <td className="py-2 px-4 border-b align-middle">
@@ -110,16 +103,20 @@ const DTable = () => {
         <Modal.Body>
           <div className="space-y-6">
             <p className="text-body-5 md:text-body-4 leading-relaxed text-metal-500">
-            পোস্ট মুছতে নিশ্চিত করুন
+              পোস্ট মুছতে নিশ্চিত করুন
             </p>
           </div>
         </Modal.Body>
         <Modal.Footer>
           <Button type="outlineGray" onClick={handleCancelDelete}>
-          বাতিল করুন
+            বাতিল করুন
           </Button>
-          <Button type="primary" onClick={handleConfirmDelete}>
-          Confirm
+          <Button
+            type="primary"
+            onClick={handleConfirmDelete}
+            style={{ backgroundColor: 'red', color: 'white' }}
+          >
+            নিশ্চিত করুন
           </Button>
         </Modal.Footer>
       </Modal>
@@ -129,8 +126,7 @@ const DTable = () => {
 
 export default DTable;
 
-
-/////////////// working code
+/////////////// working code above
 
 
 
