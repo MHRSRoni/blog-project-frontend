@@ -1,9 +1,10 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import { Button } from "keep-react";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../components/Spinner/Spinner";
 
 import ConfirmationModal from "../../components/Modal/ConfirmationModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { updateReadListThunk } from "../../redux/readList/readListSlice";
 
 const ReadList = () => {
@@ -11,6 +12,31 @@ const ReadList = () => {
   const [show, setShow] = useState(false);
   const [postId, setPostId] = useState("");
   const { readList, isLoading } = useSelector((state) => state.readList);
+  const [list, setList] = useState([]);
+  const [page, setPage] = useState(0);
+  const [search, setSearch] = useState(null);
+
+  useEffect(() => {
+    if (readList) {
+      setList([...readList?.data?.slice(0, 7)]);
+    }
+  }, [readList]);
+
+  useEffect(() => {
+    if (page) {
+      setList([...readList?.data?.slice(0, page)]);
+    }
+  }, [page]);
+
+  useEffect(() => {
+    if (search !== null) {
+      const data = readList?.data.filter((item) => {
+        return search === "" ? true : item.title.includes(search);
+      });
+
+      setList(data.slice(0, 7));
+    }
+  }, [search]);
 
   const handleUpdateThunk = () => {
     dispatch(updateReadListThunk(postId));
@@ -21,27 +47,37 @@ const ReadList = () => {
     setShow(!show);
   };
 
+  const handleClick = () => {
+    setPage((prev) => prev + 7);
+    setSearch(null);
+  };
+
+  const handleSearch = (e) => {
+    const input = e.target.value;
+    setSearch(input);
+  };
+
   return (
     <div className="container mx-auto p-3 h-screen overflow-auto">
       {/* heading */}
       <div className="flex justify-between items-center">
         <h3 className="text-2xl font-bold">
-          Read list (
-          {readList?.data.length > 0 ? readList?.data.length : "0"})
+          Total Added (
+          {readList?.data?.length > 0 ? readList?.data?.length : "0"})
         </h3>
         <input
-          type="text"
+          type="search"
           placeholder="Search here..."
-          // value={searchTerm}
-          // onChange={handleSearch}
+          value={search}
+          onChange={(e) => handleSearch(e)}
           className="px-2 py-1 border border-gray-300 rounded-md"
         />
       </div>
 
       {/* content */}
 
-      {readList?.data.length > 0
-        ? readList?.data.map((item, index) => (
+      {list.length > 0
+        ? list.map((item, index) => (
             <div key={index} className="p-5 flex justify-between items-center">
               <a href={`/post/read?slug=${item.slug}`}>
                 <div className="flex justify-between items-center">
@@ -74,6 +110,27 @@ const ReadList = () => {
             </div>
           ))
         : "NO Read List Found"}
+
+      {/* loading btn */}
+      <div className="flex justify-center" onClick={handleClick}>
+        <span
+          className={`${
+            list?.length > 6 && readList?.data?.length > list.length
+              ? ""
+              : "hidden"
+          } `}
+        >
+          <Button
+            size="xs"
+            type="primary"
+            onClick={() => {
+              setPage(page + 7);
+            }}
+          >
+            আরো যুক্ত করুন
+          </Button>
+        </span>
+      </div>
 
       {isLoading && <Spinner />}
 

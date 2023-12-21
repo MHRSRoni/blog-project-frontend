@@ -12,7 +12,10 @@ export const NavBar = () => {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <Navbar fluid={false} className="shadow-md  custom-sidebar">
+    <Navbar
+      fluid={false}
+      className="shadow-md  sticky top-0 z-20 custom-sidebar"
+    >
       <Navbar.Container className="flex items-center justify-between lg:p-2 ">
         <Navbar.Container className="flex items-center toggleIcon">
           <Navbar.Toggle />
