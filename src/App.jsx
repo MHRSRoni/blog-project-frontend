@@ -26,9 +26,9 @@ import { ForgotPassword } from "./pages/auth/ForgotPassword";
 import VerifyOtp from "./pages/auth/VerifyOtp";
 import SendOtp from "./pages/auth/SendOtp";
 import AddCategory from "./pages/user/AddCategory";
-import PasswordChange from "./components/Tooltip/PasswordChange";
 import DTable from "./components/Dashboard-UI/DTable";
 import UserDashboard from "./pages/UserDashboard";
+import PasswordChange from "./components/Dashboard-UI/PasswordChange";
 
 function App() {
   const [loading, setLoading] = useState(true);
